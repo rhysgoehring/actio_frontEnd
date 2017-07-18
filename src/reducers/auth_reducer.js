@@ -14,7 +14,7 @@ export default function(state = {}, action) {
       return {
         ...state,
         authenticated: false,
-        userId: null,
+        userInfo: null,
       };
     case AUTH_ERROR:
       return {

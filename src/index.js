@@ -16,6 +16,8 @@ import RequireAuth from './auth/HOCRequireAuth';
 import App from './components/App';
 import SignIn from './auth/SignIn';
 import Home from './components/Home';
+import SignUp from './auth/SignUp';
+import Landing from './components/Landing';
 
 const middleware = [reduxThunk, logger]
 const store = createStore(reducers, applyMiddleware(...middleware))
@@ -24,8 +26,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path='/' component={App} >
-        <IndexRoute component={App} />
+        <IndexRoute component={Landing} />
         <Route path="signin" component={SignIn} />
+        <Route path="signup" component={SignUp} />
         <Route path="home" component={RequireAuth(Home)} />
       </Route>
     </Router>
