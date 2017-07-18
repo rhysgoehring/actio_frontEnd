@@ -3,8 +3,8 @@ import {browserHistory} from 'react-router';
 import {AUTH_USER, UNAUTH_USER, AUTH_ERROR} from './types';
 
 
-const ROOT_URL = 'https://actio-backend.herokuapp.com';
-// const ROOT_URL = 'http://localhost:8080';
+// const ROOT_URL = 'https://actio-backend.herokuapp.com';
+const ROOT_URL = 'http://localhost:8080';
 
 
 export function signinUser({ email, password }) {
@@ -57,5 +57,13 @@ export function authError(error) {
   return {
     type: AUTH_ERROR,
     payload: error
+  }
+}
+
+export function signOutUser() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('currentUser');
+  return {
+    type: UNAUTH_USER
   }
 }

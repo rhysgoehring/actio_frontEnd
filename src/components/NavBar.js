@@ -24,7 +24,7 @@ class NavBar extends Component {
         <Navbar.Collapse>
            <Nav pullRight>
              <NavItem><Link style={{color: '#fff'}} to="/signin">Sign In</Link></NavItem>
-             {/* <NavItem><Link style={{color: '#fff'}} to="/signout">Sign Out</Link></NavItem> */}
+             <NavItem><Link style={{color: '#fff'}} to="/signout">Sign Out</Link></NavItem>
            </Nav>
          </Navbar.Collapse>
        </Navbar>

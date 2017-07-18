@@ -18,6 +18,7 @@ import SignIn from './auth/SignIn';
 import Home from './components/Home';
 import SignUp from './auth/SignUp';
 import Landing from './components/Landing';
+import SignOut from './auth/SignOut';
 
 const middleware = [reduxThunk, logger]
 const store = createStore(reducers, applyMiddleware(...middleware))
@@ -29,6 +30,7 @@ ReactDOM.render(
         <IndexRoute component={Landing} />
         <Route path="signin" component={SignIn} />
         <Route path="signup" component={SignUp} />
+        <Route path="signout" component={SignOut} />
         <Route path="home" component={RequireAuth(Home)} />
       </Route>
     </Router>
