@@ -6,13 +6,12 @@ import {Navbar, Nav, NavItem, NavDropdown} from 'react-bootstrap';
 class NavBar extends Component {
 
   render() {
-
+    console.log('this.props in header', this.props)
     if (!this.props.authenticated){
       return (
         <div></div>
       )
     }
-
     return (
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
@@ -35,10 +34,11 @@ class NavBar extends Component {
  function mapStateToProps(state) {
    return ({
      authenticated: state.auth.authenticated,
-     userId: state.auth.userId,
-     username: state.auth.username,
+     userId: state.auth.id,
+     firstName: state.auth.firstName,
      profilePic: state.auth.profilePic,
-     email: state.auth.email
+     email: state.auth.email,
+     zip: state.auth.zip
    })
 }
 

@@ -7,7 +7,12 @@ export default function(state = {}, action) {
         ...state,
         error: '',
         authenticated: true,
-        userInfo: action.payload
+        email: action.payload.email,
+        firstName: action.payload.first_name,
+        id: action.payload.id,
+        lastName: action.payload.last_name,
+        zip: action.payload.zip,
+        profPic: action.payload.profile_pic
 
       };
     case UNAUTH_USER:

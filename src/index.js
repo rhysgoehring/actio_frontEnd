@@ -31,7 +31,7 @@ ReactDOM.render(
         <Route path="signin" component={SignIn} />
         <Route path="signup" component={SignUp} />
         <Route path="signout" component={SignOut} />
-        <Route path="home" component={RequireAuth(Home)} />
+        <Route path="home" component={Home} />
       </Route>
     </Router>
   </Provider>, document.getElementById('root')
