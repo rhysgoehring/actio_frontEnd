@@ -19,7 +19,12 @@ export default function(state = {}, action) {
       return {
         ...state,
         authenticated: false,
-        userInfo: null,
+        email: null,
+        firstName: null,
+        id: null,
+        lastName: null,
+        zip: null,
+        profPic: null
       };
     case AUTH_ERROR:
       return {

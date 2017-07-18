@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {browserHistory} from 'react-router';
-import {AUTH_USER, UNAUTH_USER, AUTH_ERROR} from './types';
+import {AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_ALL_EVENTS} from './types';
 
 
 // const ROOT_URL = 'https://actio-backend.herokuapp.com';
@@ -64,5 +64,17 @@ export function signOutUser() {
   localStorage.removeItem('token');
   return {
     type: UNAUTH_USER
+  }
+}
+
+export function getAllEvents() {
+  return function(dispatch){
+    axios.get(`${ROOT_URL}/api/events`)
+      .then(response => {
+        dispatch({
+          type: GET_ALL_EVENTS,
+          payload: response.data
+        })
+      })
   }
 }
