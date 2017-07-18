@@ -14,24 +14,24 @@ class NavBar extends Component {
     }
 
     return (
-      <Navbar inverse collapseOnSelect>
+      <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link style={{color: '#fff'}} to='/home'>Actio</Link>
+            <Link to='/home'>Actio</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
            <Nav pullRight>
-             <NavItem><Link style={{color: '#fff'}} to="/signin">Sign In</Link></NavItem>
-             <NavItem><Link style={{color: '#fff'}} to="/signout">Sign Out</Link></NavItem>
+             <NavItem><Link to="/signin">Sign In</Link></NavItem>
+             <NavItem><Link to="/signout">Sign Out</Link></NavItem>
            </Nav>
          </Navbar.Collapse>
        </Navbar>
         )
       }
       }
-        
+
  function mapStateToProps(state) {
    return ({
      authenticated: state.auth.authenticated,
