@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col} from 'react-bootstrap';
+import {Grid, Row, Col, Image} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 
@@ -20,21 +20,20 @@ class Home extends Component {
   // }
   
   render() {
-    console.log('this.props in render on Home', this.props)
+    console.log('prof pic in render on Home', this.props.picUrl)
     return(
       <Grid>
         <Col md={3}>
-            <Row >
-              <header>
-                <h1 className="text-center">{this.props.firstName}'s Events</h1>
-              </header>
+            <Row>
+              <img className="profPicHome img-responsive" src={this.props.picUrl} />
+            </Row>
+            <Row>
+              <h3 className="text-left">{this.props.firstName}'s Events</h3>
             </Row>
         </Col>
         <Col md={9}>
           <Row>
-            <header>
-              <h1 className="text-center">All Events</h1>
-            </header>
+            <h1 className="text-center">All Events</h1>
           </Row>
         </Col>
         
