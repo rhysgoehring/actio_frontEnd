@@ -6,7 +6,6 @@ import {Navbar, Nav, NavItem, NavDropdown} from 'react-bootstrap';
 class NavBar extends Component {
 
   render() {
-    console.log('this.props in header', this.props)
     if (!this.props.authenticated){
       return (
         <div></div>
@@ -22,7 +21,7 @@ class NavBar extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
            <Nav pullRight>
-             <NavItem><Link to="/signin">Sign In</Link></NavItem>
+             <NavItem><Link to="/profile">Profile</Link></NavItem>
              <NavItem><Link to="/signout">Sign Out</Link></NavItem>
            </Nav>
          </Navbar.Collapse>

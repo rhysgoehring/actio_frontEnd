@@ -9,3 +9,14 @@ img.profPicHome {
   height: 250px;
   width: 285px;
 }
+
+#homeMap {
+  height: 250px;
+  /*width: 400px;*/
+  padding: 10px;
+  align-content: center;
+}
+
+
+
+
