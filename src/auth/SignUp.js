@@ -108,7 +108,8 @@ class SignUp extends Component {
                         ref = "picUrl"
                         type="url"
                         component="input"
-                        className="form-control" />
+                        className="form-control"
+                        onChange={()=> this.showPreview()}/>
                     </fieldset>
                     {this.showPreview()}
                   </div>

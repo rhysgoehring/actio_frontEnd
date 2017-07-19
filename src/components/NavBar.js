@@ -35,6 +35,7 @@ class NavBar extends Component {
      authenticated: state.auth.authenticated,
      userId: state.auth.id,
      firstName: state.auth.firstName,
+     lastName: state.auth.lastName,
      profilePic: state.auth.profilePic,
      email: state.auth.email,
      zip: state.auth.zip
