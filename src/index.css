@@ -8,6 +8,15 @@ body {
 img.profPicHome {
   height: 250px;
   width: 285px;
+  align-self: stretch;
+}
+
+.profPicRow {
+  border: 1px black solid;
+}
+
+.mainMap {
+  border: 1px black solid;
 }
 
 #homeMap {

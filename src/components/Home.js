@@ -25,7 +25,7 @@ class Home extends Component {
     return(
       <Grid>
         <Col md={3}>
-            <Row>
+            <Row className='profPicRow'>
               <img className="profPicHome img-responsive" src={this.props.picUrl} />
             </Row>
             <Row>
@@ -33,7 +33,7 @@ class Home extends Component {
             </Row>
         </Col>
         <Col md={9}>
-          <Row className='center-block'>
+          <Row className='center-block mainMap'>
             <GoogleMap center id='homeMap' lat={40.014984} lng={-105.270546} />
           </Row>
           <Row className='center-block'>
