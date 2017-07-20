@@ -4,7 +4,9 @@ import _ from 'lodash';
 export default function(state={}, action) {
   switch (action.type) {
     case GET_ALL_EVENTS:
-      return _.mapKeys(action.payload, 'id')
+      return action.payload
+      
+    
   }
   return state;
 }

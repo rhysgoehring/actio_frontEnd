@@ -71,10 +71,12 @@ export function getAllEvents() {
   return function(dispatch){
     axios.get(`${ROOT_URL}/api/events`)
       .then(response => {
+        console.log('allevents repsonse.data', response.data);
         dispatch({
           type: GET_ALL_EVENTS,
           payload: response.data
         })
+        
       })
   }
 }
