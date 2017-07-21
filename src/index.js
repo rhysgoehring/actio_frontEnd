@@ -21,6 +21,7 @@ import Landing from './components/Landing';
 import SignOut from './auth/SignOut';
 import Profile from './components/Profile'
 
+
 const middleware = [reduxThunk, logger]
 const store = createStore(reducers, applyMiddleware(...middleware))
 

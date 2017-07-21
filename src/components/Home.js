@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 import GoogleMap from './googleMap';
 import _ from 'lodash';
-
+import EventCard from './EventCard';
 class Home extends Component {
   constructor(props){
     super(props);
@@ -23,27 +23,14 @@ class Home extends Component {
   renderAllEvents() {
     return _.map(this.props.allEvents, events => {
       return (
-        <div className="row" key={events.name}>
-          <div className='eventCardContainer'>
-            <div className="card" key={events.name}>
-              <img className="card-img-top img-responsive" src={events.event_pic} alt="Card image cap" style={{alignSelf: 'center'}}/>
-              <div className="card-block">
-                <h4 className="card-title text-center">{events.name}</h4>
-                <p className="card-text text-center">{events.description}</p>
-              </div>
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">Category: <img src={events.icon} style={{height:'50px', width:'50px'}} className="img-responsive" /></li>
-                <li className="list-group-item">Location: {events.location}</li>
-                <li className="list-group-item">Date: {events.event_date}</li>
-                <li className="list-group-item">Participants</li>
-              </ul>
-              <div className="card-block">
-                <a href="#" className="card-link">Card link</a>
-                <a href="#" className="card-link">Another link</a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <EventCard key={events.name}
+          eventPic= {events.event_pic}
+          eventTitle={events.name}
+          eventDesc={events.description}
+          icon={events.icon}
+          eventLocation={events.location}
+          eventDate={events.event_date}
+        />
       )
     })
   }
