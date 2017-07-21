@@ -5,21 +5,22 @@ import * as actions from '../actions/index';
 import GoogleMap from './googleMap';
 import _ from 'lodash';
 import EventCard from './EventCard';
+
 class Home extends Component {
   constructor(props){
     super(props);
-  
+
   console.log('this in constructor', this)
   }
-  
+
   componentDidMount() {
     this.props.getAllEvents();
     const id = this.props.id
     this.props.getUserEvents(id)
-      
-    
+
+
   }
-  
+
   renderAllEvents() {
     return _.map(this.props.allEvents, events => {
       return (
@@ -34,8 +35,22 @@ class Home extends Component {
       )
     })
   }
- 
-  
+
+  renderUserEvents() {
+    return _.map(this.props.userEvents, events => {
+      return (
+        <EventCard key={events.name}
+          eventPic= {events.event_pic}
+          eventTitle={events.name}
+          eventDesc={events.description}
+          icon={events.icon}
+          eventLocation={events.location}
+          eventDate={events.event_date}
+        />
+      )
+    })
+  }
+
   render() {
     console.log('propsin render on Home', this.props)
     return(
@@ -46,6 +61,8 @@ class Home extends Component {
             </Row>
             <Row>
               <h4 className="text-left">{this.props.firstName}'s Events</h4>
+              {this.renderUserEvents()}
+
             </Row>
         </Col>
         <Col md={9}>
@@ -57,7 +74,7 @@ class Home extends Component {
               {this.renderAllEvents()}
           </Row>
         </Col>
-        
+
       </Grid>
     )
   }
@@ -76,5 +93,7 @@ function mapStateToProps(state) {
     userEvents: state.userEvents
   })
 }
+
+
 
 export default connect(mapStateToProps, actions)(Home);
