@@ -26,6 +26,12 @@ img.profPicHome {
   align-content: center;
 }
 
+.eventCardContainer {
+  border: 1px black solid;
+  margin: 1.0em;
+  border-radius: 0.2em;
+}
+
 /*************************************************CARD***************************************************/
 .card {
   position: relative;

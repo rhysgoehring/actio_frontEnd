@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {browserHistory} from 'react-router';
-import {AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_ALL_EVENTS} from './types';
+import {AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_ALL_EVENTS, GET_USER_EVENTS} from './types';
 
 
 // const ROOT_URL = 'https://actio-backend.herokuapp.com';
@@ -80,3 +80,16 @@ export function getAllEvents() {
       })
   }
 }
+
+export function getUserEvents(id){
+  return function(dispatch) {
+    axios.get(`${ROOT_URL}/api/users/${id}/events`).then(response => {
+      dispatch({
+        type: GET_USER_EVENTS,
+        payload: response.data
+      })
+    })
+    .catch(err => console.log(err))
+  }
+}
+

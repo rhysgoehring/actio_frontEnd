@@ -8,48 +8,40 @@ import _ from 'lodash';
 class Home extends Component {
   constructor(props){
     super(props);
-    console.log('this in Home constructor', this)
+  
+  console.log('this in constructor', this)
   }
   
-  componentWillMount() {
+  componentDidMount() {
     this.props.getAllEvents();
+    const id = this.props.id
+    this.props.getUserEvents(id)
+      
+    
   }
   
   renderAllEvents() {
     return _.map(this.props.allEvents, events => {
       return (
-        <div className="card" key={events.name}>
-          <img className="card-img-top img-responsive" src={events.event_pic} alt="Card image cap" style={{alignSelf: 'center'}}/>
-          <div className="card-block">
-            {/* <div className='row'>
-              <div className="col-md-4">
-                
-                <div className='row'>
-                  
-                </div>
-                <div className='row'>
-                  
-                </div>
-                <div className='row'>
-                  Participants: 0/10
-                </div>
+        <div className="row" key={events.name}>
+          <div className='eventCardContainer'>
+            <div className="card" key={events.name}>
+              <img className="card-img-top img-responsive" src={events.event_pic} alt="Card image cap" style={{alignSelf: 'center'}}/>
+              <div className="card-block">
+                <h4 className="card-title text-center">{events.name}</h4>
+                <p className="card-text text-center">{events.description}</p>
               </div>
-              <div className="col-md-6">
-                
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">Category: {events.title}</li>
+                <li className="list-group-item">Location: {events.location}</li>
+                <li className="list-group-item">Date: {events.event_date}</li>
+                <li className="list-group-item">Participants</li>
+              </ul>
+              <div className="card-block">
+                <a href="#" className="card-link">Card link</a>
+                <a href="#" className="card-link">Another link</a>
               </div>
-            </div> */}
-            <h4 className="card-title">{events.name}</h4>
-            <p className="card-text">{events.description}</p>
-          </div>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">{events.title}</li>
-            <li className="list-group-item">{events.location}</li>
-            <li className="list-group-item">{events.event_date}</li>
-            <li className="list-group-item">Particpants</li>
-          </ul>
-          <div className="card-block">
-            <a href="#" className="card-link">Card link</a>
-            <a href="#" className="card-link">Another link</a>
+            </div>
           </div>
         </div>
       )
