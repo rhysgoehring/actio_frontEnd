@@ -32,7 +32,7 @@ class Home extends Component {
                 <p className="card-text text-center">{events.description}</p>
               </div>
               <ul className="list-group list-group-flush">
-                <li className="list-group-item">Category: {events.title}</li>
+                <li className="list-group-item">Category: <img src={events.icon} style={{height:'50px', width:'50px'}} className="img-responsive" /></li>
                 <li className="list-group-item">Location: {events.location}</li>
                 <li className="list-group-item">Date: {events.event_date}</li>
                 <li className="list-group-item">Participants</li>
@@ -85,7 +85,8 @@ function mapStateToProps(state) {
     lastName: state.auth.lastName,
     picUrl: state.auth.profPic,
     zip: state.auth.zip,
-    allEvents: state.allEvents
+    allEvents: state.allEvents,
+    userEvents: state.userEvents
   })
 }
 
