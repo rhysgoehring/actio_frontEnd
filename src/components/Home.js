@@ -5,6 +5,7 @@ import * as actions from '../actions/index';
 import GoogleMap from './googleMap';
 import _ from 'lodash';
 import EventCard from './EventCard';
+import EventFilter from './EventFilter';
 
 class Home extends Component {
   constructor(props){
@@ -55,6 +56,7 @@ class Home extends Component {
     console.log('propsin render on Home', this.props)
     return(
       <Grid>
+
         <Col md={3}>
             <Row className='profPicRow'>
               <img className="profPicHome img-responsive" src={this.props.picUrl} />
@@ -68,6 +70,9 @@ class Home extends Component {
         <Col md={9}>
           <Row className='center-block mainMap'>
             <GoogleMap center id='homeMap' zoom={10} lat={40.014984} lng={-105.270546} />
+          </Row>
+          <Row className="center-block">
+              <EventFilter />
           </Row>
           <Row className='center-block'>
             <h4 className='text-center'>All Events</h4>

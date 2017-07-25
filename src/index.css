@@ -357,5 +357,9 @@ img.profPicHome {
 }
 
 
+/**************************Event Filter ****************************************/
 
-
+.event_filter{
+  padding: 20px;
+  border: black 2px solid;
+}
