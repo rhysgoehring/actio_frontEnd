@@ -20,6 +20,8 @@ import SignUp from './auth/SignUp';
 import Landing from './components/Landing';
 import SignOut from './auth/SignOut';
 import Profile from './components/Profile'
+import NewEvent from './components/NewEvent';
+
 
 
 const middleware = [reduxThunk, logger]
@@ -35,6 +37,7 @@ ReactDOM.render(
         <Route path="signout" component={SignOut} />
         <Route path="home" component={Home} />
         <Route path="profile" component={Profile} />
+        <Route path="newevent" component={NewEvent} />
       </Route>
     </Router>
   </Provider>, document.getElementById('root')

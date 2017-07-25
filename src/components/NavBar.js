@@ -21,6 +21,7 @@ class NavBar extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
            <Nav pullRight>
+             <NavItem><Link to="/newevent">New Event</Link></NavItem>
              <NavItem><Link to="/profile">Profile</Link></NavItem>
              <NavItem><Link to="/signout">Sign Out</Link></NavItem>
            </Nav>

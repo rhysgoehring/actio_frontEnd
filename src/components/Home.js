@@ -67,7 +67,7 @@ class Home extends Component {
         </Col>
         <Col md={9}>
           <Row className='center-block mainMap'>
-            <GoogleMap center id='homeMap' lat={40.014984} lng={-105.270546} />
+            <GoogleMap center id='homeMap' zoom={10} lat={40.014984} lng={-105.270546} />
           </Row>
           <Row className='center-block'>
             <h4 className='text-center'>All Events</h4>
