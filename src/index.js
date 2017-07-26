@@ -19,8 +19,8 @@ import Home from './components/Home';
 import SignUp from './auth/SignUp';
 import Landing from './components/Landing';
 import SignOut from './auth/SignOut';
-import Profile from './components/Profile'
-
+import Profile from './components/Profile';
+import MyEvents from './components/MyEvents';
 
 
 
@@ -37,11 +37,9 @@ ReactDOM.render(
         <Route path="signout" component={SignOut} />
         <Route path="home" component={Home} />
         <Route path="profile" component={Profile} />
+        <Route path="myevents" component={MyEvents} />
       </Route>
     </Router>
   </Provider>, document.getElementById('root')
 );
 registerServiceWorker();
-
-
-

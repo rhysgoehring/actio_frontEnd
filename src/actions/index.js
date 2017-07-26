@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {browserHistory} from 'react-router';
-import {AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_ALL_EVENTS, GET_USER_EVENTS} from './types';
+import {AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_ALL_EVENTS, GET_USER_EVENTS, GET_OWNED_EVENTS} from './types';
 
 
 // const ROOT_URL = 'https://actio-backend.herokuapp.com';
@@ -12,7 +12,7 @@ export function signinUser({ email, password }) {
     axios.post(`${ROOT_URL}/api/signin`, { email, password })
     .then(response => {
         console.log('response.data', response.data)
-  
+
         const currentUser = response.data.currentUser
         const token = response.data.token
         dispatch(
@@ -44,7 +44,7 @@ export function signupUser({firstName, lastName, password, email, zip, profilePi
             payload: currentUser
           }
         )
-  
+
         localStorage.setItem('token', token);
         browserHistory.push('/home')
       })
@@ -75,7 +75,7 @@ export function getAllEvents() {
           type: GET_ALL_EVENTS,
           payload: response.data
         })
-        
+
       })
   }
 }
@@ -92,7 +92,13 @@ export function getUserEvents(id){
   }
 }
 
-
-
-
-
+export function getOwnedEvents(id){
+  return function(dispatch){
+    axios.get(`${ROOT_URL}/api/users/${id}/owned`).then(response =>{
+      dispatch({
+        type: GET_OWNED_EVENTS,
+        payload:response.data
+      })
+    }).catch(err=> console.log(err))
+  }
+}
