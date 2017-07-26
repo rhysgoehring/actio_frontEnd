@@ -4,6 +4,7 @@ const google = window.google;
 
 class GoogleMap extends Component {
   componentDidMount() {
+    
     new google.maps.Map(this.refs.map, {
       zoom: this.props.zoom,
       center: {
@@ -11,7 +12,7 @@ class GoogleMap extends Component {
         lng: this.props.lng
       }
     });
-  }
+}
   
   render(){
     //anywhere else in this component we can call this.refs.map
