@@ -29,7 +29,7 @@ render() {
             <li className="list-inline-item">Participants:</li>
           </ul>
           <div className="card-block">
-            <a href='#' className="card-link">Card link</a>
+            <button className='card-link'>See More</button>
             <a href="#" className="card-link pull-right">Another link</a>
           </div>
         </div>
