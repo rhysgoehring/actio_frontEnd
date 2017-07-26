@@ -4,15 +4,23 @@ const google = window.google;
 
 class GoogleMap extends Component {
   componentDidMount() {
-    
-    new google.maps.Map(this.refs.map, {
+    let map = new google.maps.Map(this.refs.map, {
       zoom: this.props.zoom,
       center: {
         lat: this.props.lat,
         lng: this.props.lng
       }
     });
+    let marker = new google.maps.Marker({
+          position: {
+            lat: this.props.lat,
+            lng: this.props.lng
+          },
+          map: map
+        });
+    
 }
+  
   
   render(){
     //anywhere else in this component we can call this.refs.map

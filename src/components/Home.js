@@ -11,7 +11,6 @@ class Home extends Component {
   constructor(props){
     super(props);
 
-  console.log('this in constructor', this)
   }
 
   componentDidMount() {
@@ -32,6 +31,10 @@ class Home extends Component {
           icon={events.icon}
           eventLocation={events.location}
           eventDate={events.event_date}
+          eventOwner={events.owner_id}
+          eventLat={parseInt(events.lat)}
+          eventLng={parseInt(events.lng)}
+          
         />
       )
     })
@@ -39,6 +42,8 @@ class Home extends Component {
 
   renderUserEvents() {
     return _.map(this.props.userEvents, events => {
+      console.log('lat', events.lat)
+      console.log('lng', events.lng)
       return (
         <EventCard key={events.name}
           eventPic= {events.event_pic}
@@ -47,13 +52,16 @@ class Home extends Component {
           icon={events.icon}
           eventLocation={events.location}
           eventDate={events.event_date}
+          eventOwner={events.owner_id}
+          eventLat={parseInt(events.lat)}
+          eventLng={parseInt(events.lng)}
+        
         />
       )
     })
   }
 
   render() {
-    console.log('propsin render on Home', this.props)
     return(
       <Grid>
 

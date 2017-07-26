@@ -32,6 +32,10 @@ img.profPicHome {
   border-radius: 0.2em;
 }
 
+.custom-modal{
+  width: 90%;
+}
+
 /*************************************************CARD***************************************************/
 .card {
   position: relative;
