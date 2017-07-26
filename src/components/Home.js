@@ -55,7 +55,6 @@ class Home extends Component {
           eventOwner={events.owner_id}
           eventLat={parseInt(events.lat)}
           eventLng={parseInt(events.lng)}
-        
         />
       )
     })
