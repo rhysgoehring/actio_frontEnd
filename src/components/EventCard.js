@@ -97,6 +97,12 @@ onSubmit(values) {
   })
 }
 
+joinE(id) {
+  const user = this.props.id;
+  this.props.joinEvent(this.props.eventId, user)
+  
+}
+
   render() {
   const {handleClick, handleSubmit} = this.props
   console.log('this.props in EventCard render', this.props)
@@ -117,7 +123,7 @@ onSubmit(values) {
           </ul>
           <div className="card-block">
             <button className='card-link' onClick={this.handleModalClick.bind(this)}>See More</button>
-            <a href="#" className="card-link pull-right">Another link</a>
+            <button className='card-link' onClick={this.joinE.bind(this)}>Join Event</button>
           </div>
         </div>
         <Modal bsSize="large" show={this.state.showModal} dialogClassName="custom-modal">
@@ -172,6 +178,7 @@ onSubmit(values) {
           </Modal.Body>
           <Modal.Footer>
             <button className="btn btn-success" onClick={this.handleModalClick.bind(this)}>Close</button>
+            <button className='card-link' onClick={this.joinE.bind(this)}>Join Event</button>
           </Modal.Footer>
         </Modal>
       </div>

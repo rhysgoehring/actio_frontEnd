@@ -6,5 +6,6 @@ export default function(state={}, action) {
     case GET_ALL_EVENTS:
       return action.payload
   }
+    
   return state;
 }

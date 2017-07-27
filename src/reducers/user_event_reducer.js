@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {GET_USER_EVENTS, GET_OWNED_EVENTS} from '../actions/types';
+import {GET_USER_EVENTS, GET_OWNED_EVENTS, JOIN_EVENT} from '../actions/types';
 
 
 export default function(state = {}, action) {
@@ -10,6 +10,10 @@ export default function(state = {}, action) {
       return {
         ...state,
         ownedEvents: action.payload
+      }
+    case JOIN_EVENT:
+      return {
+        ...state[action.payload]
       }
     }
       return state;
