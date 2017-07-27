@@ -5,6 +5,7 @@ import * as actions from '../actions/index';
 import _ from 'lodash';
 import {Link} from 'react-router';
 import axios from 'axios';
+import {reduxForm, Field} from 'redux-form';
 import GoogleMap from './googleMap';
 
 const ROOT_URL = 'http://localhost:8080';
@@ -84,8 +85,20 @@ class EventCard extends Component {
   )
 }
 
+onSubmit(values) {
+  console.log('values', values)
+  let currentMessages = this.state.messages
+  let body = values.body
+  let title = this.props.firstName
+  let message = {title, body}
+  currentMessages.push(message);
+  this.setState({
+    messages: currentMessages
+  })
+}
+
   render() {
-  const {handleClick} = this.props
+  const {handleClick, handleSubmit} = this.props
   console.log('this.props in EventCard render', this.props)
   return (
     <div className="row">
@@ -136,6 +149,23 @@ class EventCard extends Component {
               </div>
               <div className='col-md-6'>
                 <h2> Messages</h2>
+                <div className="row">
+                  <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                    <fieldset className="form-group">
+                      <div className="col-md-9">
+                        <label>Post a Comment</label>
+                        <Field
+                          name="body"
+                          type="text"
+                          component="textarea"
+                          className="form-control" />
+                      </div>
+                      <div className="col-md-3">
+                        <button type="submit" className=" btn btn-success">Comment</button>
+                      </div>
+                    </fieldset>
+                  </form>
+                </div>
                 {this.renderMessages()}
               </div>
             </div>
@@ -166,4 +196,10 @@ function mapStateToProps(state) {
   })
 }
 
-export default connect(mapStateToProps, actions)(EventCard);
+EventCard = connect(mapStateToProps, actions)(EventCard)
+EventCard = reduxForm({
+  form: "comments",
+  fields: "body"
+})(EventCard);
+
+export default EventCard;
