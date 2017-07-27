@@ -87,19 +87,19 @@ render() {
           </Modal.Header>
           <Modal.Body>
             <div className='row'>
-              
                 <div className='col-md-6'>
                   <GoogleMap style={{marginBottom: '10px'}}center zoom={16} lat={this.props.eventLat} lng={this.props.eventLng} />
                 </div>
-                <div className='col-md-6'>
+                <div className='col-md-3'>
                   <img src={this.state.eventOwner.pic} style={{height: '250px', width: '250px', margin: 'auto'}} />
-                  {this.renderOwnerInfo()}
                 </div>
-                
+                <div className='col-md-3'>
+                  <h5 className='text-left'>About {this.state.eventOwner.name}: </h5>
+                  <h6 className='text-left'> {this.state.eventOwner.info} </h6>
+                </div>
               </div>
-          
             <div className='row'>
-              <div className='col-md-6'>
+              <div className='col-md-3'>
                 <img className="img-responsive" src={this.props.eventPic} style={{alignSelf: 'center', maxHeight:'500px'}} />
                 <ul className="list-inline">
                   <li className="list-inline-item"><img src={this.props.icon} style={{height:'75px', width:'75px'}} className="img-responsive" /></li>
@@ -108,9 +108,6 @@ render() {
                   <li className="list-inline-item">Participants:</li>
                 </ul>
               </div>
-              {/* <div className='col-md-6'>
-                {this.renderOwnerInfo()}
-              </div> */}
             </div>
           </Modal.Body>
           <Modal.Footer>

@@ -67,7 +67,7 @@ class SignIn extends Component {
                       <button action="submit" className="btn btn-success">Sign In</button>
                     </div>
                     <div className="col-md-6">
-                      {/* <Link className="btn btn-success" to="/signup">Sign Up</Link> */}
+                      <Link className="btn btn-success" to="/signup">Sign Up</Link>
                     </div>
                   </div>
                 </div>

@@ -16,7 +16,6 @@ class MyEvents extends Component {
 
   renderOwnedEvents(){
     return _.map(this.props.ownedEvents, events =>{
-      console.log('In map ', events.name);
       return(
 
           <div className="col-md-3" key={events.name}>
