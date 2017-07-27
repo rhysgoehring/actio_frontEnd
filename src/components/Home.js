@@ -25,6 +25,7 @@ class Home extends Component {
     return _.map(this.props.allEvents, events => {
       return (
         <EventCard key={events.name}
+          eventId= {events.id}
           eventPic= {events.event_pic}
           eventTitle={events.name}
           eventDesc={events.description}
@@ -34,7 +35,6 @@ class Home extends Component {
           eventOwner={events.owner_id}
           eventLat={parseInt(events.lat)}
           eventLng={parseInt(events.lng)}
-          
         />
       )
     })
@@ -46,6 +46,7 @@ class Home extends Component {
       console.log('lng', events.lng)
       return (
         <EventCard key={events.name}
+          eventId = {events.id}
           eventPic= {events.event_pic}
           eventTitle={events.name}
           eventDesc={events.description}
@@ -63,7 +64,6 @@ class Home extends Component {
   render() {
     return(
       <Grid>
-
         <Col md={3}>
             <Row className='profPicRow'>
               <img className="profPicHome img-responsive" src={this.props.picUrl} />

@@ -12,26 +12,36 @@ const ROOT_URL = 'http://localhost:8080';
 class EventCard extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = ({
       showModal: false,
-      eventOwner: {name: '', pic:'',info:''}
+      eventOwner: {name: '', pic:'',info:''},
+      messages: []
     })
  }
 
- getOwnerInfo(id) {
+  getOwnerInfo(id) {
    return axios.get(`${ROOT_URL}/api/users/${id}`).then(response => {
-     const owner = {
+    let eventInfo = {}
+    eventInfo['id'] = this.props.eventId;
+    eventInfo['owner'] = {
        name: `${response.data.first_name} ${response.data.last_name}`,
        pic: response.data.profile_pic,
        info: response.data.about
      }
-     return owner;
+     return eventInfo;
    })
-   
+
  }
- 
- handleModalClick() {
+
+  getMessages(eventInfo){
+   return axios.get(`${ROOT_URL}/api/events/${eventInfo.id}/messages`).then(response =>{
+     eventInfo['messages'] = response.data
+     return eventInfo
+   })
+ }
+
+  handleModalClick() {
    console.log('all props in modalClick', this.props);
    if (this.state.showModal === true) {
      this.setState({
@@ -39,17 +49,19 @@ class EventCard extends Component {
      })
    } else {
    this.getOwnerInfo(this.props.eventOwner)
-   .then((ownerInfo) => {
-     console.log('ownerInfo', ownerInfo);
+   .then((data) => this.getMessages(data))
+   .then((eventInfo) => {
+     console.log('ownerInfo', eventInfo);
      this.setState({
-       eventOwner: ownerInfo,
+       eventOwner: eventInfo['owner'],
+       messages: eventInfo['messages'],
        showModal: true
      })
    })
  }
- }
+  }
 
-renderOwnerInfo() {
+  renderOwnerInfo() {
   return (
   <div>
     <h4 className='text-center'>About {this.state.eventOwner.name}:</h4>
@@ -58,7 +70,21 @@ renderOwnerInfo() {
   )
 }
 
-render() {
+  renderMessages(){
+  return (
+    _.map(this.state.messages, message =>{
+      return (
+      <div>
+        <h4>{message.title}</h4>
+        <h4>{message.body}</h4>
+        <hr />
+      </div>
+      )
+    })
+  )
+}
+
+  render() {
   const {handleClick} = this.props
   console.log('this.props in EventCard render', this.props)
   return (
@@ -108,6 +134,10 @@ render() {
                   <li className="list-inline-item">Participants:</li>
                 </ul>
               </div>
+              <div className='col-md-6'>
+                <h2> Messages</h2>
+                {this.renderMessages()}
+              </div>
             </div>
           </Modal.Body>
           <Modal.Footer>
@@ -116,11 +146,11 @@ render() {
         </Modal>
       </div>
     </div>
-    
-    
+
+
   )
 }
-}
+  }
 
 function mapStateToProps(state) {
   return ({
