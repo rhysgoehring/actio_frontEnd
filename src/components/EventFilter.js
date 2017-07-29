@@ -3,7 +3,15 @@ import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 import {DropdownButton, MenuItem} from 'react-bootstrap';
 class EventFilter extends Component {
+  constructor(props){
+    super();
+  }
+  componentDidMount(){
+    {this.props.filterEvents("SHOW_SOCCER")}
+  }
   render(){
+
+    {console.log("state of event_filter"), this.state}
     return (
       <div className="event_filter text-center">
       <h3>Filter By: </h3>

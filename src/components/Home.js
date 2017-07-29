@@ -10,7 +10,9 @@ import EventFilter from './EventFilter';
 class Home extends Component {
   constructor(props){
     super(props);
-
+    this.state = {currentFilter:"SHOW_ALL"}
+    this.filterEvents = this.filterEvents.bind(this);
+    this.changeFilter = this.changeFilter.bind(this);
   }
 
   componentDidMount() {
@@ -20,10 +22,37 @@ class Home extends Component {
 
 
   }
+  filterEvents(unfiltered){
+    switch(this.state.currentFilter){
+      case "SHOW_ALL":
+        return unfiltered;
+      case "SHOW_SOCCER":
+        console.log('unfiltered events',unfiltered);
+        return _.filter(unfiltered, (ev) =>{
+          return ev.cat_id == 6;
+        });
+      case "SHOW_CLIMBING":
+        return unfiltered;
+      case "SHOW_BASKETBALL":
+        return unfiltered;
+      case "SHOW_HIKING":
+        return unfiltered;
+      case "SHOW_GOLF":
+        return unfiltered;
+      case "SHOW_SWIMMING":
+        return unfiltered;
+      default:
+        return unfiltered;
+    }
+  }
 
+  changeFilter(filterText){
+    this.setState({currentFilter: filterText})
+  }
   renderAllEvents() {
-    return _.map(this.props.allEvents, events => {
-      
+    let filtered = this.filterEvents(this.props.allEvents)
+    return _.map(filtered, events => {
+
       return (
         <EventCard key={events.id}
           eventId= {events.id}
@@ -39,6 +68,9 @@ class Home extends Component {
         />
       )
     })
+
+
+
   }
 
   renderUserEvents() {
@@ -78,7 +110,9 @@ class Home extends Component {
             <GoogleMap center id='homeMap' zoom={10} lat={40.014984} lng={-105.270546} />
           </Row>
           <Row className="center-block">
-              <EventFilter />
+              {console.log('state of home before eventFilter', this.state)}
+              <EventFilter filterEvents={this.changeFilter}/>
+                {console.log('state of home after eventFilter', this.state)}
           </Row>
           <Row className='center-block'>
             <h4 className='text-center'>All Events</h4>
