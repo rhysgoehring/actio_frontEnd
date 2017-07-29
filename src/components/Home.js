@@ -23,6 +23,7 @@ class Home extends Component {
 
   renderAllEvents() {
     return _.map(this.props.allEvents, events => {
+      
       return (
         <EventCard key={events.id}
           eventId= {events.id}

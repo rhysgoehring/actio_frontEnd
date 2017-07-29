@@ -84,7 +84,7 @@ class EventCard extends Component {
     return (
       _.map(this.state.messages, message =>{
         return (
-        <div>
+        <div key={message.id}>
           <h5><strong>{message.title}</strong></h5>
           <h5>{message.body}</h5>
           <hr />
@@ -123,18 +123,44 @@ joinE(id) {
   const userId = this.props.id
   const currentUsers = this.state.usersJoined
   let newUser= {
+    id: this.props.id,
     first_name: this.props.firstName,
-    last_name: this.props.lastName
+    last_name: this.props.lastName,
+    profile_pic: this.props.picUrl
   }
+  
   currentUsers.push(newUser)
   this.setState({
     usersJoined: currentUsers
   })
-
+  console.log('this.state', this.state);
   axios.post(`${ROOT_URL}/api/events/${this.props.eventId}`, {userId})
   }
   
-
+  checkUserStatus() {
+    for (var i = 0; i < this.state.usersJoined.length; i++) {
+      if(this.state.usersJoined[i].id === this.props.id) {
+        return true;
+      }
+    }
+      return false;
+  }
+ 
+ leaveE(id){
+   console.log('leaving event');
+ }
+  
+  renderButtons(){
+    if (this.checkUserStatus() === true) {
+      return (
+        <button className='card-link' onClick={this.leaveE.bind(this)}>Leave Event</button>
+      )
+    } else {
+      return (
+        <button className='card-link' onClick={this.joinE.bind(this)}>Join Event</button>
+      )
+    }
+  }
 
   render() {
    const {handleClick, handleSubmit} = this.props
@@ -155,7 +181,7 @@ joinE(id) {
             </ul>
             <div className="card-block">
               <button className='card-link' onClick={this.handleModalClick.bind(this)}>See More</button>
-              <button className='card-link' onClick={this.joinE.bind(this)}>Join Event</button>
+              {this.renderButtons()}
             </div>
           </div>
           <Modal bsSize="large" show={this.state.showModal} dialogClassName="custom-modal">
@@ -220,8 +246,8 @@ joinE(id) {
               </div>
             </Modal.Body>
             <Modal.Footer>
+              {this.renderButtons()}
               <button className="btn btn-success" onClick={this.handleModalClick.bind(this)}>Close</button>
-              <button className='card-link' onClick={this.joinE.bind(this)}>Join Event</button>
             </Modal.Footer>
           </Modal>
         </div>
