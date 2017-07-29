@@ -17,7 +17,8 @@ class EventCard extends Component {
     this.state = ({
       showModal: false,
       eventOwner: {name: '', pic:'',info:''},
-      messages: []
+      messages: [],
+      usersJoined: []
     })
  }
 
@@ -41,6 +42,14 @@ class EventCard extends Component {
      return eventInfo
    })
  }
+ 
+ getUsersJoined(eventInfo){
+   return axios.get(`${ROOT_URL}/api/events/${this.props.eventId}/users`).then(response => {
+     eventInfo['usersJoined'] = response.data
+     console.log('getUsersJoined eventInfo', eventInfo);
+     return eventInfo
+   })
+ }
 
   handleModalClick() {
    console.log('all props in modalClick', this.props);
@@ -49,18 +58,20 @@ class EventCard extends Component {
        showModal: false
      })
    } else {
-   this.getOwnerInfo(this.props.eventOwner)
-   .then((data) => this.getMessages(data))
-   .then((eventInfo) => {
-     console.log('eventInfo', eventInfo);
-     this.setState({
-       eventOwner: eventInfo['owner'],
-       messages: eventInfo['messages'],
-       showModal: true
+     this.getOwnerInfo(this.props.eventOwner)
+     .then((data) => this.getMessages(data))
+     .then((data) => this.getUsersJoined(data)) // <-- here
+     .then((eventInfo) => {
+       console.log('eventInfo', eventInfo);
+       this.setState({
+         eventOwner: eventInfo['owner'],
+         messages: eventInfo['messages'],
+  	     usersJoined: eventInfo['usersJoined'], // then add it to the state change
+         showModal: true
+       })
      })
-   })
- }
-  }
+   }
+    }
 
   renderOwnerInfo() {
     return (

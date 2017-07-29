@@ -42,8 +42,6 @@ class Home extends Component {
 
   renderUserEvents() {
     return _.map(this.props.userEvents, events => {
-      console.log('lat', events.lat)
-      console.log('lng', events.lng)
       return (
         <EventCard key={events.index}
           eventId = {events.id}
