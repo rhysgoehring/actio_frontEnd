@@ -17,9 +17,9 @@ class MyEvents extends Component {
   renderOwnedEvents(){
     return _.map(this.props.ownedEvents, events =>{
       return(
-
           <div className="col-md-3" key={events.name}>
             <EventCard
+              eventId= {events.id}
               eventPic= {events.event_pic}
               eventTitle={events.name}
               eventDesc={events.description}

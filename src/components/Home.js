@@ -45,7 +45,7 @@ class Home extends Component {
       console.log('lat', events.lat)
       console.log('lng', events.lng)
       return (
-        <EventCard key={events.name}
+        <EventCard key={events.index}
           eventId = {events.id}
           eventPic= {events.event_pic}
           eventTitle={events.name}

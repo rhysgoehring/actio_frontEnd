@@ -52,7 +52,7 @@ class EventCard extends Component {
    this.getOwnerInfo(this.props.eventOwner)
    .then((data) => this.getMessages(data))
    .then((eventInfo) => {
-     console.log('ownerInfo', eventInfo);
+     console.log('eventInfo', eventInfo);
      this.setState({
        eventOwner: eventInfo['owner'],
        messages: eventInfo['messages'],
@@ -63,27 +63,27 @@ class EventCard extends Component {
   }
 
   renderOwnerInfo() {
-  return (
-  <div>
-    <h4 className='text-center'>About {this.state.eventOwner.name}:</h4>
-    <h6 className='text-center'>{this.state.eventOwner.info}</h6>
-  </div>
-  )
+    return (
+    <div>
+      <h5 className='text-center'>About {this.state.eventOwner.name}:</h5>
+      <h5 className='text-center'>{this.state.eventOwner.info}</h5>
+    </div>
+    )
 }
 
   renderMessages(){
-  return (
-    _.map(this.state.messages, message =>{
-      return (
-      <div>
-        <h4>{message.title}</h4>
-        <h4>{message.body}</h4>
-        <hr />
-      </div>
-      )
-    })
-  )
-}
+    return (
+      _.map(this.state.messages, message =>{
+        return (
+        <div>
+          <h5>{message.title}</h5>
+          <h5>{message.body}</h5>
+          <hr />
+        </div>
+        )
+      })
+    )
+  }
 
 onSubmit(values) {
   console.log('values', values)
@@ -104,85 +104,92 @@ joinE(id) {
 }
 
   render() {
-  const {handleClick, handleSubmit} = this.props
-  console.log('this.props in EventCard render', this.props)
-  return (
-    <div className="row">
-      <div className='eventCardContainer'>
-        <div className="card">
-          <img className="card-img-top img-responsive" src={this.props.eventPic} alt="Card image cap" style={{alignSelf: 'center', maxHeight: '500px'}}/>
-          <div className="card-block">
-            <h4 className="card-title text-center">{this.props.eventTitle}</h4>
-            <p className="card-text text-center">{this.props.eventDesc}</p>
-          </div>
-          <ul className="list-inline">
-            <li className="list-inline-item"><img src={this.props.icon} style={{height:'75px', width:'75px'}} className="img-responsive" /></li>
-            <li className="list-inline-item">Location: <strong>{this.props.eventLocation}</strong></li>
-            <li className="list-inline-item">Date: <strong>{this.props.eventDate}</strong></li>
-            <li className="list-inline-item">Participants:</li>
-          </ul>
-          <div className="card-block">
-            <button className='card-link' onClick={this.handleModalClick.bind(this)}>See More</button>
-            <button className='card-link' onClick={this.joinE.bind(this)}>Join Event</button>
-          </div>
-        </div>
-        <Modal bsSize="large" show={this.state.showModal} dialogClassName="custom-modal">
-          <Modal.Header>
-            <Modal.Title>{this.props.eventTitle}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className='row'>
-                <div className='col-md-6'>
-                  <GoogleMap style={{marginBottom: '10px'}}center zoom={16} lat={this.props.eventLat} lng={this.props.eventLng} />
-                </div>
-                <div className='col-md-3'>
-                  <img src={this.state.eventOwner.pic} style={{height: '250px', width: '250px', margin: 'auto'}} />
-                </div>
-                <div className='col-md-3'>
-                  <h5 className='text-left'>About {this.state.eventOwner.name}: </h5>
-                  <h6 className='text-left'> {this.state.eventOwner.info} </h6>
-                </div>
-              </div>
-            <div className='row'>
-              <div className='col-md-3'>
-                <img className="img-responsive" src={this.props.eventPic} style={{alignSelf: 'center', maxHeight:'500px'}} />
-                <ul className="list-inline">
-                  <li className="list-inline-item"><img src={this.props.icon} style={{height:'75px', width:'75px'}} className="img-responsive" /></li>
-                  <li className="list-inline-item">Location: <strong>{this.props.eventLocation}</strong></li>
-                  <li className="list-inline-item">Date: <strong>{this.props.eventDate}</strong></li>
-                  <li className="list-inline-item">Participants:</li>
-                </ul>
-              </div>
-              <div className='col-md-6'>
-                <h2> Messages</h2>
-                <div className="row">
-                  <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                    <fieldset className="form-group">
-                      <div className="col-md-9">
-                        <label>Post a Comment</label>
-                        <Field
-                          name="body"
-                          type="text"
-                          component="textarea"
-                          className="form-control" />
-                      </div>
-                      <div className="col-md-3">
-                        <button type="submit" className=" btn btn-success">Comment</button>
-                      </div>
-                    </fieldset>
-                  </form>
-                </div>
-                {this.renderMessages()}
-              </div>
+   const {handleClick, handleSubmit} = this.props
+    return (
+      <div className="row">
+        <div className='eventCardContainer'>
+          <div className="card">
+            <img className="card-img-top img-responsive" src={this.props.eventPic} alt="Card image cap" style={{alignSelf: 'center', maxHeight: '500px'}}/>
+            <div className="card-block">
+              <h4 className="card-title text-center">{this.props.eventTitle}</h4>
+              <p className="card-text text-center">{this.props.eventDesc}</p>
             </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <button className="btn btn-success" onClick={this.handleModalClick.bind(this)}>Close</button>
-            <button className='card-link' onClick={this.joinE.bind(this)}>Join Event</button>
-          </Modal.Footer>
-        </Modal>
+            <ul className="list-inline">
+              <li className="list-inline-item"><img src={this.props.icon} style={{height:'75px', width:'75px'}} className="img-responsive" /></li>
+              <li className="list-inline-item">Location: <strong>{this.props.eventLocation}</strong></li>
+              <li className="list-inline-item">Date: <strong>{this.props.eventDate}</strong></li>
+              <li className="list-inline-item">Participants:</li>
+            </ul>
+            <div className="card-block">
+              <button className='card-link' onClick={this.handleModalClick.bind(this)}>See More</button>
+              <button className='card-link' onClick={this.joinE.bind(this)}>Join Event</button>
+            </div>
+          </div>
+          <Modal bsSize="large" show={this.state.showModal} dialogClassName="custom-modal">
+            <Modal.Header>
+              <Modal.Title>{this.props.eventTitle}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div className='row'>
+                  <div className='col-md-6'>
+                    <GoogleMap style={{marginBottom: '10px'}}center zoom={16} lat={this.props.eventLat} lng={this.props.eventLng} />
+                  </div>
+                  <div className='col-md-3'>
+                    <img src={this.state.eventOwner.pic} style={{height: '250px', width: '250px', margin: 'auto'}} />
+                  </div>
+                  <div className='col-md-3'>
+                    <h5 className='text-left'>About {this.state.eventOwner.name}: </h5>
+                    <h6 className='text-left'> {this.state.eventOwner.info} </h6>
+                  </div>
+                </div>
+              <div className='row'>
+                <div className='col-md-4'>
+                  <img className="img-responsive" src={this.props.eventPic} style={{alignSelf: 'center', maxHeight:'500px'}} />
+                  <ul className="list-inline">
+                    <li className="list-inline-item"><img src={this.props.icon} style={{height:'75px', width:'75px'}} className="img-responsive" /></li>
+                    <li className="list-inline-item">Location: <strong>{this.props.eventLocation}</strong></li>
+                    <li className="list-inline-item">Date: <strong>{this.props.eventDate}</strong></li>
+                    <li className="list-inline-item">Participants:</li>
+                  </ul>
+                </div>
+                <div className='col-md-4'>
+                  <h4 className='text-left'>About {this.props.eventTitle}:</h4>
+                  <h6 className='text-left'>{this.props.eventDesc}</h6>
+                  <div className='row'>
+                    <h5 className='text-center'>Who's Attending?</h5>
+                  </div>
+                </div>
+                <div className='col-md-4'>
+                  <h4><strong>Comments:</strong></h4>
+                  <div className="row">
+                    <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                      <fieldset className="form-group">
+                        <div className="col-md-9">
+                          <label>Post a Comment</label>
+                          <Field
+                            name="body"
+                            type="text"
+                            component="textarea"
+                            className="form-control" />
+                        </div>
+                        <div className="col-md-3">
+                          <button type="submit" className="btn btn-success">Comment</button>
+                        </div>
+                      </fieldset>
+                    </form>
+                  </div>
+                  {this.renderMessages()}
+                </div>
+              
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <button className="btn btn-success" onClick={this.handleModalClick.bind(this)}>Close</button>
+              <button className='card-link' onClick={this.joinE.bind(this)}>Join Event</button>
+            </Modal.Footer>
+          </Modal>
+        </div>
       </div>
-    </div>
 
 
   )

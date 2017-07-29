@@ -13,8 +13,7 @@ export default function(state = {}, action) {
       }
     case JOIN_EVENT:
       return {
-        ...state[action.payload]
-      }
+        ...state[action.payload] }
     }
       return state;
 }
