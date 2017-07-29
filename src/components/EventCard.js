@@ -95,6 +95,28 @@ class EventCard extends Component {
       })
     )
   }
+  renderMessages(){
+    return (
+      _.map(this.state.messages, message =>{
+        return (
+        <div>
+          <h5>{message.title}</h5>
+          <h5>{message.body}</h5>
+          <hr />
+        </div>
+        )
+      })
+    )
+  }
+  renderJoinedUsers(){
+    return (
+      _.map(this.state.usersJoined, users =>{
+        return (
+          <li key={users.user_id}>{users.first_name} {users.last_name}</li>
+        )
+      })
+    )
+  }
 
 onSubmit(values) {
   console.log('values', values)
@@ -168,6 +190,9 @@ joinE(id) {
                   <h6 className='text-left'>{this.props.eventDesc}</h6>
                   <div className='row'>
                     <h5 className='text-center'>Who's Attending?</h5>
+                    <ul>
+                      {this.renderJoinedUsers()}
+                    </ul>
                   </div>
                 </div>
                 <div className='col-md-4'>
