@@ -42,7 +42,7 @@ class EventCard extends Component {
      return eventInfo
    })
  }
- 
+
  getUsersJoined(eventInfo){
    return axios.get(`${ROOT_URL}/api/events/${this.props.eventId}/users`).then(response => {
      eventInfo['usersJoined'] = response.data
@@ -109,11 +109,12 @@ onSubmit(values) {
   let currentMessages = this.state.messages
   let body = values.body
   let title = this.props.firstName
-  let message = {title, body}
+  let message = {title:title, body:body, event_id:this.props.eventId}
   currentMessages.push(message);
   this.setState({
     messages: currentMessages
   })
+  axios.post(`${ROOT_URL}/api/messages`, message);
 }
 
 joinE(id) {
@@ -127,11 +128,11 @@ joinE(id) {
   this.setState({
     usersJoined: currentUsers
   })
-  
+
   axios.post(`${ROOT_URL}/api/events/${this.props.eventId}`, {userId})
-  
+
   }
-  
+
   render() {
    const {handleClick, handleSubmit} = this.props
     return (
@@ -212,7 +213,7 @@ joinE(id) {
                   </div>
                   {this.renderMessages()}
                 </div>
-              
+
               </div>
             </Modal.Body>
             <Modal.Footer>
