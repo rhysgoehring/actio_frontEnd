@@ -98,7 +98,7 @@ class EventCard extends Component {
       _.map(this.state.usersJoined, users =>{
         console.log(users);
         return (
-          <li key={users.user_id}>{users.first_name} {users.last_name}</li>
+          <li key={users.last_name}>{users.first_name} {users.last_name}</li>
         )
       })
     )
