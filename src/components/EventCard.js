@@ -46,13 +46,11 @@ class EventCard extends Component {
  getUsersJoined(eventInfo){
    return axios.get(`${ROOT_URL}/api/events/${this.props.eventId}/users`).then(response => {
      eventInfo['usersJoined'] = response.data
-     console.log('getUsersJoined eventInfo', eventInfo);
      return eventInfo
    })
  }
 
   handleModalClick() {
-   console.log('all props in modalClick', this.props);
    if (this.state.showModal === true) {
      this.setState({
        showModal: false
@@ -62,7 +60,6 @@ class EventCard extends Component {
      .then((data) => this.getMessages(data))
      .then((data) => this.getUsersJoined(data)) // <-- here
      .then((eventInfo) => {
-       console.log('eventInfo', eventInfo);
        this.setState({
          eventOwner: eventInfo['owner'],
          messages: eventInfo['messages'],
@@ -87,7 +84,7 @@ class EventCard extends Component {
       _.map(this.state.messages, message =>{
         return (
         <div>
-          <h5>{message.title}</h5>
+          <h5><strong>{message.title}</strong></h5>
           <h5>{message.body}</h5>
           <hr />
         </div>
@@ -95,22 +92,11 @@ class EventCard extends Component {
       })
     )
   }
-  renderMessages(){
-    return (
-      _.map(this.state.messages, message =>{
-        return (
-        <div>
-          <h5>{message.title}</h5>
-          <h5>{message.body}</h5>
-          <hr />
-        </div>
-        )
-      })
-    )
-  }
+
   renderJoinedUsers(){
     return (
       _.map(this.state.usersJoined, users =>{
+        console.log(users);
         return (
           <li key={users.user_id}>{users.first_name} {users.last_name}</li>
         )
@@ -131,11 +117,21 @@ onSubmit(values) {
 }
 
 joinE(id) {
-  const user = this.props.id;
-  this.props.joinEvent(this.props.eventId, user)
+  const userId = this.props.id
+  const currentUsers = this.state.usersJoined
+  let newUser= {
+    first_name: this.props.firstName,
+    last_name: this.props.lastName
+  }
+  currentUsers.push(newUser)
+  this.setState({
+    usersJoined: currentUsers
+  })
   
-}
-
+  axios.post(`${ROOT_URL}/api/events/${this.props.eventId}`, {userId})
+  
+  }
+  
   render() {
    const {handleClick, handleSubmit} = this.props
     return (
