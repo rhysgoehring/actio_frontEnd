@@ -5,7 +5,7 @@ import * as actions from '../actions/index';
 import _ from 'lodash';
 import {Link} from 'react-router';
 import axios from 'axios';
-import {reduxForm, Field} from 'redux-form';
+import {reduxForm, Field, reset} from 'redux-form';
 import GoogleMap from './googleMap';
 
 const ROOT_URL = 'http://localhost:8080';
@@ -20,6 +20,7 @@ class EventCard extends Component {
       messages: [],
       usersJoined: []
     })
+    
  }
 
   getOwnerInfo(id) {
@@ -105,7 +106,7 @@ class EventCard extends Component {
   }
 
 onSubmit(values) {
-  console.log('values', values)
+  console.log('this.props in onSubmit', this.props);
   let currentMessages = this.state.messages
   let body = values.body
   let title = this.props.firstName
@@ -115,6 +116,7 @@ onSubmit(values) {
     messages: currentMessages
   })
   axios.post(`${ROOT_URL}/api/messages`, message);
+  this.props.dispatch(reset('comments'));
 }
 
 joinE(id) {
@@ -130,8 +132,9 @@ joinE(id) {
   })
 
   axios.post(`${ROOT_URL}/api/events/${this.props.eventId}`, {userId})
-
   }
+  
+
 
   render() {
    const {handleClick, handleSubmit} = this.props
@@ -246,7 +249,7 @@ function mapStateToProps(state) {
 EventCard = connect(mapStateToProps, actions)(EventCard)
 EventCard = reduxForm({
   form: "comments",
-  fields: "body"
+  fields: "body",
 })(EventCard);
 
 export default EventCard;
