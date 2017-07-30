@@ -6,93 +6,122 @@ import * as actions from '../actions';
 
 class NewEvent extends Component {
  
+ handleFormSubmit(values) {
+   let newEvent= {
+     name : this.refs.name.value,
+     cat_id : this.refs.cat_id.value,
+     location : this.refs.location.value,
+     event_date : this.refs.event_date.value,
+     description : this.refs.description.value,
+     owner_id : this.props.id,
+     skill_level : this.refs.skill_level.value,
+     event_pic : this.refs.event_pic.value
+   }
+   console.log('handleFormSubmit this.refs', this.refs)
+   
+   console.log('newEvent', newEvent)
+   
+   this.props.createEvent(newEvent)
+   }
+   
+ 
   
   render() {
-     const {handleSubmit, fields: {title, date, category, picUrl, usersNeeded}} = this.props
+     const {handleSubmit, fields: {name, event_date, cat_id, event_pic, skill_level, description}} = this.props
     return(
       <div className='container'>
         <header>
           <h2 className='text-center'>{this.props.firstName}'s New Event</h2>
         </header>
-         <div className='container'>
-           <form>
-             <div className="row">
+         <form className='center-block' onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+           <div className="row">
+             <fieldset className="form-group col-md-6">
+               <label>Event Title: </label>
+               <Field
+                 ref="name"
+                 name="name"
+                 type="text"
+                 component="input"
+                 className="form-control" />
+             </fieldset>
+             <fieldset className="form-group col-md-3">
+               <label>Event Date: </label>
+               <Field
+                 ref="event_date"
+                 name="event_date"
+                 type="text"
+                 component="input"
+                 className="form-control" />
+             </fieldset>
+             <fieldset className="form-group col-md-3">
+               <label>Category: </label>
+               <Field
+                 ref="cat_id"
+                 name="cat_id"
+                 type="select"
+                 component="select"
+                 className="form-control">
+                   <option></option>
+                   <option value={1}>Basketball</option>
+                   <option value={2}>Hiking</option>
+                   <option value={3}>Swimming</option>
+                   <option value={4}>Climbing</option>
+                   <option value={5}>Soccer</option>
+                   <option value={6}>Golfing</option>
+                 </Field>
+             </fieldset>
+           </div>
+           <div className='row'>
                <fieldset className="form-group col-md-6">
-                 <label>Event Title: </label>
+                 <label>Event Picture URL: </label>
                  <Field
-                   name="title"
+                   ref="event_pic"
+                   name="event_pic"
                    type="text"
                    component="input"
                    className="form-control" />
                </fieldset>
-               <fieldset className="form-group col-md-3">
-                 <label>Event Date: </label>
+               <fieldset className="form-group col-md-6">
+                 <label>Location: </label>
                  <Field
-                   name="date"
+                   ref="location"
+                   name="location"
                    type="text"
                    component="input"
                    className="form-control" />
                </fieldset>
-               <fieldset className="form-group col-md-3">
-                 <label>Category: </label>
+             </div>
+             <div className='row'>
+               <fieldset className="form-group col-md-6">
+                 <label>Skill Level: </label>
                  <Field
-                   name="category"
+                   ref="skill_level"
+                   name="skill_level"
                    type="select"
                    component="select"
                    className="form-control">
                      <option></option>
-                     <option value="basketball">Basketball</option>
-                     <option value="hiking">Hiking</option>
-                     <option value="swimming">Swimming</option>
-                     <option value="climbing">Climbing</option>
-                     <option value="soccer">Soccer</option>
-                     <option value="golfing">Golfing</option>
+                     <option value="beginner">Beginner</option>
+                     <option value="advanced">Advanced</option>
+                     <option value="master">Master</option>
                    </Field>
                </fieldset>
-             </div>
-             <div className='row'>
-               <div className='col-md-6'>
-                 <fieldset className="form-group">
-                   <label>Event Picture URL: </label>
-                   <Field
-                     name="picUrl"
-                     type="text"
-                     component="input"
-                     className="form-control" />
-                 </fieldset>
-                 <fieldset className="form-group col-md-6">
-                   <label>Participants Needed: </label>
-                   <Field
-                     name="usersNeeded"
-                     type="select"
-                     component="select"
-                     className="form-control">
-                       <option></option>
-                       <option value={1}>1</option>
-                       <option value={2}>2</option>
-                       <option value={3}>3</option>
-                       <option value={4}>4</option>
-                       <option value={5}>5</option>
-                       <option value={6}>6</option>
-                       <option value={7}>7</option>
-                       <option value={8}>8</option>
-                       <option value={9}>9</option>
-                       <option value={11}>11</option>
-                       <option value={12}>12</option>
-                       <option value={13}>13</option>
-                       <option value={14}>14</option>
-                     </Field>
-                 </fieldset>
-               </div>
-             </div>
-               <div className="row">
-                 <div className="col-md-6">
-                   <button action="submit" className="btn btn-success">Create Event</button>
-                 </div>
-               </div>
-           </form>
+               <fieldset className="form-group col-md-6">
+                 <label>Description: </label>
+                 <Field
+                   ref="description"
+                   name="description"
+                   type="textarea"
+                   component="input"
+                   className="form-control" />
+               </fieldset>
            </div>
-            
+           <div className='row'>
+             <div className="col-md-2">
+               <button action="submit" className="btn btn-success">Create Event</button>
+             </div>
+           </div>
+         </form>
         </div>
     )
   }
@@ -113,7 +142,7 @@ function mapStateToProps(state) {
 NewEvent = connect(mapStateToProps,actions)(NewEvent)
 NewEvent= reduxForm({
   form: 'newEvent',
-  fields: ['title', 'date', 'category', 'usersNeeded', 'picUrl']
+  fields: ['name', 'event_date', 'cat_id', 'location', 'event_pic', 'skill_level', 'description']
 })(NewEvent);
 
 export default NewEvent;

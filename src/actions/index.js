@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {browserHistory} from 'react-router';
-import {AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_ALL_EVENTS, GET_USER_EVENTS, GET_OWNED_EVENTS} from './types';
+import {AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_ALL_EVENTS, GET_USER_EVENTS, GET_OWNED_EVENTS, CREATE_EVENT} from './types';
 
 
 // const ROOT_URL = 'https://actio-backend.herokuapp.com';
@@ -98,6 +98,18 @@ export function getOwnedEvents(id){
       dispatch({
         type: GET_OWNED_EVENTS,
         payload:response.data
+      })
+    }).catch(err=> console.log(err))
+  }
+}
+
+export function createEvent(newEvent) {
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/api/events`, newEvent).then(response => {
+      console.log('crateEvent response:', response);
+      dispatch({
+        type: CREATE_EVENT,
+        payload: response.data
       })
     }).catch(err=> console.log(err))
   }

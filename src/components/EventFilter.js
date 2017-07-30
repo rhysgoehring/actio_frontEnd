@@ -6,9 +6,9 @@ class EventFilter extends Component {
   constructor(props){
     super();
   }
-  componentDidMount(){
-    {this.props.filterEvents("SHOW_SOCCER")}
-  }
+  // componentDidMount(){
+  //   {this.props.filterEvents("SHOW_SOCCER")}
+  // }
   render(){
 
     {console.log("state of event_filter"), this.state}
