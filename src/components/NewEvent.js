@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
+import {browserHistory} from 'react-router';
 import * as actions from '../actions';
 
 
@@ -22,6 +23,8 @@ class NewEvent extends Component {
    console.log('newEvent', newEvent)
    
    this.props.createEvent(newEvent)
+   browserHistory.push('/home')
+   
    }
    
  

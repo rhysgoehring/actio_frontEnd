@@ -7,7 +7,8 @@ export default function(state={}, action) {
       return action.payload
     case CREATE_EVENT:
       return {
-        ...state[action.payload]
+      
+        ...state.concat(action.payload)
       }
   }
     
