@@ -161,6 +161,24 @@ joinE(id) {
       )
     }
   }
+  
+  renderEditDelete(){
+    console.log('this.props', this.props)
+    console.log('this.props.id', this.props.id)
+    if (this.props.eventOwner === this.props.id){
+      return(
+        <div className='row'>
+          <div className='col-md-6'>
+             <button>Edit</button>
+          </div>
+          <div className='col-md-6'>
+             <button>Delete</button>
+          </div>
+        </div>
+        
+      )
+    }
+  }
 
   render() {
    const {handleClick, handleSubmit} = this.props
@@ -182,6 +200,7 @@ joinE(id) {
             <div className="card-block">
               <button className='card-link' onClick={this.handleModalClick.bind(this)}>See More</button>
               {this.renderButtons()}
+              {this.renderEditDelete()}
             </div>
           </div>
           <Modal bsSize="large" show={this.state.showModal} dialogClassName="custom-modal">

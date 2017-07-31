@@ -6,10 +6,8 @@ export default function(state={}, action) {
     case GET_ALL_EVENTS:
       return action.payload
     case CREATE_EVENT:
-      return {
+      return [...state, action.payload]
       
-        ...state.concat(action.payload)
-      }
   }
     
   return state;
