@@ -27,23 +27,26 @@ class Home extends Component {
       case "SHOW_ALL":
         return unfiltered;
       case "SHOW_SOCCER":
-        console.log('unfiltered events',unfiltered);
-        return _.filter(unfiltered, (ev) =>{
-          return ev.cat_id == 6;
-        });
+        return this.filterByCategory(unfiltered,5);
       case "SHOW_CLIMBING":
-        return unfiltered;
+        return this.filterByCategory(unfiltered,4);
       case "SHOW_BASKETBALL":
-        return unfiltered;
+        return this.filterByCategory(unfiltered,1);
       case "SHOW_HIKING":
-        return unfiltered;
+        return this.filterByCategory(unfiltered,2);
       case "SHOW_GOLF":
-        return unfiltered;
+        return this.filterByCategory(unfiltered,6);
       case "SHOW_SWIMMING":
-        return unfiltered;
+        return this.filterByCategory(unfiltered,3);
       default:
         return unfiltered;
     }
+  }
+
+  filterByCategory(unfiltered, id){
+    return _.filter(unfiltered, (ev) =>{
+      return ev.cat_id == id;
+    });
   }
 
   changeFilter(filterText){
