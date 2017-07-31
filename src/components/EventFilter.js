@@ -11,7 +11,7 @@ class EventFilter extends Component {
   //   {this.props.filterEvents("SHOW_SOCCER")}
   // }
 
-  onSelectDD(eventKey){
+  selectCategory(eventKey){
     this.props.filterEvents(eventKey);
   }
   render(){
@@ -21,12 +21,12 @@ class EventFilter extends Component {
       <div className="event_filter text-center">
       <h3>Filter By: </h3>
       <DropdownButton title="Category" id="bg-nested-dropdown">
-        <MenuItem eventKey="SHOW_ALL" onSelect={this.onSelectDD}>Show All</MenuItem>
-        <MenuItem eventKey="SHOW_SOCCER" onSelect={this.onSelectDD}>Soccer</MenuItem>
-        <MenuItem eventKey="SHOW_HIKING" onSelect={this.onSelectDD}>Hiking</MenuItem>
-        <MenuItem eventKey="SHOW_SWIMMING" onSelect={this.onSelectDD}>Swimming</MenuItem>
-        <MenuItem eventKey="SHOW_CLIMBING" onSelect={this.onSelectDD}>Climbing</MenuItem>
-        <MenuItem eventKey="SHOW_GOLF" onSelect={this.onSelectDD}>Golfing</MenuItem>
+        <MenuItem eventKey="SHOW_ALL" onSelect={this.selectCategory}>Show All</MenuItem>
+        <MenuItem eventKey="SHOW_SOCCER" onSelect={this.selectCategory}>Soccer</MenuItem>
+        <MenuItem eventKey="SHOW_HIKING" onSelect={this.selectCategory}>Hiking</MenuItem>
+        <MenuItem eventKey="SHOW_SWIMMING" onSelect={this.selectCategory}>Swimming</MenuItem>
+        <MenuItem eventKey="SHOW_CLIMBING" onSelect={this.selectCategory}>Climbing</MenuItem>
+        <MenuItem eventKey="SHOW_GOLF" onSelect={this.selectCategory}>Golfing</MenuItem>
       </DropdownButton>
       <DropdownButton title="Skill Level" id="bg-nested-dropdown">
         <MenuItem eventKey="1">Easy</MenuItem>
