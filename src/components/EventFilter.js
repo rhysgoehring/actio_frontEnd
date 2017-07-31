@@ -5,7 +5,7 @@ import {DropdownButton, MenuItem} from 'react-bootstrap';
 class EventFilter extends Component {
   constructor(props){
     super();
-    this.onSelectDD = this.onSelectDD.bind(this);
+    this.selectCategory = this.selectCategory.bind(this);
   }
   // componentDidMount(){
   //   {this.props.filterEvents("SHOW_SOCCER")}
