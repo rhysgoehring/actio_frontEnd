@@ -23,7 +23,6 @@ class Home extends Component {
 
   }
   filterEvents(unfiltered){
-    console.log("state in filter events", this.state)
     switch(this.state.currentFilter){
       case "SHOW_ALL":
         return unfiltered;
@@ -123,7 +122,6 @@ class Home extends Component {
               {this.renderAllEvents()}
           </Row>
         </Col>
-
       </Grid>
     )
   }

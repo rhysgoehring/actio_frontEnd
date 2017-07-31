@@ -97,7 +97,6 @@ class EventCard extends Component {
   renderJoinedUsers(){
     return (
       _.map(this.state.usersJoined, users =>{
-        console.log(users);
         return (
           <li key={users.last_name}>{users.first_name} {users.last_name}</li>
         )
@@ -106,7 +105,6 @@ class EventCard extends Component {
   }
 
 onSubmit(values) {
-  console.log('this.props in onSubmit', this.props);
   let currentMessages = this.state.messages
   let body = values.body
   let title = this.props.firstName
@@ -133,7 +131,6 @@ joinE(id) {
   this.setState({
     usersJoined: currentUsers
   })
-  console.log('this.state', this.state);
   axios.post(`${ROOT_URL}/api/events/${this.props.eventId}`, {userId})
   }
   
@@ -163,13 +160,11 @@ joinE(id) {
   }
   
   renderEditDelete(){
-    console.log('this.props', this.props)
-    console.log('this.props.id', this.props.id)
     if (this.props.eventOwner === this.props.id){
       return(
         <div className='row'>
           <div className='col-md-6'>
-             <button>Edit</button>
+             <Link className='btn btn-success' to={`/events/${this.props.eventId}`}>Edit Event</Link>
           </div>
           <div className='col-md-6'>
              <button>Delete</button>

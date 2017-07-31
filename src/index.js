@@ -22,6 +22,7 @@ import SignOut from './auth/SignOut';
 import Profile from './components/Profile';
 import MyEvents from './components/MyEvents';
 import NewEvent from './components/NewEvent';
+import EditEvent from './components/EditEvent';
 
 
 
@@ -40,6 +41,7 @@ ReactDOM.render(
         <Route path="profile" component={Profile} />
         <Route path="myevents" component={MyEvents} />
         <Route path="newevent" component={NewEvent} />
+        <Route path="events/:id" component={EditEvent} />
       </Route>
     </Router>
   </Provider>, document.getElementById('root')
