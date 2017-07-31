@@ -63,6 +63,7 @@ class Home extends Component {
           eventTitle={events.name}
           eventDesc={events.description}
           icon={events.icon}
+          catName={events.title}
           eventLocation={events.location}
           eventDate={events.event_date}
           eventOwner={events.owner_id}
@@ -85,6 +86,7 @@ class Home extends Component {
           eventTitle={events.name}
           eventDesc={events.description}
           icon={events.icon}
+          catName={events.title}
           eventLocation={events.location}
           eventDate={events.event_date}
           eventOwner={events.owner_id}

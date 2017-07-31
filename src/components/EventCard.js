@@ -227,7 +227,7 @@ joinE(id) {
                         <h4><img src={this.state.eventOwner.pic}></img><strong>{this.state.eventOwner.name}</strong></h4>
                       </div>
                       <h4> Category:</h4>
-                      <h4><img src={this.props.icon} style={{height:'85px', width:'85px'}}/> <strong>this.props.catName</strong></h4>
+                      <h4><img src={this.props.icon} style={{height:'85px', width:'85px'}}/> <strong>{this.props.catName}</strong></h4>
                       <h4> Where: <strong>{this.props.eventLocation}</strong></h4>
                       <h4> When: <strong>{this.props.eventDate}</strong></h4>
                       <h4> Event Description: </h4>
