@@ -165,6 +165,11 @@ joinE(id) {
       )
     }
   }
+  
+  deleteE(id) {
+    console.log('deleting event')
+    this.props.deleteEvent(this.props.eventId);
+  }
 
   renderEditDelete(){
     if (this.props.eventOwner === this.props.id){
@@ -174,7 +179,7 @@ joinE(id) {
              <Link className='btn btn-success' to={`/events/${this.props.eventId}`}>Edit Event</Link>
           </div>
           <div className='col-md-6'>
-             <button>Delete</button>
+             <button onClick={this.deleteE.bind(this)}>Delete</button>
           </div>
         </div>
 

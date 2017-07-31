@@ -1,4 +1,4 @@
-import {GET_ALL_EVENTS, CREATE_EVENT, GET_EVENT} from '../actions/types';
+import {GET_ALL_EVENTS, CREATE_EVENT, GET_EVENT, DELETE_EVENT} from '../actions/types';
 import _ from 'lodash';
 
 export default function(state={}, action) {
@@ -9,7 +9,8 @@ export default function(state={}, action) {
        return { ...state, selectedEvent: action.payload}
     case CREATE_EVENT:
       return [...state, action.payload]
-      
+    case DELETE_EVENT:
+      return action.payload
   }
     
   return state;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {browserHistory} from 'react-router';
-import {AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_ALL_EVENTS, GET_USER_EVENTS, GET_OWNED_EVENTS, CREATE_EVENT, GET_EVENT} from './types';
+import {AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_ALL_EVENTS, GET_USER_EVENTS, GET_OWNED_EVENTS, CREATE_EVENT, GET_EVENT, DELETE_EVENT} from './types';
 
 
 // const ROOT_URL = 'https://actio-backend.herokuapp.com';
@@ -124,4 +124,20 @@ export function getEvent(id){
      })
     }).catch(err => console.log('err', err))
   }
-  }
+ }
+ 
+export function deleteEvent(id){
+  return function(dispatch){
+    axios.delete(`${ROOT_URL}/api/events/${id}`)
+      .then((data) =>{
+        axios.get(`${ROOT_URL}/api/events`)
+        .then((response) =>{
+          console.log('deleteEvent getAllEvents', response);
+          dispatch({
+            type: DELETE_EVENT,
+            payload: response.data
+          })
+        })
+      })
+    }
+}
