@@ -5,10 +5,15 @@ import {DropdownButton, MenuItem} from 'react-bootstrap';
 class EventFilter extends Component {
   constructor(props){
     super();
+    this.onSelectDD = this.onSelectDD.bind(this);
   }
   // componentDidMount(){
   //   {this.props.filterEvents("SHOW_SOCCER")}
   // }
+
+  onSelectDD(eventKey){
+    this.props.filterEvents(eventKey);
+  }
   render(){
 
     {console.log("state of event_filter"), this.state}
@@ -16,11 +21,12 @@ class EventFilter extends Component {
       <div className="event_filter text-center">
       <h3>Filter By: </h3>
       <DropdownButton title="Category" id="bg-nested-dropdown">
-        <MenuItem eventKey="1">Soccer</MenuItem>
-        <MenuItem eventKey="2">Hiking</MenuItem>
-        <MenuItem eventKey="2">Swimming</MenuItem>
-        <MenuItem eventKey="2">Climbing</MenuItem>
-        <MenuItem eventKey="2">Golfing</MenuItem>
+        <MenuItem eventKey="SHOW_ALL" onSelect={this.onSelectDD}>Show All</MenuItem>
+        <MenuItem eventKey="SHOW_SOCCER" onSelect={this.onSelectDD}>Soccer</MenuItem>
+        <MenuItem eventKey="SHOW_HIKING" onSelect={this.onSelectDD}>Hiking</MenuItem>
+        <MenuItem eventKey="SHOW_SWIMMING" onSelect={this.onSelectDD}>Swimming</MenuItem>
+        <MenuItem eventKey="SHOW_CLIMBING" onSelect={this.onSelectDD}>Climbing</MenuItem>
+        <MenuItem eventKey="SHOW_GOLF" onSelect={this.onSelectDD}>Golfing</MenuItem>
       </DropdownButton>
       <DropdownButton title="Skill Level" id="bg-nested-dropdown">
         <MenuItem eventKey="1">Easy</MenuItem>
