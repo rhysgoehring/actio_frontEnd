@@ -20,7 +20,7 @@ class EventCard extends Component {
       messages: [],
       usersJoined: []
     })
-    
+
  }
 
   getOwnerInfo(id) {
@@ -98,7 +98,14 @@ class EventCard extends Component {
     return (
       _.map(this.state.usersJoined, users =>{
         return (
-          <li key={users.last_name}>{users.first_name} {users.last_name}</li>
+          <tr className="owner_info" key={users.last_name}>
+            <td>
+              <img src={users.profile_pic}></img>
+            </td>
+            <td>
+              <h4><strong>  {users.first_name} {users.last_name}</strong></h4>
+            </td>
+          </tr>
         )
       })
     )
@@ -126,14 +133,14 @@ joinE(id) {
     last_name: this.props.lastName,
     profile_pic: this.props.picUrl
   }
-  
+
   currentUsers.push(newUser)
   this.setState({
     usersJoined: currentUsers
   })
   axios.post(`${ROOT_URL}/api/events/${this.props.eventId}`, {userId})
   }
-  
+
   checkUserStatus() {
     for (var i = 0; i < this.state.usersJoined.length; i++) {
       if(this.state.usersJoined[i].id === this.props.id) {
@@ -142,11 +149,11 @@ joinE(id) {
     }
       return false;
   }
- 
+
  leaveE(id){
    console.log('leaving event');
  }
-  
+
   renderButtons(){
     if (this.checkUserStatus() === true) {
       return (
@@ -158,7 +165,7 @@ joinE(id) {
       )
     }
   }
-  
+
   renderEditDelete(){
     if (this.props.eventOwner === this.props.id){
       return(
@@ -170,7 +177,7 @@ joinE(id) {
              <button>Delete</button>
           </div>
         </div>
-        
+
       )
     }
   }
@@ -200,64 +207,63 @@ joinE(id) {
           </div>
           <Modal bsSize="large" show={this.state.showModal} dialogClassName="custom-modal">
             <Modal.Header>
-              <Modal.Title>{this.props.eventTitle}</Modal.Title>
+              <div className="modal_cover">
+                <div className="cover_container">
+                  <div className="cover_transparency"></div>
+                  <div className="modal_cover_img" style={{backgroundImage:'url('+this.props.eventPic+')'}}></div>
+                  <div className="event_title">
+                    <h3 >{this.props.eventTitle}</h3>
+                  </div>
+                </div>
+              </div>
             </Modal.Header>
             <Modal.Body>
               <div className='row'>
-                  <div className='col-md-6'>
-                    <GoogleMap style={{marginBottom: '10px'}}center zoom={16} lat={this.props.eventLat} lng={this.props.eventLng} />
+                  <div className='col-md-4'>
+                    <h2 className='text-center'>Event Info</h2>
+                    <div className="event_col">
+                      <h4>Created By</h4>
+                      <div className="owner_info">
+                        <h4><img src={this.state.eventOwner.pic}></img><strong>{this.state.eventOwner.name}</strong></h4>
+                      </div>
+                      <h4> Category:</h4>
+                      <h4><img src={this.props.icon} style={{height:'85px', width:'85px'}}/> <strong>this.props.catName</strong></h4>
+                      <h4> Where: <strong>{this.props.eventLocation}</strong></h4>
+                      <h4> When: <strong>{this.props.eventDate}</strong></h4>
+                      <h4> Event Description: </h4>
+                      <h2 className='text-center'>Map</h2>
+                      <GoogleMap style={{marginBottom: '10px'}}center zoom={16} lat={this.props.eventLat} lng={this.props.eventLng} />
+                    </div>
                   </div>
-                  <div className='col-md-3'>
-                    <img src={this.state.eventOwner.pic} style={{height: '250px', width: '250px', margin: 'auto'}} />
-                  </div>
-                  <div className='col-md-3'>
-                    <h5 className='text-left'>About {this.state.eventOwner.name}: </h5>
-                    <h6 className='text-left'> {this.state.eventOwner.info} </h6>
-                  </div>
-                </div>
-              <div className='row'>
-                <div className='col-md-4'>
-                  <img className="img-responsive" src={this.props.eventPic} style={{alignSelf: 'center', maxHeight:'500px'}} />
-                  <ul className="list-inline">
-                    <li className="list-inline-item"><img src={this.props.icon} style={{height:'75px', width:'75px'}} className="img-responsive" /></li>
-                    <li className="list-inline-item">Location: <strong>{this.props.eventLocation}</strong></li>
-                    <li className="list-inline-item">Date: <strong>{this.props.eventDate}</strong></li>
-                    <li className="list-inline-item">Participants:</li>
-                  </ul>
-                </div>
-                <div className='col-md-4'>
-                  <h4 className='text-left'>About {this.props.eventTitle}:</h4>
-                  <h6 className='text-left'>{this.props.eventDesc}</h6>
-                  <div className='row'>
-                    <h5 className='text-center'>Who's Attending?</h5>
-                    <ul>
-                      {this.renderJoinedUsers()}
-                    </ul>
-                  </div>
-                </div>
-                <div className='col-md-4'>
-                  <h4><strong>Comments:</strong></h4>
-                  <div className="row">
-                    <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                      <fieldset className="form-group">
-                        <div className="col-md-9">
-                          <label>Post a Comment</label>
-                          <Field
-                            name="body"
-                            type="text"
-                            component="textarea"
-                            className="form-control" />
-                        </div>
-                        <div className="col-md-3">
-                          <button type="submit" className="btn btn-success">Comment</button>
-                        </div>
-                      </fieldset>
-                    </form>
-                  </div>
-                  {this.renderMessages()}
-                </div>
+                    <div className='col-md-4 attending_col'>
+                      <h2 className='text-center'>Who's Attending?</h2>
+                      <table className="table table-hover">
+                        <tbody>
+                          {this.renderJoinedUsers()}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className='col-md-4 comment_col'>
+                      <h2 className='text-center'><strong>Comments:</strong></h2>
+                      <div className="row">
+                        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                          <fieldset className="form-group">
+                            <div className="col-md-9">
+                              <label>Post a Comment</label>
+                              <Field
+                              name="body"
+                              type="text"
+                              component="textarea"
+                              className="form-control" />
+                              <button type="submit" className="btn btn-success">Comment</button>
+                            </div>
 
-              </div>
+                          </fieldset>
+                        </form>
+                      </div>
+                      {this.renderMessages()}
+                    </div>
+                </div>
             </Modal.Body>
             <Modal.Footer>
               {this.renderButtons()}
