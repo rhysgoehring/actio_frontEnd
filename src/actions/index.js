@@ -109,7 +109,7 @@ export function createEvent(newEvent) {
       console.log('crateEvent response:', response);
       dispatch({
         type: CREATE_EVENT,
-        payload: response.data[0]
+        payload: response.data
       })
     }).catch(err=> console.log(err))
   }
