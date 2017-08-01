@@ -8,7 +8,7 @@ import axios from 'axios';
 import {reduxForm, Field, reset} from 'redux-form';
 import GoogleMap from './googleMap';
 
-const ROOT_URL = 'http://localhost:8080';
+const ROOT_URL='https://actio-backend.herokuapp.com';
 
 class EventCard extends Component {
   constructor(props) {
