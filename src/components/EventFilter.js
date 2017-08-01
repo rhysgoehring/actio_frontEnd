@@ -6,17 +6,21 @@ class EventFilter extends Component {
   constructor(props){
     super();
     this.selectCategory = this.selectCategory.bind(this);
+    this.selectSkillLevel = this.selectSkillLevel.bind(this);
   }
   // componentDidMount(){
   //   {this.props.filterEvents("SHOW_SOCCER")}
   // }
 
   selectCategory(eventKey){
-    this.props.filterEvents(eventKey);
+    this.props.changeCategory(eventKey);
+  }
+
+  selectSkillLevel(eventKey){
+    console.log('here');
+    this.props.changeSkill(eventKey);
   }
   render(){
-
-    {console.log("state of event_filter"), this.state}
     return (
       <div className="event_filter text-center">
       <h3>Filter By: </h3>
@@ -29,9 +33,10 @@ class EventFilter extends Component {
         <MenuItem eventKey="SHOW_GOLF" onSelect={this.selectCategory}>Golfing</MenuItem>
       </DropdownButton>
       <DropdownButton title="Skill Level" id="bg-nested-dropdown">
-        <MenuItem eventKey="1">Easy</MenuItem>
-        <MenuItem eventKey="2">Medium</MenuItem>
-        <MenuItem eventKey="2">Hard</MenuItem>
+        <MenuItem eventKey="0" onSelect={this.selectSkillLevel}>Show All</MenuItem>
+        <MenuItem eventKey="1" onSelect={this.selectSkillLevel}>Beginner</MenuItem>
+        <MenuItem eventKey="2" onSelect={this.selectSkillLevel}>Advanced</MenuItem>
+        <MenuItem eventKey="3" onSelect={this.selectSkillLevel}>Master</MenuItem>
       </DropdownButton>
       </div>
     )

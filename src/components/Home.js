@@ -10,9 +10,11 @@ import EventFilter from './EventFilter';
 class Home extends Component {
   constructor(props){
     super(props);
-    this.state = {currentFilter:"SHOW_ALL"}
-    this.filterEvents = this.filterEvents.bind(this);
-    this.changeFilter = this.changeFilter.bind(this);
+    this.state = {categoryFilter:"SHOW_ALL", skillFilter:0}
+    this.filterByCategory = this.filterByCategory.bind(this);
+    this.filterBySkillLevel = this.filterBySkillLevel.bind(this);
+    this.changeCategoryFilterState = this.changeCategoryFilterState.bind(this);
+    this.changeSkillFilterState = this.changeSkillFilterState.bind(this);
   }
 
   componentDidMount() {
@@ -22,39 +24,67 @@ class Home extends Component {
 
 
   }
-  filterEvents(unfiltered){
-    switch(this.state.currentFilter){
+  filterByCategory(unfiltered){
+    switch(this.state.categoryFilter){
       case "SHOW_ALL":
         return unfiltered;
       case "SHOW_SOCCER":
-        return this.filterByCategory(unfiltered,5);
+        return this.applyCategoryFilter(unfiltered,5);
       case "SHOW_CLIMBING":
-        return this.filterByCategory(unfiltered,4);
+        return this.applyCategoryFilter(unfiltered,4);
       case "SHOW_BASKETBALL":
-        return this.filterByCategory(unfiltered,1);
+        return this.applyCategoryFilter(unfiltered,1);
       case "SHOW_HIKING":
-        return this.filterByCategory(unfiltered,2);
+        return this.applyCategoryFilter(unfiltered,2);
       case "SHOW_GOLF":
-        return this.filterByCategory(unfiltered,6);
+        return this.applyCategoryFilter(unfiltered,6);
       case "SHOW_SWIMMING":
-        return this.filterByCategory(unfiltered,3);
+        return this.applyCategoryFilter(unfiltered,3);
       default:
         return unfiltered;
     }
   }
 
-  filterByCategory(unfiltered, id){
+  filterBySkillLevel(unfiltered){
+    switch (this.state.skillFilter) {
+      case '0':
+        return unfiltered;
+      case '1':
+        return this.applySkillFilter(unfiltered, 'beginner')
+      case '2':
+        return this.applySkillFilter(unfiltered, 'advanced')
+      case '3':
+        return this.applySkillFilter(unfiltered, 'expert')
+      default:
+        return unfiltered;
+    }
+  }
+
+  applyCategoryFilter(unfiltered, id){
     return _.filter(unfiltered, (ev) =>{
       return ev.cat_id == id;
     });
   }
 
-  changeFilter(filterText){
-    this.setState({currentFilter: filterText})
+  applySkillFilter(unfiltered, skillLevel){
+    return _.filter(unfiltered, ev =>{
+      console.log("event about to be filtered", ev)
+      return ev.skill_level == skillLevel;
+    })
+  }
+
+  changeCategoryFilterState(filterText){
+    this.setState({categoryFilter: filterText})
+  }
+
+  changeSkillFilterState(filterText){
+    this.setState({skillFilter: filterText})
   }
   renderAllEvents() {
-    let filtered = this.filterEvents(this.props.allEvents)
-    return _.map(filtered, events => {
+    let filtered = this.filterByCategory(this.props.allEvents)
+    let moreFiltered = this.filterBySkillLevel(filtered);
+    console.log(moreFiltered)
+    return _.map(moreFiltered, events => {
 
       return (
         <EventCard key={events.id}
@@ -116,11 +146,12 @@ class Home extends Component {
           </Row>
           <Row className="center-block">
               {console.log('state of home before eventFilter', this.state)}
-              <EventFilter filterEvents={this.changeFilter}/>
+              <EventFilter changeCategory={this.changeCategoryFilterState} changeSkill={this.changeSkillFilterState}/>
                 {console.log('state of home after eventFilter', this.state)}
           </Row>
           <Row className='center-block'>
             <h4 className='text-center'>All Events</h4>
+              {console.log("Rendering events")}
               {this.renderAllEvents()}
           </Row>
         </Col>
