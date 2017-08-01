@@ -15,16 +15,16 @@ class NavBar extends Component {
       <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to='/home'>Actio</Link>
+            <Link className='navLogo' to='/home'>Actio</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
            <Nav pullRight>
-             <NavItem><Link to="/newevent">New Event</Link></NavItem>
-             <NavItem><Link to="/myevents">My Events</Link></NavItem>
-             <NavItem><Link to="/profile">Profile</Link></NavItem>
-             <NavItem><Link to="/signout">Sign Out</Link></NavItem>
+             <NavItem><Link className='btnMain' to="/newevent">New Event</Link></NavItem>
+             <NavItem><Link className='btnMain' to="/myevents">My Events</Link></NavItem>
+             <NavItem><Link className='btnMain' to="/profile">Profile</Link></NavItem>
+             <NavItem><Link className='btnMain' to="/signout">Sign Out</Link></NavItem>
            </Nav>
          </Navbar.Collapse>
        </Navbar>

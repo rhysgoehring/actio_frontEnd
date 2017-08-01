@@ -9,6 +9,10 @@ import reduxThunk from 'redux-thunk';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
+import './actioPublic/Satisfy-Regular.ttf';
+import './actioPublic/Comfortaa-Bold.ttf'
+import './actioPublic/Comfortaa-Light.ttf'
+import './actioPublic/Comfortaa-Regular.ttf'
 
 import reducers from './reducers/index';
 

@@ -27,7 +27,6 @@ img.profPicHome {
 }
 
 .eventCardContainer {
-  border: 1px black solid;
   margin: 1.0em;
   border-radius: 0.2em;
 }
@@ -35,8 +34,84 @@ img.profPicHome {
 .custom-modal{
   width: 70%;
 }
+/*************************************************NAV*********************************************************/
+
+.navLogo {
+  font-family: 'Satisfy', cursive;
+  color: #ED1C24;
+  font-size: 20px;
+}
+
+/*************************************************HOME********************************************************/
+.allEventPic{
+  max-width: 300px;
+  height: 251px;
+  border-radius: 0.75rem;
+  border: 1px solid #7DD181;
+  alignSelf: 'left'
+}
+
+/*************************************************EventCard*********************************************************/
+
+.eventCardImg {
+  height: 75px;
+  width: 75px;
+}
+
+/*************************************************BUTTON*********************************************************/
+
+.btnMain {
+    -moz-box-shadow: 0px 2px 0px 1px #222629;
+    -webkit-box-shadow: 0px 2px 0px 1px #222629;
+    box-shadow: 0px 0px 1px 1px #222629;
+    background-color: rgba(255, 255, 255, .0);
+    -moz-border-radius: 42px;
+    -webkit-border-radius: 42px;
+    border-radius: 42px;
+    border: 1px solid #ccc2a6;
+    display: inline-block;
+    cursor: pointer;
+    color: #ccc2a6;
+    font-family: 'Comfortaa';
+    font-size: 16px;
+    font-weight: 300;
+    padding: 5px 8px;
+    text-decoration: none;
+    
+    
+}
+
+.btnMain:hover {
+    background-color: #AB451E;
+    color: #ccc2a6;
+    text-decoration: none;
+}
+
+.btnMain:active {
+    position: relative;
+    top: 1px;
+    text-decoration: none;
+}
+
+.btnRow {
+  background-color: #C57B57;
+  border-radius: 1.0rem;
+  margin-top: 0px;
+  
+}
+
 
 /*************************************************CARD***************************************************/
+.card.actCard {
+  border-radius: 1.0rem;
+  font-family: 'Comfortaa';
+  font-size: 16px;
+  z-index: 5;
+  background-color: #F1AB86;
+  color: #000;
+}
+
+
 .card {
   position: relative;
   display: -webkit-box;
@@ -50,7 +125,7 @@ img.profPicHome {
           flex-direction: column;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
+  
 }
 
 .card-block {
