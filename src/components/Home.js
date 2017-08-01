@@ -10,11 +10,13 @@ import EventFilter from './EventFilter';
 class Home extends Component {
   constructor(props){
     super(props);
-    this.state = {categoryFilter:"SHOW_ALL", skillFilter:0}
+    this.state = {categoryFilter:"SHOW_ALL", skillFilter:0, latLng:[]}
     this.filterByCategory = this.filterByCategory.bind(this);
     this.filterBySkillLevel = this.filterBySkillLevel.bind(this);
     this.changeCategoryFilterState = this.changeCategoryFilterState.bind(this);
     this.changeSkillFilterState = this.changeSkillFilterState.bind(this);
+
+    this.latLng = [];
   }
 
   componentDidMount() {
@@ -80,9 +82,22 @@ class Home extends Component {
   changeSkillFilterState(filterText){
     this.setState({skillFilter: filterText})
   }
+
+  getLatLongs(events){
+    if(!_.isEmpty(events)){
+      console.log("events!!!",events)
+      let latLng = [];
+      events.forEach(ev =>{
+        latLng.push({lat:ev.lat,lng:ev.lng,icon:ev.icon})
+      })
+      this.latLng = latLng
+    }
+
+  }
   renderAllEvents() {
     let filtered = this.filterByCategory(this.props.allEvents)
     let moreFiltered = this.filterBySkillLevel(filtered);
+    this.getLatLongs(moreFiltered);
     console.log(moreFiltered)
     return _.map(moreFiltered, events => {
 
@@ -129,6 +144,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log("!!!!!LOOK HERE =======>",this.latLng);
     return(
       <Grid>
         <Col md={3}>
@@ -143,7 +159,7 @@ class Home extends Component {
         </Col>
         <Col md={9}>
           <Row className='center-block mainMap'>
-            <GoogleMap center id='homeMap' zoom={10} lat={40.014984} lng={-105.270546} />
+            <GoogleMap  latLngs={this.latLng} center id='homeMap' zoom={10} lat={40.014984} lng={-105.270546} />
           </Row>
           <Row className="center-block">
               {console.log('state of home before eventFilter', this.state)}
