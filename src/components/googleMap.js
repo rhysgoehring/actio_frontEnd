@@ -30,13 +30,18 @@ class GoogleMap extends Component {
   makeMarkers(map){
     console.log("making map markers")
     this.props.latLngs.forEach((pos) =>{
+      let icon = {
+        url: pos.icon,
+        scaledSize: new google.maps.Size(40, 40)
+      }
       console.log("pos",pos);
       let marker = new google.maps.Marker({
             position: {
               lat: parseFloat(pos.lat),
               lng: parseFloat(pos.lng)
             },
-            map: map
+            icon:icon,
+            map: map,
           });
     })
   }
