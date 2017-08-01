@@ -160,7 +160,7 @@ function mapStateToProps(state) {
     lastName: state.auth.lastName,
     picUrl: state.auth.profPic,
     zip: state.auth.zip,
-    event: state.allEvents.selectedEvent
+    event: state.selectedEvent
   })
 }
 
