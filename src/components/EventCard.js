@@ -192,7 +192,7 @@ joinE(id) {
     return (
       <div className="row">
         <div className='eventCardContainer'>
-          <div className="card actCard">
+          <div className={`card ${this.props.cardClass}`}>
             <div className='row'>
               <div className='col-md-5'>
                  <img className="img-responsive allEventPic float-left" src={this.props.eventPic} alt="Card image cap" />

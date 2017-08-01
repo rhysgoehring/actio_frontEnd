@@ -94,10 +94,9 @@ img.profPicHome {
 }
 
 .btnRow {
-  background-color: #C57B57;
+  background-color:#A1A596;
   border-radius: 1.0rem;
   margin-top: 0px;
-  
 }
 
 
@@ -107,7 +106,7 @@ img.profPicHome {
   font-family: 'Comfortaa';
   font-size: 16px;
   z-index: 5;
-  background-color: #F1AB86;
+  background-color:#BCD3BE;
   color: #000;
 }
 
