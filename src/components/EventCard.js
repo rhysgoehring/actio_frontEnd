@@ -165,7 +165,7 @@ joinE(id) {
       )
     }
   }
-  
+
   deleteE(id) {
     console.log('deleting event')
     this.props.deleteEvent(this.props.eventId);
@@ -242,7 +242,7 @@ joinE(id) {
                       <h4> When: <strong>{this.props.eventDate}</strong></h4>
                       <h4> Event Description: </h4>
                       <h2 className='text-center'>Map</h2>
-                      <GoogleMap style={{marginBottom: '10px'}}center zoom={16} lat={this.props.eventLat} lng={this.props.eventLng} />
+                      <GoogleMap  latLngs={[{lat:this.props.eventLat,lng:this.props.eventLng,icon:this.props.icon}]}style={{marginBottom: '10px'}}center zoom={16} lat={this.props.eventLat} lng={this.props.eventLng} />
                     </div>
                   </div>
                     <div className='col-md-4 attending_col'>
