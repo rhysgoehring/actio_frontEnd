@@ -5,6 +5,8 @@ export default function(state={}, action) {
   switch (action.type) {
     case GET_ALL_EVENTS:
       return action.payload
+    case GET_EVENT:
+      return {state, selectedEvent: action.payload}
     case CREATE_EVENT:
       return [...state, action.payload]
     case DELETE_EVENT:

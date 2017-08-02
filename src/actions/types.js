@@ -4,6 +4,7 @@ export const AUTH_ERROR = 'auth_error';
 export const GET_ALL_EVENTS = 'get_all_events';
 export const GET_USER_EVENTS = 'get_user_events';
 export const GET_OWNED_EVENTS = 'get_owned_events';
+
 export const GET_EVENT = 'get_event';
 export const DELETE_EVENT = 'delete_event';
 
