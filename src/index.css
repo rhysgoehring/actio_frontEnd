@@ -26,7 +26,7 @@ html{
 /****************************************Landing********************************/
 
 .landing_main{
-  height:100%;
+  height:100vh;
   width:100%;
   padding-top: 150px;
   background: red; /* For browsers that do not support gradients */
@@ -63,7 +63,15 @@ html{
 }
 
 
-
+/****************************************SignIn********************************/
+.aut_label{
+  text-align: center;
+  color:white;
+  font-family: gothamReg;
+  width: 100%;
+  display: block;
+  margin: auto;
+}
 /****************************************HOME*******************************************************************/
 img.profPicHome {
   height: 250px;
