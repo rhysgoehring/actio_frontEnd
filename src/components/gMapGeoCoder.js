@@ -16,12 +16,13 @@ class MapGeoCoder extends Component {
   constructor(props) {
     super(props);
     
-    this.state={
+    this.state=({
       gcError: false,
       foundAddress: INITIAL_LOCATION.address,
       lat: INITIAL_LOCATION.position.latitude,
-      lng: INITIAL_LOCATION.position.longitude
-    }
+      lng: INITIAL_LOCATION.position.longitude,
+      position: {}
+    })
   }
   
   componentDidMount() {
@@ -46,16 +47,18 @@ class MapGeoCoder extends Component {
   
   geoCodeAddress(address){
     this.geocoder.geocode({ 'address': address}, function(results, status){
+      console.log('status', status);
+      console.log('results', results);
+      console.log('lat:', results[0].geometry.location.lat());
+      console.log('lat:', results[0].geometry.location.lng());
       if (status === google.maps.GeocoderStatus.OK) {
-        console.log('lat:', results[0].geometry.location.lat());
-        console.log('lat:', results[0].geometry.location.lat());
         this.setState({
           foundAddress: results[0].formatted_address,
           gcError: false,
           lat: results[0].geometry.location.lat(),
-          lng: results[0].geometry.location.lng()
+          lng: results[0].geometry.location.lng(),
+          position: results[0].geometry.location
         });
-        console.log('this.state', this.state);
         this.map.setZoom(15)
         this.map.setCenter(results[0].geometry.location);
         this.marker.setPosition(results[0].geometry.location);
@@ -66,13 +69,12 @@ class MapGeoCoder extends Component {
         isGeoCodingError: true
       })
     }.bind(this));
-  console.log('this.state', this.state);
   }
   handleFormSubmit(e){
     e.preventDefault()
     const address = this.refs.address.value
     this.geoCodeAddress(address)
-    console.log('');
+   
   }
   
   render(){
