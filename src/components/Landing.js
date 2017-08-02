@@ -17,6 +17,24 @@ class Landing extends Component {
           </div>
         </div>
       </div>
+      <div className="marketing_sec">
+        <div className="row">
+          <div className="container text-center">
+            <div className="col-md-4">
+              <h2>col 1</h2>
+              <hr />
+            </div>
+            <div className="col-md-4">
+              <h2>col 2</h2>
+              <hr />
+            </div>
+            <div className="col-md-4">
+              <h2>col 3</h2>
+              <hr />
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     )
   }
