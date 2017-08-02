@@ -35,6 +35,8 @@ class Home extends Component {
           eventLocation={events.location}
           eventDate={events.event_date}
           eventOwner={events.owner_id}
+          eventLat={events.lat}
+          eventLng={events.lng}
         />
       )
     })
@@ -53,6 +55,8 @@ class Home extends Component {
           eventLocation={events.location}
           eventDate={events.event_date}
           eventOwner={events.owner_id}
+          eventLat={events.lat}
+          eventLng={events.lng}
         />
       )
     })

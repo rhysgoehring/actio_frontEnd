@@ -1,131 +1,135 @@
 import React, {Component} from 'react';
-import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import {browserHistory} from 'react-router';
+import NewEventForm from './NewEventForm'
 import * as actions from '../actions';
+const google = window.google;
 
+
+const INITIAL_LOCATION = {
+  address: 'London, United Kingdom',
+  position: {
+    latitude: 51.5085300,
+    longitude: -0.1257400
+  }
+};
+
+const INITIAL_ZOOM = 8
+
+const ATLANTIC_OCEAN = {
+  latitude: 29.532804,
+  longitude: -55.491477
+};
 
 class NewEvent extends Component {
- 
- handleFormSubmit(values) {
-   let newEvent= {
-     name : this.refs.name.value,
-     cat_id : this.refs.cat_id.value,
-     location : this.refs.location.value,
-     event_date : this.refs.event_date.value,
-     description : this.refs.description.value,
-     owner_id : this.props.id,
-     skill_level : this.refs.skill_level.value,
-     event_pic : this.refs.event_pic.value
-   }
-   console.log('handleFormSubmit this.refs', this.refs)
-   
-   console.log('newEvent', newEvent)
-   
-   this.props.createEvent(newEvent)
-   browserHistory.push('/home')
-   
-   }
-   
- 
+  constructor(props) {
+    super(props);
+    
+    this.state=({
+      gcError: false,
+      foundAddress: INITIAL_LOCATION.address,
+      lat: INITIAL_LOCATION.position.latitude,
+      lng: INITIAL_LOCATION.position.longitude
+     
+    })
+  }
   
-  render() {
-     const {handleSubmit, fields: {name, event_date, cat_id, event_pic, skill_level, description}} = this.props
+  componentDidMount() {
+    this.map = new google.maps.Map(this.refs.map2, {
+      zoom: INITIAL_ZOOM,
+      center: {
+        lat: INITIAL_LOCATION.position.latitude,
+        lng: INITIAL_LOCATION.position.longitude
+      }
+    })
+    
+    this.marker = new google.maps.Marker({
+      map: this.map,
+      position: {
+        lat: INITIAL_LOCATION.position.latitude,
+        lng: INITIAL_LOCATION.position.longitude
+      }
+    })
+    
+    this.geocoder = new google.maps.Geocoder()
+  }
+  
+  geoCodeAddress(address) {
+  this.geocoder.geocode({ 'address': address }, function handleResults(results, status) {
+
+    if (status === google.maps.GeocoderStatus.OK) {
+      
+      this.setState({
+        foundAddress: results[0].formatted_address,
+        isGeocodingError: false,
+        lat: results[0].geometry.location.lat(),
+        lng: results[0].geometry.location.lng()
+      });
+
+      this.map.setCenter(results[0].geometry.location);
+      this.marker.setPosition(results[0].geometry.location);
+      console.log('this.marker.map.center.toJSON', this.marker.position.toJSON());
+      return;
+    }
+
+    this.setState({
+      foundAddress: null,
+      isGeocodingError: true,
+      lat: results[0].geometry.location.lat(),
+      lng: results[0].geometry.location.lng()
+    });
+
+    this.map.setCenter({
+      lat: ATLANTIC_OCEAN.latitude,
+      lng: ATLANTIC_OCEAN.longitude
+    });
+
+    this.marker.setPosition({
+      lat: ATLANTIC_OCEAN.latitude,
+      lng: ATLANTIC_OCEAN.longitude
+    });
+
+  }.bind(this));
+}
+  handleFormSubmit(e){
+    e.preventDefault()
+    const address = this.refs.address.value
+    this.geoCodeAddress(address)
+    
+  }
+  
+  showForm() {
+    if (this.state.foundAddress !== INITIAL_LOCATION.address) {
+      return (
+        <NewEventForm
+        lat={this.state.lat}
+        lng={this.state.lng}
+        />
+      )
+    }
+  }
+  
+  render(){
+    const {handleFormSubmit} = this.props
+    
     return(
       <div className='container'>
-        <header>
-          <h2 className='text-center'>{this.props.firstName}'s New Event</h2>
-        </header>
-         <form className='center-block' onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-           <div className="row">
-             <fieldset className="form-group col-md-6">
-               <label>Event Title: </label>
-               <Field
-                 ref="name"
-                 name="name"
-                 type="text"
-                 component="input"
-                 className="form-control" />
-             </fieldset>
-             <fieldset className="form-group col-md-3">
-               <label>Event Date: </label>
-               <Field
-                 ref="event_date"
-                 name="event_date"
-                 type="text"
-                 component="input"
-                 className="form-control" />
-             </fieldset>
-             <fieldset className="form-group col-md-3">
-               <label>Category: </label>
-               <Field
-                 ref="cat_id"
-                 name="cat_id"
-                 type="select"
-                 component="select"
-                 className="form-control">
-                   <option></option>
-                   <option value={1}>Basketball</option>
-                   <option value={2}>Hiking</option>
-                   <option value={3}>Swimming</option>
-                   <option value={4}>Climbing</option>
-                   <option value={5}>Soccer</option>
-                   <option value={6}>Golfing</option>
-                 </Field>
-             </fieldset>
-           </div>
-           <div className='row'>
-               <fieldset className="form-group col-md-6">
-                 <label>Event Picture URL: </label>
-                 <Field
-                   ref="event_pic"
-                   name="event_pic"
-                   type="text"
-                   component="input"
-                   className="form-control" />
-               </fieldset>
-               <fieldset className="form-group col-md-6">
-                 <label>Location: </label>
-                 <Field
-                   ref="location"
-                   name="location"
-                   type="text"
-                   component="input"
-                   className="form-control" />
-               </fieldset>
-             </div>
-             <div className='row'>
-               <fieldset className="form-group col-md-6">
-                 <label>Skill Level: </label>
-                 <Field
-                   ref="skill_level"
-                   name="skill_level"
-                   type="select"
-                   component="select"
-                   className="form-control">
-                     <option></option>
-                     <option value="beginner">Beginner</option>
-                     <option value="advanced">Advanced</option>
-                     <option value="master">Master</option>
-                   </Field>
-               </fieldset>
-               <fieldset className="form-group col-md-6">
-                 <label>Description: </label>
-                 <Field
-                   ref="description"
-                   name="description"
-                   type="textarea"
-                   component="input"
-                   className="form-control" />
-               </fieldset>
-           </div>
-           <div className='row'>
-             <div className="col-md-2">
-               <button action="submit" className="btn btn-success">Create Event</button>
-             </div>
-           </div>
-         </form>
+        <div className='row'>
+          <div ref='map2' id="codeMap" />
+           {this.state.isGeocodingError ? <p className="bg-danger">Address not found.</p> : <p className="bg-info">{this.state.foundAddress}</p>}
+           {this.state.lat} {this.state.lng}
         </div>
+        <div className='row'>
+            <div className='col-lg-12 col-md-12'>
+              <form className='input-group form-inline' onSubmit={this.handleFormSubmit.bind(this)}>
+                <input type="text" className="form-control" ref="address" placeholder='Enter Address'/>
+                <span className='input-group-btn'>
+                  <button className='btnMain' type="submit">Find Location</button>
+                </span>
+              </form>
+            </div>
+        </div>
+        {this.showForm()}
+      </div>
     )
   }
 }
@@ -142,10 +146,4 @@ function mapStateToProps(state) {
   })
 }
 
-NewEvent = connect(mapStateToProps,actions)(NewEvent)
-NewEvent= reduxForm({
-  form: 'newEvent',
-  fields: ['name', 'event_date', 'cat_id', 'location', 'event_pic', 'skill_level', 'description']
-})(NewEvent);
-
-export default NewEvent;
+export default connect(mapStateToProps, actions)(NewEvent);
