@@ -34,13 +34,18 @@ class EditEvent extends Component {
    console.log('newEvent', newEvent)
    const id = Number.parseInt(this.props.params.id)
    axios.patch(`${ROOT_URL}/api/events/${id}`, newEvent).then(response => {
-     console.log('patch response', response)
-   })
+     console.log('response.statusText', response.statusText);
+     if(response.statusText === "OK"){
+       this.props.getAllEvents()
+         
+           browserHistory.push('/home')
+         }
+     
+     })
+    }
    
-   
-   browserHistory.push('/home')
-   
-   }
+ 
+
    
  
   
@@ -160,8 +165,7 @@ function mapStateToProps(state) {
     lastName: state.auth.lastName,
     picUrl: state.auth.profPic,
     zip: state.auth.zip,
-    allEvents: state.allEvents,
-    event: state.allEvents.selectedEvent
+    allEvents: state.allEvents
   })
 }
 

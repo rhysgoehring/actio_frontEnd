@@ -18,8 +18,6 @@ class Home extends Component {
     this.props.getAllEvents();
     const id = this.props.id
     this.props.getUserEvents(id)
-    
-
 
   }
 
@@ -37,8 +35,6 @@ class Home extends Component {
           eventLocation={events.location}
           eventDate={events.event_date}
           eventOwner={events.owner_id}
-          eventLat={parseInt(events.lat)}
-          eventLng={parseInt(events.lng)}
         />
       )
     })
@@ -57,8 +53,6 @@ class Home extends Component {
           eventLocation={events.location}
           eventDate={events.event_date}
           eventOwner={events.owner_id}
-          eventLat={parseInt(events.lat)}
-          eventLng={parseInt(events.lng)}
         />
       )
     })
