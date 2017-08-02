@@ -18,7 +18,9 @@ class MapGeoCoder extends Component {
     
     this.state={
       gcError: false,
-      foundAddress: INITIAL_LOCATION.address
+      foundAddress: INITIAL_LOCATION.address,
+      lat: INITIAL_LOCATION.position.latitude,
+      lng: INITIAL_LOCATION.position.longitude
     }
   }
   
@@ -45,24 +47,23 @@ class MapGeoCoder extends Component {
   geoCodeAddress(address){
     this.geocoder.geocode({ 'address': address}, function(results, status){
       if (status === google.maps.GeocoderStatus.OK) {
-        console.log('results:', results);
         this.setState({
           foundAddress: results[0].formatted_address,
-          gcError: false
+          gcError: false,
+          lat: results[0].geometry.location.lat(),
+          lng: results[0].geometry.location.lng()
         });
-        
+        this.map.setZoom(15)
         this.map.setCenter(results[0].geometry.location);
         this.marker.setPosition(results[0].geometry.location);
         return;
       }
-      
       this.setState({
         foundAddress: null,
         isGeoCodingError: true
       })
     }.bind(this));
   }
-  
   handleFormSubmit(e){
     e.preventDefault()
     const address = this.refs.address.value
