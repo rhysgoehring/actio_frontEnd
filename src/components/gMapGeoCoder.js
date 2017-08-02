@@ -25,8 +25,8 @@ class MapGeoCoder extends Component {
       gcError: false,
       foundAddress: INITIAL_LOCATION.address,
       lat: INITIAL_LOCATION.position.latitude,
-      lng: INITIAL_LOCATION.position.longitude,
-      position: {}
+      lng: INITIAL_LOCATION.position.longitude
+     
     })
   }
   
@@ -54,21 +54,25 @@ class MapGeoCoder extends Component {
   this.geocoder.geocode({ 'address': address }, function handleResults(results, status) {
 
     if (status === google.maps.GeocoderStatus.OK) {
-
+      
       this.setState({
         foundAddress: results[0].formatted_address,
-        isGeocodingError: false
+        isGeocodingError: false,
+        lat: results[0].geometry.location.lat(),
+        lng: results[0].geometry.location.lng()
       });
 
       this.map.setCenter(results[0].geometry.location);
       this.marker.setPosition(results[0].geometry.location);
-
+      console.log('this.marker.map.center.toJSON', this.marker.position.toJSON());
       return;
     }
 
     this.setState({
       foundAddress: null,
-      isGeocodingError: true
+      isGeocodingError: true,
+      lat: results[0].geometry.location.lat(),
+      lng: results[0].geometry.location.lng()
     });
 
     this.map.setCenter({
@@ -98,6 +102,7 @@ class MapGeoCoder extends Component {
         <div className='row'>
           <div ref='map2' id="codeMap" />
            {this.state.isGeocodingError ? <p className="bg-danger">Address not found.</p> : <p className="bg-info">{this.state.foundAddress}</p>}
+           {this.state.lat} {this.state.lng}
         </div>
         <div className='row'>
             <div className='col-lg-12 col-md-12'>
