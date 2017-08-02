@@ -78,7 +78,6 @@ class EditEvent extends Component {
              <fieldset className="form-group col-md-3">
                <label>Category: </label>
                <Field
-     
                  ref="cat_id"
                  name="cat_id"
                  type="select"
@@ -161,7 +160,8 @@ function mapStateToProps(state) {
     lastName: state.auth.lastName,
     picUrl: state.auth.profPic,
     zip: state.auth.zip,
-    event: state.selectedEvent
+    allEvents: state.allEvents,
+    event: state.allEvents.selectedEvent
   })
 }
 

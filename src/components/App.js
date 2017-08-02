@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 import NavBar from './NavBar';
 
-const google = window.google;
 
 class App extends Component {
   render() {
@@ -11,7 +10,6 @@ class App extends Component {
         <NavBar />
         {this.props.children}
       </div>
-    
     )
   }
 }

@@ -30,8 +30,6 @@ import EditEvent from './components/EditEvent';
 import MapGeoCoder from './components/gMapGeoCoder';
 
 
-const google = window.google;
-
 const middleware = [reduxThunk, logger]
 const store = createStore(reducers, applyMiddleware(...middleware))
 
@@ -47,7 +45,7 @@ ReactDOM.render(
         <Route path="profile" component={RequireAuth(Profile)} />
         <Route path="myevents" component={RequireAuth(MyEvents)} />
         <Route path="newevent" component={RequireAuth(NewEvent)} />
-        <Route path="geocode" component={MapGeoCoder} />
+        <Route path="geocode" component={RequireAuth(MapGeoCoder)} />
         <Route path="events/:id" component={RequireAuth(EditEvent)} />
       </Route>
     </Router>

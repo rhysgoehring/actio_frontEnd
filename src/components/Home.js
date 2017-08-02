@@ -7,106 +7,27 @@ import _ from 'lodash';
 import EventCard from './EventCard';
 import EventFilter from './EventFilter';
 
-const google = window.google;
+
 
 class Home extends Component {
   constructor(props){
     super(props);
-    this.state = {categoryFilter:"SHOW_ALL", skillFilter:0, latLng:[]}
-    this.filterByCategory = this.filterByCategory.bind(this);
-    this.filterBySkillLevel = this.filterBySkillLevel.bind(this);
-    this.changeCategoryFilterState = this.changeCategoryFilterState.bind(this);
-    this.changeSkillFilterState = this.changeSkillFilterState.bind(this);
-
-    this.latLng = [];
   }
 
   componentDidMount() {
     this.props.getAllEvents();
     const id = this.props.id
     this.props.getUserEvents(id)
-    console.log('this.props.authenticated', this.props.authenticated);
+    
 
 
   }
-  filterByCategory(unfiltered){
-    switch(this.state.categoryFilter){
-      case "SHOW_ALL":
-        return unfiltered;
-      case "SHOW_SOCCER":
-        return this.applyCategoryFilter(unfiltered,5);
-      case "SHOW_CLIMBING":
-        return this.applyCategoryFilter(unfiltered,4);
-      case "SHOW_BASKETBALL":
-        return this.applyCategoryFilter(unfiltered,1);
-      case "SHOW_HIKING":
-        return this.applyCategoryFilter(unfiltered,2);
-      case "SHOW_GOLF":
-        return this.applyCategoryFilter(unfiltered,6);
-      case "SHOW_SWIMMING":
-        return this.applyCategoryFilter(unfiltered,3);
-      default:
-        return unfiltered;
-    }
-  }
 
-  filterBySkillLevel(unfiltered){
-    switch (this.state.skillFilter) {
-      case '0':
-        return unfiltered;
-      case '1':
-        return this.applySkillFilter(unfiltered, 'beginner')
-      case '2':
-        return this.applySkillFilter(unfiltered, 'advanced')
-      case '3':
-        return this.applySkillFilter(unfiltered, 'expert')
-      default:
-        return unfiltered;
-    }
-  }
-
-  applyCategoryFilter(unfiltered, id){
-    return _.filter(unfiltered, (ev) =>{
-      return ev.cat_id == id;
-    });
-  }
-
-  applySkillFilter(unfiltered, skillLevel){
-    return _.filter(unfiltered, ev =>{
-      console.log("event about to be filtered", ev)
-      return ev.skill_level == skillLevel;
-    })
-  }
-
-  changeCategoryFilterState(filterText){
-    this.setState({categoryFilter: filterText})
-  }
-
-  changeSkillFilterState(filterText){
-    this.setState({skillFilter: filterText})
-  }
-
-  getLatLongs(events){
-    if(!_.isEmpty(events)){
-      console.log("events!!!",events)
-      let latLng = [];
-      events.forEach(ev =>{
-        latLng.push({lat:ev.lat,lng:ev.lng,icon:ev.icon})
-      })
-      this.latLng = latLng
-    }
-
-  }
   renderAllEvents() {
-    let filtered = this.filterByCategory(this.props.allEvents)
-    let moreFiltered = this.filterBySkillLevel(filtered);
-    this.getLatLongs(moreFiltered);
-    console.log(moreFiltered)
-    return _.map(moreFiltered, events => {
-
+    return _.map(this.props.allEvents, events => {
       return (
         <EventCard key={events.id}
-          eventType='all'
+          eventType="all"
           eventId= {events.id}
           eventPic= {events.event_pic}
           eventTitle={events.name}
@@ -121,9 +42,6 @@ class Home extends Component {
         />
       )
     })
-
-
-
   }
 
   renderUserEvents() {
@@ -147,7 +65,6 @@ class Home extends Component {
   }
 
   render() {
-    // console.log("!!!!!LOOK HERE =======>",this.latLng);
     return (
       <Grid>
         <Col md={3}>
@@ -157,21 +74,17 @@ class Home extends Component {
             <Row>
               <h4 className="text-left">{this.props.firstName}'s Events</h4>
               {this.renderUserEvents()}
-
             </Row>
         </Col>
         <Col md={9}>
           <Row className='center-block mainMap'>
-            <GoogleMap  latLngs={this.latLng} center id='homeMap' zoom={10} lat={40.014984} lng={-105.270546} />
+            <GoogleMap center id='homeMap' zoom={10} lat={40.014984} lng={-105.270546} />
           </Row>
           <Row className="center-block">
-              {console.log('state of home before eventFilter', this.state)}
-              <EventFilter changeCategory={this.changeCategoryFilterState} changeSkill={this.changeSkillFilterState}/>
-                {console.log('state of home after eventFilter', this.state)}
+              <EventFilter />
           </Row>
           <Row className='center-block'>
             <h4 className='text-center'>All Events</h4>
-              {console.log("Rendering events")}
               {this.renderAllEvents()}
           </Row>
         </Col>
