@@ -1,16 +1,21 @@
 import React, {Component} from 'react';
 const google = window.google;
 
+
 const INITIAL_LOCATION = {
-  address: 'Boulder, CO',
+  address: 'London, United Kingdom',
   position: {
-    latitude: 40.014984,
-    longitude: -105.270546
+    latitude: 51.5085300,
+    longitude: -0.1257400
   }
-}
+};
 
 const INITIAL_ZOOM = 8
 
+const ATLANTIC_OCEAN = {
+  latitude: 29.532804,
+  longitude: -55.491477
+};
 
 class MapGeoCoder extends Component {
   constructor(props) {
@@ -45,31 +50,39 @@ class MapGeoCoder extends Component {
     this.geocoder = new google.maps.Geocoder()
   }
   
-  geoCodeAddress(address){
-    this.geocoder.geocode({ 'address': address}, function(results, status){
-      console.log('status', status);
-      console.log('results', results);
-      console.log('lat:', results[0].geometry.location.lat());
-      console.log('lat:', results[0].geometry.location.lng());
-      if (status === google.maps.GeocoderStatus.OK) {
-        this.setState({
-          foundAddress: results[0].formatted_address,
-          gcError: false,
-          lat: results[0].geometry.location.lat(),
-          lng: results[0].geometry.location.lng(),
-          position: results[0].geometry.location
-        });
-        this.map.setZoom(15)
-        this.map.setCenter(results[0].geometry.location);
-        this.marker.setPosition(results[0].geometry.location);
-        return;
-      }
+  geoCodeAddress(address) {
+  this.geocoder.geocode({ 'address': address }, function handleResults(results, status) {
+
+    if (status === google.maps.GeocoderStatus.OK) {
+
       this.setState({
-        foundAddress: null,
-        isGeoCodingError: true
-      })
-    }.bind(this));
-  }
+        foundAddress: results[0].formatted_address,
+        isGeocodingError: false
+      });
+
+      this.map.setCenter(results[0].geometry.location);
+      this.marker.setPosition(results[0].geometry.location);
+
+      return;
+    }
+
+    this.setState({
+      foundAddress: null,
+      isGeocodingError: true
+    });
+
+    this.map.setCenter({
+      lat: ATLANTIC_OCEAN.latitude,
+      lng: ATLANTIC_OCEAN.longitude
+    });
+
+    this.marker.setPosition({
+      lat: ATLANTIC_OCEAN.latitude,
+      lng: ATLANTIC_OCEAN.longitude
+    });
+
+  }.bind(this));
+}
   handleFormSubmit(e){
     e.preventDefault()
     const address = this.refs.address.value
