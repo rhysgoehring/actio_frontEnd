@@ -12,7 +12,7 @@ class NavBar extends Component {
       )
     }
     return (
-      <Navbar collapseOnSelect>
+      <Navbar className="main_nav" collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
             <Link className='navLogo' to='/home'>Actio</Link>
