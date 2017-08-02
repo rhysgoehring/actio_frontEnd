@@ -27,6 +27,7 @@ import Profile from './components/Profile';
 import MyEvents from './components/MyEvents';
 import NewEvent from './components/NewEvent';
 import EditEvent from './components/EditEvent';
+import MapGeoCoder from './components/gMapGeoCoder';
 
 
 
@@ -45,6 +46,7 @@ ReactDOM.render(
         <Route path="profile" component={RequireAuth(Profile)} />
         <Route path="myevents" component={RequireAuth(MyEvents)} />
         <Route path="newevent" component={RequireAuth(NewEvent)} />
+        <Route path="geocode" component={MapGeoCoder} />
         <Route path="events/:id" component={RequireAuth(EditEvent)} />
       </Route>
     </Router>

@@ -26,6 +26,13 @@ img.profPicHome {
   align-content: center;
 }
 
+#codeMap {
+  height: 250px;
+  /*width: 400px;*/
+  padding: 10px;
+  align-content: center;
+}
+
 .eventCardContainer {
   margin: 1.0em;
   border-radius: 0.2em;
