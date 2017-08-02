@@ -24,9 +24,11 @@ html{
   height: 100%;
 }
 /****************************************Landing********************************/
-
+fieldset{
+  padding: 0!important;
+}
 .landing_main{
-  height:100%;
+  height:100vh;
   width:100%;
   padding-top: 150px;
   background: red; /* For browsers that do not support gradients */
@@ -44,6 +46,7 @@ html{
 .main_title{
   font-family: gothamReg;
   font-size: 64px;
+  text-align: center;
   color: white;
 }
 
@@ -63,7 +66,20 @@ html{
 }
 
 
+/****************************************SignIn********************************/
+.aut_label{
+  text-align: center;
+  color:white;
+  font-family: gothamReg;
+  width: 100%;
+  display: block;
+  margin: auto;
+}
 
+.auth_btn{
+  margin-left: 14px;
+  margin-bottom: 14px;
+}
 /****************************************HOME*******************************************************************/
 img.profPicHome {
   height: 250px;

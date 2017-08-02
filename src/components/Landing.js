@@ -12,7 +12,7 @@ class Landing extends Component {
           <div className="col-md-6 col-sm-6 col-xs-6">
             <Link className=" btn btn-success pull-right landing_btn" to="/signin">Sign In</Link>
           </div>
-          <div className="col-md-6 col-sm-6">
+          <div className="col-md-6 col-sm-6 col-xs-6">
             <Link className=" btn btn-success landing_btn" to="/signup">Sign Up</Link>
           </div>
         </div>
