@@ -8,6 +8,8 @@ import axios from 'axios';
 import {reduxForm, Field, reset} from 'redux-form';
 import GoogleMap from './googleMap';
 
+const google = window.google;
+
 // const ROOT_URL = 'https://actio-backend.herokuapp.com';
 const ROOT_URL = 'http://localhost:8080';
 
@@ -151,18 +153,12 @@ joinE(id) {
       return false;
   }
 
- leaveE(id){
-   console.log('leaving event');
- }
+
 
   renderButtons(){
-    if (this.checkUserStatus() === true) {
+    if (this.checkUserStatus() === false) {
       return (
-        <button className='card-link btnMain pull-left' onClick={this.leaveE.bind(this)}>Leave Event</button>
-      )
-    } else {
-      return (
-        <button className='card-link btnMain pull-right' onClick={this.joinE.bind(this)}>Join Event</button>
+        <button className='btnMain pull-right' onClick={this.joinE.bind(this)}>Join Event</button>
       )
     }
   }
@@ -189,11 +185,12 @@ joinE(id) {
   }
 
   render() {
-   const {handleClick, handleSubmit} = this.props
+   const { handleSubmit} = this.props
+   if (this.props.eventType === 'all') {
     return (
       <div className="row">
         <div className='eventCardContainer'>
-          <div className={`card ${this.props.cardClass}`}>
+          <div className='card actCard'>
             <div className='row'>
               <div className='col-md-5'>
                  <img className="img-responsive allEventPic float-left" src={this.props.eventPic} alt="Card image cap" />
@@ -268,7 +265,6 @@ joinE(id) {
                               className="form-control" />
                               <button type="submit" className="btn btn-success">Comment</button>
                             </div>
-
                           </fieldset>
                         </form>
                       </div>
@@ -283,10 +279,89 @@ joinE(id) {
           </Modal>
         </div>
       </div>
-
-
-  )
-}
+      )
+    } else {
+      return (
+        <div className="row">
+          <div className='col-md-12'>
+            <div className='thumbnail'>
+              <img className="img-responsive" src={this.props.eventPic} alt={this.props.eventTitle} />
+              <div className='caption'>
+                <h4>{this.props.eventTitle}</h4>
+                <p>{this.props.eventDesc}</p>
+                <button className='card-link btnMain' onClick={this.handleModalClick.bind(this)}>See More</button>
+                <Modal bsSize="large" show={this.state.showModal} dialogClassName="custom-modal">
+                  <Modal.Header>
+                    <div className="modal_cover">
+                      <div className="cover_container">
+                        <div className="cover_transparency"></div>
+                        <div className="modal_cover_img" style={{backgroundImage:'url('+this.props.eventPic+')'}}></div>
+                        <div className="event_title">
+                          <h3>{this.props.eventTitle}</h3>
+                        </div>
+                      </div>
+                    </div>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <div className='row'>
+                        <div className='col-md-4'>
+                          <h2 className='text-center'>Event Info</h2>
+                          <div className="event_col">
+                            <h4>Created By</h4>
+                            <div className="owner_info">
+                              <h4><img src={this.state.eventOwner.pic}></img><strong>{this.state.eventOwner.name}</strong></h4>
+                            </div>
+                            <h4> Category:</h4>
+                            <h4><img src={this.props.icon} style={{height:'85px', width:'85px'}}/> <strong>{this.props.catName}</strong></h4>
+                            <h4> Where: <strong>{this.props.eventLocation}</strong></h4>
+                            <h4> When: <strong>{this.props.eventDate}</strong></h4>
+                            <h4> Event Description: </h4>
+                            <h2 className='text-center'>Map</h2>
+                            <GoogleMap  latLngs={[{lat:this.props.eventLat,lng:this.props.eventLng,icon:this.props.icon}]} style={{marginBottom: '10px'}} center zoom={16} lat={this.props.eventLat} lng={this.props.eventLng} />
+                          </div>
+                        </div>
+                          <div className='col-md-4 attending_col'>
+                            <h2 className='text-center'>Who's Attending?</h2>
+                            <table className="table table-hover">
+                              <tbody>
+                                {this.renderJoinedUsers()}
+                              </tbody>
+                            </table>
+                          </div>
+                          <div className='col-md-4 comment_col'>
+                            <h2 className='text-center'><strong>Comments:</strong></h2>
+                            <div className="row">
+                              <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                                <fieldset className="form-group">
+                                  <div className="col-md-9">
+                                    <label>Post a Comment</label>
+                                    <Field
+                                    name="body"
+                                    type="text"
+                                    component="textarea"
+                                    className="form-control" />
+                                    <button type="submit" className="btn btn-success">Comment</button>
+                                  </div>
+                                </fieldset>
+                              </form>
+                            </div>
+                            {this.renderMessages()}
+                          </div>
+                      </div>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    {this.renderButtons()}
+                    {this.renderEditDelete()}
+                    <button className="btn btn-success" onClick={this.handleModalClick.bind(this)}>Close</button>
+                  </Modal.Footer>
+                </Modal>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+   }
   }
 
 function mapStateToProps(state) {

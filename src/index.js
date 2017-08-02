@@ -30,6 +30,7 @@ import EditEvent from './components/EditEvent';
 import MapGeoCoder from './components/gMapGeoCoder';
 
 
+const google = window.google;
 
 const middleware = [reduxThunk, logger]
 const store = createStore(reducers, applyMiddleware(...middleware))

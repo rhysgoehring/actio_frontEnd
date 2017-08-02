@@ -7,6 +7,8 @@ import _ from 'lodash';
 import EventCard from './EventCard';
 import EventFilter from './EventFilter';
 
+const google = window.google;
+
 class Home extends Component {
   constructor(props){
     super(props);
@@ -23,6 +25,7 @@ class Home extends Component {
     this.props.getAllEvents();
     const id = this.props.id
     this.props.getUserEvents(id)
+    console.log('this.props.authenticated', this.props.authenticated);
 
 
   }
@@ -103,6 +106,7 @@ class Home extends Component {
 
       return (
         <EventCard key={events.id}
+          eventType='all'
           eventId= {events.id}
           eventPic= {events.event_pic}
           eventTitle={events.name}
@@ -114,7 +118,6 @@ class Home extends Component {
           eventOwner={events.owner_id}
           eventLat={parseInt(events.lat)}
           eventLng={parseInt(events.lng)}
-          cardClass='actCard'
         />
       )
     })
@@ -144,8 +147,8 @@ class Home extends Component {
   }
 
   render() {
-    console.log("!!!!!LOOK HERE =======>",this.latLng);
-    return(
+    // console.log("!!!!!LOOK HERE =======>",this.latLng);
+    return (
       <Grid>
         <Col md={3}>
             <Row className='profPicRow'>

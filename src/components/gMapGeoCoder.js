@@ -47,12 +47,15 @@ class MapGeoCoder extends Component {
   geoCodeAddress(address){
     this.geocoder.geocode({ 'address': address}, function(results, status){
       if (status === google.maps.GeocoderStatus.OK) {
+        console.log('lat:', results[0].geometry.location.lat());
+        console.log('lat:', results[0].geometry.location.lat());
         this.setState({
           foundAddress: results[0].formatted_address,
           gcError: false,
           lat: results[0].geometry.location.lat(),
           lng: results[0].geometry.location.lng()
         });
+        console.log('this.state', this.state);
         this.map.setZoom(15)
         this.map.setCenter(results[0].geometry.location);
         this.marker.setPosition(results[0].geometry.location);
@@ -63,12 +66,13 @@ class MapGeoCoder extends Component {
         isGeoCodingError: true
       })
     }.bind(this));
+  console.log('this.state', this.state);
   }
   handleFormSubmit(e){
     e.preventDefault()
     const address = this.refs.address.value
     this.geoCodeAddress(address)
-   
+    console.log('');
   }
   
   render(){
