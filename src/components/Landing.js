@@ -21,15 +21,15 @@ class Landing extends Component {
         <div className="row">
           <div className="container text-center">
             <div className="col-md-4">
-              <h2>col 1</h2>
+              <h2>Discover</h2>
               <hr />
             </div>
             <div className="col-md-4">
-              <h2>col 2</h2>
+              <h2>Learn</h2>
               <hr />
             </div>
             <div className="col-md-4">
-              <h2>col 3</h2>
+              <h2>Get Active</h2>
               <hr />
             </div>
           </div>
