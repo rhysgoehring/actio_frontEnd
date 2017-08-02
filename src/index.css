@@ -4,7 +4,11 @@
     src: url(./actioPublic/GothLight.otf);
 }
 
-
+@media screen and (orientation:portrait) {
+  .landing_main{
+    background-color: red;
+  }
+}
 body {
   margin: 0;
   padding: 0;
@@ -65,8 +69,21 @@ fieldset{
   border-color: white;
 }
 
-
+.marketing_sec{
+  font-family: gothamReg;
+  margin-top: 300px;
+  height: 40vh;
+  color: #764ba2;
+  background-color: rgba(255, 255, 255, 1);
+}
 /****************************************SignIn********************************/
+.marketing_sec_sign_in{
+  font-family: gothamReg;
+  margin-top: 93px;
+  height: 40vh;
+  color: #764ba2;
+  background-color: rgba(255, 255, 255, 1);
+}
 .aut_label{
   text-align: center;
   color:white;
