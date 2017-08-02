@@ -1,8 +1,68 @@
+/*************************************Fonts********************************/
+@font-face {
+    font-family: gothamReg;
+    src: url(./actioPublic/GothLight.otf);
+}
+
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  height: 100%;
 }
+
+html{
+  height: 100%;
+}
+
+#root{
+  height: 100%;
+}
+
+#root > div {
+  height: 100%;
+}
+/****************************************Landing********************************/
+
+.landing_main{
+  height:100%;
+  width:100%;
+  padding-top: 150px;
+  background: red; /* For browsers that do not support gradients */
+   background: -webkit-linear-gradient(#667eea, #764ba2); /* For Safari 5.1 to 6.0 */
+   background: -o-linear-gradient(#667eea,#764ba2); /* For Opera 11.1 to 12.0 */
+   background: -moz-linear-gradient(#667eea, #764ba2); /* For Firefox 3.6 to 15 */
+   background: linear-gradient(#667eea, #764ba2); /* Standard syntax */
+
+}
+
+.nav_bar_collapsed{
+  display: none;
+}
+
+.main_title{
+  font-family: gothamReg;
+  font-size: 64px;
+  color: white;
+}
+
+.landing_btn{
+  background-color: rgba(255, 255, 255, 0.2);
+  font-family: gothamReg;
+  border-color: white;
+  text-align: center;
+  font-size: 16px;
+  height: 40px;
+  width: 90px;
+}
+
+.landing_btn:hover{
+  background-color: rgba(255, 255, 255, 0.4);
+  border-color: white;
+}
+
+
 
 /****************************************HOME*******************************************************************/
 img.profPicHome {
@@ -84,8 +144,8 @@ img.profPicHome {
     font-weight: 300;
     padding: 5px 8px;
     text-decoration: none;
-    
-    
+
+
 }
 
 .btnMain:hover {
@@ -131,7 +191,7 @@ img.profPicHome {
           flex-direction: column;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  
+
 }
 
 .card-block {

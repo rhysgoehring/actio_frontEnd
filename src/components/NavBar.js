@@ -8,7 +8,7 @@ class NavBar extends Component {
   render() {
     if (!this.props.authenticated){
       return (
-        <div></div>
+        <div className="nav_bar_collapsed"></div>
       )
     }
     return (
