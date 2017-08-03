@@ -17,12 +17,13 @@ class Home extends Component {
   componentDidMount() {
     this.props.getAllEvents();
     const id = this.props.id
-    this.props.getUserEvents(id)
+    this.props.getUserEvents(id);
+
 
   }
 
   renderAllEvents() {
-    return _.map(this.props.allEvents, events => {
+    return _.map(this.props.viewableEvents, events => {
       return (
         <EventCard key={events.id}
           eventType="all"
@@ -63,6 +64,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log('The props of home', this.props)
     return (
       <div className='homeBody'>
         <Grid>
@@ -89,10 +91,73 @@ class Home extends Component {
           </Col>
         </Grid>
       </div>
-      
+
     )
   }
 }
+
+function createViewable(events, skillFilter, categoryFilter){
+  let catagorized = applyCategoryFitler(events, categoryFilter);
+  return applySkillFilter(catagorized, skillFilter);
+}
+
+function applyCategoryFitler(events, filter){
+  switch(filter){
+    case 'SHOW_ALL':
+      return events;
+    case 'SHOW_BASKETBALL':
+      return filterByCategory(events, 1)
+    case 'SHOW_HIKING':
+      return filterByCategory(events, 2)
+    case 'SHOW_SWIMMING':
+      return filterByCategory(events, 3)
+    case 'SHOW_CLIMBING':
+      return filterByCategory(events, 4)
+    case 'SHOW_SOCCOR':
+      return filterByCategory(events, 5)
+    case 'SHOW_GOLF':
+      return filterByCategory(events, 6)
+    default:
+      return events;
+  }
+}
+
+function applySkillFilter(events, filter){
+  switch(filter){
+    case '0':
+      return events;
+    case'1':
+      return filterBySkill(events,1);
+    case'2':
+      return filterBySkill(events,2);
+    case'3':
+      return filterBySkill(events,3);
+    default:
+      return events;
+  }
+}
+
+function getMapMarkerData(events){
+  return _.map(events, (ev) =>{
+    return {lat:parseFloat(ev.lat), lng:parseFloat(ev.lng),icon:ev.icon}
+  })
+}
+
+function filterByCategory(unfiltered, id){
+  return _.filter(unfiltered, (ev) =>{
+    return ev.cat_id == id;
+  })
+}
+
+function filterBySkill(unfiltered, id){
+  return _.filter(unfiltered, (ev) =>{
+    return ev.skill_level == id;
+  })
+}
+
+
+
+
 
 function mapStateToProps(state) {
   return ({
@@ -104,7 +169,11 @@ function mapStateToProps(state) {
     picUrl: state.auth.profPic,
     zip: state.auth.zip,
     allEvents: state.allEvents,
-    userEvents: state.userEvents
+    viewableEvents: createViewable(state.allEvents, 'SHOW_ALL', 'SHOW_ALL'),
+    markerData: getMapMarkerData(createViewable(state.allEvents,'SHOW_ALL' , 'SHOW_ALL')),
+    userEvents: state.userEvents,
+    skillFilter: 'SHOW_ALL',
+    categoryFilter: 'SHOW_ALL'
   })
 }
 
