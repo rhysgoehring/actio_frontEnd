@@ -27,8 +27,6 @@ html{
 
 #root{
   height: 100%;
-
-  
 }
 
 #root > div {
@@ -48,7 +46,7 @@ fieldset {
   
 }
 
-.logoBox{
+.logoBox {
   margin-top: 10.0em;
   margin-bottom: -2.0em;
 }
@@ -57,7 +55,7 @@ fieldset {
   display: none;
 }
 
-.main_title{
+.main_title {
   font-family: 'Medula One', cursive;
   font-size: 10.0rem;
   text-align: center;
@@ -193,7 +191,6 @@ img.profPicHome {
 
 #codeMap {
   height: 250px;
-  /*width: 400px;*/
   padding: 10px;
   align-content: center;
 }
@@ -208,6 +205,7 @@ img.profPicHome {
 }
 
 .body {
+  font-family: gothamReg;
   height:100%;
   width:100%;
   background: -moz-radial-gradient(center, ellipse cover, #c5deea 0%, #8abbd7 43%, #066dab 100%);
@@ -217,18 +215,14 @@ img.profPicHome {
 /*************************************************NAV*********************************************************/
 
 .navLogo {
-  font-family: gothamReg, cursive;
+  font-family: 'Medula One', cursive;
   color: white!important;
-  font-size: 36px;
-  margin-top: 5px;
+  font-size: 5.0em;
 }
 
-.main_nav{
-  background: #667eea; /* For browsers that do not support gradients */
-   background: -webkit-linear-gradient(left,#667eea, #764ba2); /* For Safari 5.1 to 6.0 */
-   background: -o-linear-gradient(right,#667eea,#764ba2); /* For Opera 11.1 to 12.0 */
-   background: -moz-linear-gradient(right,#667eea, #764ba2); /* For Firefox 3.6 to 15 */
-   background: linear-gradient(to-right,#667eea, #764ba2); /* Standard syntax */
+.main_nav {
+  background: transparent;
+  border: none !important;
 }
 
 /*************************************************HOME********************************************************/
@@ -238,6 +232,12 @@ img.profPicHome {
   border-radius: 0.75rem;
   border: 1px solid #7DD181;
   alignSelf: 'left'
+}
+
+.filterRow {
+  align-items: center;
+  justify-content: center;
+  margin-left: 2.5em;
 }
 
 /*************************************************EventCard*********************************************************/
@@ -281,7 +281,7 @@ img.profPicHome {
   height: 55px;
   background-color: rgba(255, 255, 255, 0.5)!important;
 }
-.btnMain_nav{
+.btnMain_nav {
   display: inline-block;
   padding-left: 15px;
   padding-right: 15px;
@@ -289,7 +289,7 @@ img.profPicHome {
   height: 100%;
   width: 100%;
   color:white;
-  font-family: gothamReg
+  font-family: gothamReg;
 }
 .btnMain_nav:hover {
     text-decoration: none;
@@ -313,7 +313,7 @@ img.profPicHome {
 /*************************************************CARD***************************************************/
 .card.actCard {
   border-radius: 1.0rem;
-  font-family: 'Comfortaa';
+  font-family: gothamReg;
   font-size: 16px;
   z-index: 5;
   background-color:#BCD3BE;
@@ -645,16 +645,9 @@ img.profPicHome {
 }
 
 
-/**************************Event Filter ****************************************/
-
-.event_filter{
-  /*padding: 20px;
-  border: black 2px solid;*/
-}
-
 /*************************Modal Styling ****************************************/
 
-.event_col{
+.event_col {
   margin: 10px;
   padding: 10px;
   background-color: #eaeaea;
@@ -680,7 +673,7 @@ img.profPicHome {
 
 }
 
-.modal-header{
+.modal-header {
   padding: 0;
 }
 

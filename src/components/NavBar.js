@@ -12,7 +12,7 @@ class NavBar extends Component {
       )
     }
     return (
-      <Navbar className="main_nav" collapseOnSelect>
+      <Navbar className="main_nav sticky" collapseOnSelect inverse staticTop >
         <Navbar.Header>
           <Navbar.Brand>
             <Link className='navLogo' to='/home'>Actio</Link>

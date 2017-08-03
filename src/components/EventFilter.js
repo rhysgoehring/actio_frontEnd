@@ -22,7 +22,7 @@ class EventFilter extends Component {
   }
   render(){
     return (
-      <div className='row'>
+      <div className='row filterRow'>
         <div className='col-md-3'>
           <h5 className='text-right'>Filter Events By:</h5>
         </div>
