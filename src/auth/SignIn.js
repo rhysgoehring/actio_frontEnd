@@ -28,50 +28,44 @@ class SignIn extends Component {
         <div className="container">
           <header>
             <h1 className ="text-center main_title">
-              ACTIO
+              A C T I O
             </h1>
           </header>
           <section />
-          <article>
-            <div className="container">
+          <div className='center-block'>
               <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                <div className="row">
-                  <fieldset className="col-md-offset-4 form-group col-md-4">
-                    <label className="aut_label">Email: </label>
+                <div className="row authBox">
+                  <fieldset className="form-group col-md-3 col-md-offset-4">
                     <Field
                       name="email"
                       type="text"
                       component="input"
-                      className="form-control" />
+                      className="form-control actField"
+                      placeholder='Enter Your Email Address'/>
                   </fieldset>
-                  <fieldset className="form-group col-md-offset-4 col-md-4">
-                    <label className="aut_label">Password:</label>
+                </div>
+                <div className='row authBox'>
+                  <fieldset className="form-group col-md-3 col-md-offset-4">
                     <Field
                       name="password"
                       type="password"
                       component="input"
-                      className="form-control" />
+                      className="form-control actField"
+                      placeholder="Enter Your Password"
+                      />
                   </fieldset>
                   {this.renderAlert()}
                 </div>
-                <div className="row">
-                  <div className="col-md-6">
-
-                  </div>
-                </div>
-                <div className="container">
                   <div className="row">
-                    <div className="col-md-6 col-md-offset-5 col-xs-offset-3">
-                      <button action="submit" className="btn btn-success landing_btn auth_btn">Sign In</button>
+                    <div className="col-md-6">
+                      <button action="submit" className="btn btn-success pull-right landing_btn auth_btn">Sign In</button>
                     </div>
-                    <div className="col-md-6 col-md-offset-5 col-xs-offset-3">
+                    <div className="col-md-6">
                       <Link className="btn btn-success landing_btn auth_btn" to="/signup">Sign Up</Link>
                     </div>
                   </div>
-                </div>
               </form>
-            </div>
-          </article>
+          </div>
         </div>
         <div className="marketing_sec_sign_in">
           <div className="row">

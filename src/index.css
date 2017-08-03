@@ -14,6 +14,11 @@ body {
   padding: 0;
   font-family: sans-serif;
   height: 100%;
+  width:100%;
+  background: -moz-radial-gradient(center, ellipse cover, #c5deea 0%, #8abbd7 43%, #066dab 100%);
+  background: -webkit-radial-gradient(center, ellipse cover, #c5deea 0%,#8abbd7 43%,#066dab 100%);
+  background: radial-gradient(ellipse at center, #c5deea 0%,#8abbd7 43%,#066dab 100%);
+  background-repeat: round;
 }
 
 html{
@@ -22,36 +27,42 @@ html{
 
 #root{
   height: 100%;
+
+  
 }
 
 #root > div {
   height: 100%;
+
 }
 /****************************************Landing********************************/
-fieldset{
+fieldset {
   padding: 0!important;
 }
-.landing_main{
+.landing_main {
   height:100vh;
   width:100%;
-  padding-top: 150px;
-  background: #667eea; /* For browsers that do not support gradients */
-   background: -webkit-linear-gradient(#667eea, #764ba2); /* For Safari 5.1 to 6.0 */
-   background: -o-linear-gradient(#667eea,#764ba2); /* For Opera 11.1 to 12.0 */
-   background: -moz-linear-gradient(#667eea, #764ba2); /* For Firefox 3.6 to 15 */
-   background: linear-gradient(#667eea, #764ba2); /* Standard syntax */
-
+  background: -moz-radial-gradient(center, ellipse cover, #c5deea 0%, #8abbd7 43%, #066dab 100%);
+  background: -webkit-radial-gradient(center, ellipse cover, #c5deea 0%,#8abbd7 43%,#066dab 100%);
+  background: radial-gradient(ellipse at center, #c5deea 0%,#8abbd7 43%,#066dab 100%);
+  
 }
 
-.nav_bar_collapsed{
+.logoBox{
+  margin-top: 10.0em;
+  margin-bottom: -2.0em;
+}
+
+.nav_bar_collapsed {
   display: none;
 }
 
 .main_title{
-  font-family: gothamReg;
-  font-size: 64px;
+  font-family: 'Medula One', cursive;
+  font-size: 10.0rem;
   text-align: center;
   color: white;
+  letter-spacing: 2.0rem;
 }
 
 .landing_btn{
@@ -60,13 +71,18 @@ fieldset{
   border-color: white;
   text-align: center;
   font-size: 16px;
-  height: 40px;
-  width: 90px;
+  width: 7.0em;
+  
 }
 
 .landing_btn:hover{
-  background-color: rgba(255, 255, 255, 0.4);
-  border-color: white;
+  background-color: rgba(255, 255, 255, 0.0);
+  font-family: gothamReg;
+  border-color: #066dab;
+  text-align: center;
+  font-size: 16px;
+  width: 7.0em;
+  color: #066dab;
 }
 
 .marketing_sec{
@@ -77,6 +93,10 @@ fieldset{
   background-color: rgba(255, 255, 255, 1);
 }
 /****************************************SignIn********************************/
+.authBox {
+  margin-left: 5.0em;
+}
+
 .marketing_sec_sign_in{
   font-family: gothamReg;
   margin-top: 93px;
@@ -84,7 +104,7 @@ fieldset{
   color: #764ba2;
   background-color: rgba(255, 255, 255, 1);
 }
-.aut_label{
+.auth_label{
   text-align: center;
   color:white;
   font-family: gothamReg;
@@ -94,8 +114,60 @@ fieldset{
 }
 
 .auth_btn{
-  margin-left: 14px;
-  margin-bottom: 14px;
+  margin-top: 2.5em;
+  background-color: rgba(255, 255, 255, 0.0);
+  font-family: gothamReg;
+  border-color: #066dab;
+  text-align: center;
+  font-size: 16px;
+  width: 7.0em;
+  color: #066dab;
+}
+.auth_btn:hover {
+  background-color: #066dab;
+  border-color: white;
+  color: #8abbd7;
+}
+
+
+/***************************************************FORMS**********************************************************/
+
+input.form-control.actField {
+  background-color: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: #8abbd7;
+  border-bottom-style: ridge;
+  border-bottom-width: 2px;
+  font-family: gothamReg;
+}
+
+input.form-control.actField:focus {
+  background-color: transparent;
+  color: #066dab;
+  box-shadow: none;
+  font-family: gothamReg;
+}
+
+input.form-control.actField::-webkit-input-placeholder {
+color: white !important;
+font-family: gothamReg !important;
+}
+ 
+input.form-control.actField:-moz-placeholder {
+color: white !important;
+font-family: gothamReg !important;
+}
+ 
+input.form-control.actField::-moz-placeholder {
+color: white !important;
+font-family: gothamReg !important;
+}
+ 
+input.form-control.actField:-ms-input-placeholder {
+color: white !important;
+font-family: gothamReg !important;
 }
 /****************************************HOME*******************************************************************/
 img.profPicHome {
@@ -134,6 +206,14 @@ img.profPicHome {
 .custom-modal{
   width: 70%;
 }
+
+.body {
+  height:100%;
+  width:100%;
+  background: -moz-radial-gradient(center, ellipse cover, #c5deea 0%, #8abbd7 43%, #066dab 100%);
+  background: -webkit-radial-gradient(center, ellipse cover, #c5deea 0%,#8abbd7 43%,#066dab 100%);
+  background: radial-gradient(ellipse at center, #c5deea 0%,#8abbd7 43%,#066dab 100%);
+  background-repeat: round; }
 /*************************************************NAV*********************************************************/
 
 .navLogo {

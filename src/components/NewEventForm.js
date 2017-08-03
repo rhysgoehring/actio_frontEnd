@@ -93,7 +93,9 @@ class NewEventForm extends Component {
                    name="location"
                    type="text"
                    component="input"
-                   className="form-control" />
+                   className="form-control"
+                   placeholder={this.props.locationValue}
+                    />
                </fieldset>
              </div>
              <div className='row'>

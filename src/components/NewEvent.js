@@ -103,6 +103,7 @@ class NewEvent extends Component {
         <NewEventForm
         lat={this.state.lat}
         lng={this.state.lng}
+        locationValue={this.state.foundAddress}
         />
       )
     }

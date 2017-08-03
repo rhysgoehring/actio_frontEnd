@@ -64,29 +64,32 @@ class Home extends Component {
 
   render() {
     return (
-      <Grid>
-        <Col md={3}>
-            <Row className='profPicRow'>
-              <img className="profPicHome img-responsive" src={this.props.picUrl} />
+      <div className='homeBody'>
+        <Grid>
+          <Col md={3}>
+              <Row className='profPicRow'>
+                <img className="profPicHome img-responsive" src={this.props.picUrl} />
+              </Row>
+              <Row>
+                <h4 className="text-left">{this.props.firstName}'s Events</h4>
+                {this.renderUserEvents()}
+              </Row>
+          </Col>
+          <Col md={9}>
+            <Row className='center-block mainMap'>
+              <GoogleMap center id='homeMap' zoom={10} lat={40.014984} lng={-105.270546} />
             </Row>
-            <Row>
-              <h4 className="text-left">{this.props.firstName}'s Events</h4>
-              {this.renderUserEvents()}
+            <Row className="center-block">
+                <EventFilter />
             </Row>
-        </Col>
-        <Col md={9}>
-          <Row className='center-block mainMap'>
-            <GoogleMap center id='homeMap' zoom={10} lat={40.014984} lng={-105.270546} />
-          </Row>
-          <Row className="center-block">
-              <EventFilter />
-          </Row>
-          <Row className='center-block'>
-            <h4 className='text-center'>All Events</h4>
-              {this.renderAllEvents()}
-          </Row>
-        </Col>
-      </Grid>
+            <Row className='center-block'>
+              <h4 className='text-center'>All Events</h4>
+                {this.renderAllEvents()}
+            </Row>
+          </Col>
+        </Grid>
+      </div>
+      
     )
   }
 }
