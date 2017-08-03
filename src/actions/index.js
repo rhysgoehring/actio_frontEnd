@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {browserHistory} from 'react-router';
-import {AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_ALL_EVENTS, GET_USER_EVENTS, GET_OWNED_EVENTS, CREATE_EVENT, GET_EVENT, DELETE_EVENT} from './types';
+import {AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_ALL_EVENTS, GET_USER_EVENTS, GET_OWNED_EVENTS, CREATE_EVENT, GET_EVENT, DELETE_EVENT,CHANGE_CAT_FILTER,CHANGE_SKILL_FILTER } from './types';
 
 
 // const ROOT_URL = 'https://actio-backend.herokuapp.com';
@@ -127,7 +127,7 @@ export function getEvent(id){
     }).catch(err => console.log('err', err))
   }
  }
- 
+
 export function deleteEvent(id){
   return function(dispatch){
     axios.delete(`${ROOT_URL}/api/events/${id}`)
@@ -142,4 +142,22 @@ export function deleteEvent(id){
         })
       })
     }
+}
+
+export function changeCatFilter(filter){
+  return function(dispatch){
+    dispatch({
+      type:CHANGE_CAT_FILTER,
+      filterType: filter
+    })
+  }
+}
+
+export function changeSkillFilter(filter){
+  return function(dispatch){
+    dispatch({
+      type:CHANGE_SKILL_FILTER,
+      filterType: filter
+    })
+  }
 }

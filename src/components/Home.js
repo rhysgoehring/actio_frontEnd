@@ -79,7 +79,7 @@ class Home extends Component {
           </Col>
           <Col md={9}>
             <Row className='center-block mainMap'>
-              <GoogleMap center id='homeMap' zoom={10} lat={40.014984} lng={-105.270546} />
+              <GoogleMap markerData={this.props.markerData}center id='homeMap' zoom={10} lat={40.014984} lng={-105.270546} />
             </Row>
             <Row className="center-block">
                 <EventFilter />
@@ -113,7 +113,7 @@ function applyCategoryFitler(events, filter){
       return filterByCategory(events, 3)
     case 'SHOW_CLIMBING':
       return filterByCategory(events, 4)
-    case 'SHOW_SOCCOR':
+    case 'SHOW_SOCCER':
       return filterByCategory(events, 5)
     case 'SHOW_GOLF':
       return filterByCategory(events, 6)
@@ -127,11 +127,11 @@ function applySkillFilter(events, filter){
     case '0':
       return events;
     case'1':
-      return filterBySkill(events,1);
+      return filterBySkill(events, 'beginner');
     case'2':
-      return filterBySkill(events,2);
+      return filterBySkill(events,'advanced');
     case'3':
-      return filterBySkill(events,3);
+      return filterBySkill(events,'master');
     default:
       return events;
   }
@@ -151,6 +151,7 @@ function filterByCategory(unfiltered, id){
 
 function filterBySkill(unfiltered, id){
   return _.filter(unfiltered, (ev) =>{
+    console.log("the skill level!", ev.skill_level)
     return ev.skill_level == id;
   })
 }
@@ -169,8 +170,8 @@ function mapStateToProps(state) {
     picUrl: state.auth.profPic,
     zip: state.auth.zip,
     allEvents: state.allEvents,
-    viewableEvents: createViewable(state.allEvents, 'SHOW_ALL', 'SHOW_ALL'),
-    markerData: getMapMarkerData(createViewable(state.allEvents,'SHOW_ALL' , 'SHOW_ALL')),
+    viewableEvents: createViewable(state.allEvents, state.filters.skillFilter, state.filters.categoryFilter),
+    markerData: getMapMarkerData(createViewable(state.allEvents,state.filters.skillFilter ,  state.filters.categoryFilter)),
     userEvents: state.userEvents,
     skillFilter: 'SHOW_ALL',
     categoryFilter: 'SHOW_ALL'

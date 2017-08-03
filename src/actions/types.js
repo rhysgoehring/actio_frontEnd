@@ -9,3 +9,7 @@ export const GET_EVENT = 'get_event';
 export const DELETE_EVENT = 'delete_event';
 
 export const CREATE_EVENT = 'create_event';
+
+
+export const CHANGE_CAT_FILTER = 'change_cat_filter';
+export const CHANGE_SKILL_FILTER = 'change_skill_filter';

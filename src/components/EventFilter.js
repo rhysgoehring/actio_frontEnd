@@ -13,12 +13,12 @@ class EventFilter extends Component {
   // }
 
   selectCategory(eventKey){
-    this.props.changeCategory(eventKey);
+    this.props.changeCatFilter(eventKey);
   }
 
   selectSkillLevel(eventKey){
     console.log('here');
-    this.props.changeSkill(eventKey);
+    this.props.changeSkillFilter(eventKey);
   }
   render(){
     return (
