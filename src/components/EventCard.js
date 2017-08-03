@@ -193,7 +193,8 @@ joinE(id) {
           <div className='card actCard'>
             <div className='row'>
               <div className='col-md-5'>
-                 <img className="img-responsive allEventPic float-left" src={this.props.eventPic} alt="Card image cap" />
+                 <img className="img-responsive allEventPic float-left" src={this.props.eventPic} alt={this.props.eventTitle}
+                 />
               </div>
               <div className='col-md-7'>
                   <h4 className=" card-title text-center">{this.props.eventTitle}</h4>
@@ -213,14 +214,17 @@ joinE(id) {
               {this.renderEditDelete()}
             </div>
           </div>
-          <Modal bsSize="large" show={this.state.showModal} dialogClassName="custom-modal">
+          <Modal
+            show={this.state.showModal} dialogClassName="custom-modal"
+            className='actModal'
+              >
             <Modal.Header>
               <div className="modal_cover">
                 <div className="cover_container">
                   <div className="cover_transparency"></div>
                   <div className="modal_cover_img" style={{backgroundImage:'url('+this.props.eventPic+')'}}></div>
                   <div className="event_title">
-                    <h3 >{this.props.eventTitle}</h3>
+                    <h3><strong>{this.props.eventTitle}</strong></h3>
                   </div>
                 </div>
               </div>
@@ -230,7 +234,7 @@ joinE(id) {
                   <div className='col-md-4'>
                     <h2 className='text-center'>Event Info</h2>
                     <div className="event_col">
-                      <h4>Created By</h4>
+                      <h4>Created By: </h4>
                       <div className="owner_info">
                         <h4><img src={this.state.eventOwner.pic}></img><strong>{this.state.eventOwner.name}</strong></h4>
                       </div>

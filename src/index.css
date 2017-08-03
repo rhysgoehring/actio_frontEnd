@@ -195,10 +195,7 @@ img.profPicHome {
   align-content: center;
 }
 
-.eventCardContainer {
-  margin: 1.0em;
-  border-radius: 0.2em;
-}
+
 
 .custom-modal{
   width: 70%;
@@ -246,6 +243,11 @@ img.profPicHome {
 .eventCardImg {
   height: 75px;
   width: 75px;
+}
+
+.eventCardContainer {
+  margin: 1.0em;
+  border-radius: 0.2em;
 }
 
 /*************************************************BUTTON*********************************************************/
@@ -647,6 +649,10 @@ img.profPicHome {
 
 
 /*************************Modal Styling ****************************************/
+.actModal {
+  font-family: gothamReg;
+}
+
 
 .event_col {
   margin: 10px;
@@ -692,11 +698,10 @@ img.profPicHome {
   top: 250px;
   padding-bottom: 0px;
   padding-left: 20px;
-
   color : white;
   z-index: 15;
-  font-family: 'Lato', sans-serif;
-  text-shadow: 2px 2px black;
+  font-family: gothamReg;
+
 }
 
 .event_title h3{
