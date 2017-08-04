@@ -686,11 +686,11 @@ img.profPicHome {
 }
 
 
-.event_col {
+/*.event_col {
   margin: 10px;
   padding: 10px;
   background-color: #eaeaea;
-}
+}*/
 .modal_cover{
   align-content: center;
   width: 100%;
@@ -727,7 +727,7 @@ img.profPicHome {
 
 .event_title{
   position: absolute;
-  top: 250px;
+  top: 15.0em;
   padding-bottom: 0px;
   padding-left: 20px;
   color : white;
@@ -770,25 +770,18 @@ img.profPicHome {
   padding: 0 !important;
 }
 
-.map-container{
+.map-container {
   margin-top: 20px;
   margin-bottom: 45px;
   padding-left: 45px;
   padding-right: 45px;
 }
 
-.cat_icon{
-  display: inline-block;
-}
-
-.owner_info{
-  margin-right: 20px;
-}
 
 .owner_info img{
-  border-radius: 100%;
-  height: 90px;
-  width: 90px;
+  
+  height: 5.0em;
+  width: 5.0em;
 }
 
 .event_desc strong{
