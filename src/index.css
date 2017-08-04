@@ -202,13 +202,18 @@ img.profPicHome {
 
 .body {
   font-family: gothamReg;
+  padding-top: 65px;
   height:100%;
   width:100%;
   background: -moz-radial-gradient(center, ellipse cover, #c5deea 0%, #8abbd7 43%, #066dab 100%);
   background: -webkit-radial-gradient(center, ellipse cover, #c5deea 0%,#8abbd7 43%,#066dab 100%);
   background: radial-gradient(ellipse at center, #c5deea 0%,#8abbd7 43%,#066dab 100%);
   background-repeat: round; }
+  
 /*************************************************NAV*********************************************************/
+.nav {
+  z-index: 1000 !important;
+}
 
 .navLogo {
   font-family: 'Medula One', cursive;

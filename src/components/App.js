@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar style={{zIndex: '1000'}} />
         {this.props.children}
       </div>
     )
