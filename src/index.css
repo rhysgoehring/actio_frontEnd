@@ -232,14 +232,11 @@ img.profPicHome {
   height: 251px;
   border-radius: 0.75rem;
   border: 1px solid #7DD181;
-  /*padding: 0px !important;*/
-  
 }
 
 .filterRow {
   align-items: center;
   justify-content: center;
-  margin-left: 2.5em;
   font-family: gothamReg;
 }
 

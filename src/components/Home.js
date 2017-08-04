@@ -64,11 +64,10 @@ class Home extends Component {
   }
 
   render() {
-    console.log('The props of home', this.props)
     return (
       <div className='homeBody'>
         <Grid>
-          <Col md={3}>
+          <Col md={3} smHidden xsHidden>
               <Row className='profPicRow'>
                 <img className="profPicHome img-responsive" src={this.props.picUrl} />
               </Row>
