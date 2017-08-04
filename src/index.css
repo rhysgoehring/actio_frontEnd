@@ -43,7 +43,7 @@ fieldset {
   background: -moz-radial-gradient(center, ellipse cover, #c5deea 0%, #8abbd7 43%, #066dab 100%);
   background: -webkit-radial-gradient(center, ellipse cover, #c5deea 0%,#8abbd7 43%,#066dab 100%);
   background: radial-gradient(ellipse at center, #c5deea 0%,#8abbd7 43%,#066dab 100%);
-  
+
 }
 
 .logoBox {
@@ -151,17 +151,17 @@ input.form-control.actField::-webkit-input-placeholder {
 color: white !important;
 font-family: gothamReg !important;
 }
- 
+
 input.form-control.actField:-moz-placeholder {
 color: white !important;
 font-family: gothamReg !important;
 }
- 
+
 input.form-control.actField::-moz-placeholder {
 color: white !important;
 font-family: gothamReg !important;
 }
- 
+
 input.form-control.actField:-ms-input-placeholder {
 color: white !important;
 font-family: gothamReg !important;
@@ -194,12 +194,22 @@ img.profPicHome {
   align-content: center;
 }
 
-
+.homeBody{
+  position: relative;
+  z-index: 999;
+}
 
 .custom-modal{
   width: 70%;
 }
+.in{
+  min-height: 228px !important;
+  border-top: 0px;
+}
 
+.collapsing{
+  border-top: 0px;
+}
 .body {
   font-family: gothamReg;
   padding-top: 65px;
@@ -209,7 +219,7 @@ img.profPicHome {
   background: -webkit-radial-gradient(center, ellipse cover, #c5deea 0%,#8abbd7 43%,#066dab 100%);
   background: radial-gradient(ellipse at center, #c5deea 0%,#8abbd7 43%,#066dab 100%);
   background-repeat: round; }
-  
+
 /*************************************************NAV*********************************************************/
 .nav {
   z-index: 1000 !important;
@@ -233,7 +243,7 @@ img.profPicHome {
   border-radius: 0.75rem;
   border: 1px solid #7DD181;
   /*padding: 0px !important;*/
-  
+
 }
 
 .filterRow {
@@ -784,7 +794,7 @@ img.profPicHome {
 
 
 .owner_info img{
-  
+
   height: 5.0em;
   width: 5.0em;
 }
