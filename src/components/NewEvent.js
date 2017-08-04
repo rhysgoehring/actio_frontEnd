@@ -126,7 +126,7 @@ class NewEvent extends Component {
         <div className='row'>
             <div className='col-lg-12 col-md-12'>
               <form className='input-group form-inline' onSubmit={this.handleFormSubmit.bind(this)}>
-                <input type="text" className="form-control actField" ref="address" placeholder='Enter Address'/>
+                <input type="text" className="form-control actField" ref="address" placeholder='Enter Address' style={{color:'black'}} />
                 <span className='input-group-btn'>
                   <button className='newBtn' type="submit">Find Location</button>
                 </span>

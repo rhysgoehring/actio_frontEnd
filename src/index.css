@@ -143,12 +143,13 @@ select.form-control.actSelect {
 
 select.form-control.actSelect:focus {
   background-color: transparent;
-  border-top: none;
+  border: none;
+  /*border-top: none;
   border-left: none;
-  border-right: none;
-  border-bottom-color: #8abbd7;
+  border-right: none;*/
+  /*border-bottom-color: #8abbd7;
   border-bottom-style: ridge;
-  border-bottom-width: 2px;
+  border-bottom-width: 2px;*/
   font-family: gothamReg;
 }
 
@@ -171,6 +172,52 @@ select.form-control.actSelect:-ms-input-placeholder {
 color: white !important;
 font-family: gothamReg !important;
 }
+
+textarea.form-control.actArea {
+  background-color: transparent;
+  border: none;
+  /*border-top: none;
+  border-left: none;
+  border-right: none;*/
+  /*border-bottom-color: #8abbd7;
+  border-bottom-style: ridge;
+  border-bottom-width: 2px;*/
+  font-family: gothamReg;
+}
+
+textarea.form-control.actArea:focus {
+  background-color: transparent;
+  border: none;
+  /*border-top: none;
+  border-left: none;
+  border-right: none;*/
+  /*border-bottom-color: #8abbd7;
+  border-bottom-style: ridge;
+  border-bottom-width: 2px;*/
+  font-family: gothamReg;
+}
+
+textarea.form-control.actArea::-webkit-input-placeholder {
+color: white !important;
+font-family: gothamReg !important;
+}
+
+textarea.form-control.actArea:-moz-placeholder {
+color: white !important;
+font-family: gothamReg !important;
+}
+
+textarea.form-control.actArea:-moz-placeholder {
+color: white !important;
+font-family: gothamReg !important;
+}
+
+textarea.form-control.actArea:-ms-input-placeholder {
+color: white !important;
+font-family: gothamReg !important;
+}
+
+
 
 
 
@@ -289,7 +336,8 @@ img.profPicHome {
   border: 1px solid black;
   text-align: center;
   font-size: 16px;
-  width: 8.0em;
+  width: 9.0em;
+
 }
 
 .newBtn:hover{
@@ -298,17 +346,23 @@ img.profPicHome {
   border-color: #066dab;
   text-align: center;
   font-size: 16px;
-  width: 8.0em;
+  width: 9.0em;
   color: black;
 }
 
+.newEventForm {
+  font-family: gothamReg;
+}
+  
+
+
 /*************************************************HOME********************************************************/
 .allEventPic{
-  /*max-width: 300px;*/
+
   height: 251px;
   border-radius: 0.75rem;
-  border: 1px solid #7DD181;
-  /*padding: 0px !important;*/
+
+
 
 }
 

@@ -58,34 +58,18 @@ class SignIn extends Component {
                 </div>
                   <div className="row">
                     <div className="col-md-6">
-                      <button action="submit" className="btn btn-success pull-right landing_btn auth_btn">Sign In</button>
+                      <button action="submit" className="btn pull-right auth_btn">Sign In</button>
                     </div>
                     <div className="col-md-6">
-                      <Link className="btn btn-success landing_btn auth_btn" to="/signup">Sign Up</Link>
+                      <Link className="btn auth_btn" to="/signup">Sign Up</Link>
                     </div>
                   </div>
               </form>
           </div>
         </div>
-        <div className="marketing_sec_sign_in">
-          <div className="row">
-            <div className="container text-center">
-              <div className="col-md-4">
-                <h2>col 1</h2>
-                <hr />
-              </div>
-              <div className="col-md-4">
-                <h2>col 2</h2>
-                <hr />
-              </div>
-              <div className="col-md-4">
-                <h2>col 3</h2>
-                <hr />
-              </div>
-            </div>
-          </div>
+        
         </div>
-      </div>
+      
     )
   }
 }

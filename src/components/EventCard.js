@@ -159,7 +159,6 @@ joinE(id) {
   }
 
   deleteE(id) {
-    console.log('deleting event')
     this.props.deleteEvent(this.props.eventId);
   }
 
@@ -168,10 +167,10 @@ joinE(id) {
       return(
         <div className='row'>
           <div className='col-md-6'>
-             <div className='btn btn-success card-link eventBtn'><Link style={{textDecoration: 'none', color: 'black'}} to={`/events/${this.props.eventId}`}>Edit Event</Link></div>
+             <div className='btn card-link eventBtn'><Link style={{textDecoration: 'none', color: 'black'}} to={`/events/${this.props.eventId}`}>Edit Event</Link></div>
           </div>
           <div className='col-md-6'>
-             <button className='btn btn-success card-link eventBtn pull-right' style={{color:'black'}} onClick={this.deleteE.bind(this)}>Delete</button>
+             <button className='btn card-link eventBtn pull-right' style={{color:'black'}} onClick={this.deleteE.bind(this)}>Delete</button>
           </div>
         </div>
 
@@ -184,7 +183,7 @@ joinE(id) {
    if (this.props.eventType === 'all') {
     return (
       <div className="row">
-        <div className='eventCardContainer'>
+        <div className='eventCardContainer' style={{marginLeft: '1.0em'}}>
           <div className='card actCard'>
             <div className='row'>
               <div className='col-md-4 col-xs-12'>

@@ -34,7 +34,7 @@ class NewEventForm extends Component {
   render() {
      const {handleSubmit, fields: {name, event_date, cat_id, event_pic, skill_level, description}} = this.props
     return(
-      <div className='container'>
+      <div className='container newEventForm'>
         <header>
           <h2 className='text-center'>{this.props.firstName}'s New Event</h2>
         </header>
@@ -47,7 +47,9 @@ class NewEventForm extends Component {
                  name="name"
                  type="text"
                  component="input"
-                 className="form-control actField" />
+                 className="form-control actField"
+                 style={{color:'black'}}
+                  />
              </fieldset>
              <fieldset className="form-group col-md-3">
                <label>Event Date: </label>
@@ -56,6 +58,7 @@ class NewEventForm extends Component {
                  name="event_date"
                  type="text"
                  component="input"
+                 style={{color:'black'}}
                  className="form-control actField" />
              </fieldset>
              <fieldset className="form-group col-md-3">
@@ -63,6 +66,7 @@ class NewEventForm extends Component {
                <Field
                  ref="cat_id"
                  name="cat_id"
+                 style={{color:'black'}}
                  type="select"
                  component="select"
                  className="form-control actSelect">
@@ -84,6 +88,7 @@ class NewEventForm extends Component {
                    name="event_pic"
                    type="text"
                    component="input"
+                   style={{color:'black'}}
                    className="form-control actField" />
                </fieldset>
   
@@ -95,6 +100,7 @@ class NewEventForm extends Component {
                    ref="skill_level"
                    name="skill_level"
                    type="select"
+                   style={{color:'black'}}
                    component="select"
                    className="form-control actSelect">
                      <option></option>
@@ -109,6 +115,7 @@ class NewEventForm extends Component {
                    ref="description"
                    name="description"
                    type="textarea"
+                   style={{color:'black'}}
                    component="input"
                    className="form-control actField" />
                </fieldset>

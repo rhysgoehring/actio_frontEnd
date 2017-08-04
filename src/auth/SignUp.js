@@ -43,8 +43,8 @@ class SignUp extends Component {
       <div>
         <div className="container">
           <header>
-            <h1 className="text-center">
-              ACTIO
+            <h1 className="text-center main_title">
+              A C T I O
             </h1>
           </header>
           <section />
@@ -61,7 +61,7 @@ class SignUp extends Component {
                         name="firstName"
                         type="text"
                         component="input"
-                        className="form-control" />
+                        className="form-control actField" />
                     </fieldset>
                     <fieldset className="form-group">
                       <label>Last Name</label>
@@ -69,7 +69,7 @@ class SignUp extends Component {
                         name="lastName"
                         type="text"
                         component="input"
-                        className="form-control" />
+                        className="form-control actField" />
                     </fieldset>
                     <br />
                     <fieldset className="form-group">
@@ -78,7 +78,7 @@ class SignUp extends Component {
                         name="email"
                         type="email"
                         component="input"
-                        className="form-control" />
+                        className="form-control actField" />
                     </fieldset>
                     <fieldset className="form-group">
                       <label>Zip Code</label>
@@ -86,7 +86,7 @@ class SignUp extends Component {
                         name="zip"
                         type="text"
                         component="input"
-                        className="form-control" />
+                        className="form-control actField" />
                         {Field.error}
                     </fieldset>
                     <fieldset className="form-group">
@@ -95,7 +95,7 @@ class SignUp extends Component {
                         name="password"
                         type="password"
                         component="input"
-                        className="form-control" />
+                        className="form-control actField" />
                         {Field.error}
                     </fieldset>
                     {this.renderAlert()}
@@ -109,8 +109,8 @@ class SignUp extends Component {
                           ref = "picUrl"
                           type="url"
                           component="input"
-                          className="form-control"
-                          onChange={()=> this.showPreview()}/>
+                          className="form-control actField"
+                          onBlur={()=> this.showPreview()}/>
                       </fieldset>
                       {this.showPreview()}
                     </div>
@@ -119,10 +119,10 @@ class SignUp extends Component {
                 <br />
                 <div className="row">
                   <div className="col-md-6">
-                    <button action="submit" className="btn btn-success">Sign Up</button>
+                    <button action="submit" className="btn auth_btn">Sign Up</button>
                   </div>
                   <div className="col-md-6">
-                    <Link to="/signin">Sign In</Link>
+                    <Link style={{textDecoration: 'none', color: 'black'}} className="btn auth_btn" to="/signin">Sign In</Link>
                   </div>
                 </div>
               </form>

@@ -42,7 +42,7 @@ class Profile extends Component {
     return (
       <div className="container">
         <header>
-          <h1 className="text-center">
+          <h1 className="text-center main_title ">
             ACTIO
           </h1>
         </header>
@@ -60,7 +60,7 @@ class Profile extends Component {
                       name="firstName"
                       type="text"
                       component="input"
-                      className="form-control" />
+                      className="form-control actField" />
                   </fieldset>
                   <fieldset className="form-group">
                     <label>Last Name</label>
@@ -68,7 +68,7 @@ class Profile extends Component {
                       name="lastName"
                       type="text"
                       component="input"
-                      className="form-control" />
+                      className="form-control actField" />
                   </fieldset>
                   <br />
                   <fieldset className="form-group">
@@ -77,7 +77,7 @@ class Profile extends Component {
                       name="email"
                       type="email"
                       component="input"
-                      className="form-control" />
+                      className="form-control actField" />
                   </fieldset>
                   <fieldset className="form-group">
                     <label>Tell us About Yourself</label>
@@ -85,7 +85,7 @@ class Profile extends Component {
                       name="about"
                       type="text"
                       component="textarea"
-                      className="form-control" />
+                      className="form-control actArea" />
                   </fieldset>
                   <fieldset className="form-group">
                     <label>Zip Code</label>
@@ -93,22 +93,22 @@ class Profile extends Component {
                       name="zip"
                       type="text"
                       component="input"
-                      className="form-control" />
+                      className="form-control actField" />
                       {Field.error}
                   </fieldset>
                   {this.renderAlert()}
                 </div>
                 <div className="row">
                   <div className="col-md-6">
-                    <fieldset className="form-group">
+                    <fieldset className="form-group actField">
                       <label>New Profile Picture URL</label>
                       <Field
                         name="profilePicUrl"
                         ref = "picUrl"
                         type="url"
                         component="input"
-                        className="form-control"
-                        onChange={()=> this.showPreview()}/>
+                        className="form-control actField"
+                        onBlur={()=> this.showPreview()}/>
                     </fieldset>
                     {this.showPreview()}
                   </div>
@@ -117,10 +117,10 @@ class Profile extends Component {
               <br />
               <div className="row">
                 <div className="col-md-6">
-                  <button action="submit" className="btn btn-success">Update Profile</button>
+                  <button action="submit" className="btn newBtn">Update Profile</button>
                 </div>
                 <div className="col-md-6">
-                  <Link to="/home">Back to Home</Link>
+                  <Link className='btn newBtn' style={{textDecoration: 'none', color: 'black'}} to="/home">Back to Home</Link>
                 </div>
               </div>
             </form>

@@ -52,8 +52,6 @@ class EditEvent extends Component {
   render() {
      const {handleSubmit, fields: {name, event_date, cat_id, event_pic, skill_level, description}} = this.props
      const id = Number.parseInt(this.props.params.id)
-     console.log('this.props', this.props);
-     console.log('this.props.event', this.props.event);
     return(
       <div className='container'>
         <header>
@@ -68,7 +66,7 @@ class EditEvent extends Component {
                  name="name"
                  type="text"
                  component="input"
-                 className="form-control" />
+                 className="form-control actField" />
              </fieldset>
              <fieldset className="form-group col-md-3">
                <label>Event Date: </label>
@@ -78,7 +76,7 @@ class EditEvent extends Component {
                  name="event_date"
                  type="text"
                  component="input"
-                 className="form-control" />
+                 className="form-control actField" />
              </fieldset>
              <fieldset className="form-group col-md-3">
                <label>Category: </label>
@@ -87,7 +85,7 @@ class EditEvent extends Component {
                  name="cat_id"
                  type="select"
                  component="select"
-                 className="form-control">
+                 className="form-control actSelect">
                    <option></option>
                    <option value={1}>Basketball</option>
                    <option value={2}>Hiking</option>
@@ -106,7 +104,7 @@ class EditEvent extends Component {
                    name="event_pic"
                    type="text"
                    component="input"
-                   className="form-control" />
+                   className="form-control actField" />
                </fieldset>
                <fieldset className="form-group col-md-6">
                  <label>Location: </label>
@@ -115,7 +113,7 @@ class EditEvent extends Component {
                    name="location"
                    type="text"
                    component="input"
-                   className="form-control" />
+                   className="form-control actField" />
                </fieldset>
              </div>
              <div className='row'>
@@ -127,7 +125,7 @@ class EditEvent extends Component {
                    name="skill_level"
                    type="select"
                    component="select"
-                   className="form-control">
+                   className="form-control actSelect">
                      <option></option>
                      <option value="beginner">Beginner</option>
                      <option value="advanced">Advanced</option>
@@ -142,12 +140,12 @@ class EditEvent extends Component {
                    name="description"
                    type="textarea"
                    component="input"
-                   className="form-control" />
+                   className="form-control actField" />
                </fieldset>
            </div>
            <div className='row'>
              <div className="col-md-2">
-               <button action="submit" className="btn btn-success">Edit Event</button>
+               <button action="submit" className="btn newBtn">Edit Event</button>
              </div>
            </div>
          </form>

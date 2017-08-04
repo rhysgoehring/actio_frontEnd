@@ -24,7 +24,7 @@ class EventFilter extends Component {
           <h5>Filter Events By:</h5>
         </div>
         <div className='col-md-4 col-sm-4 col-xs-4'>
-          <DropdownButton title="Category" id="bg-nested-dropdown">
+          <DropdownButton style={{backgroundColor: 'transparent'}} title="Category" id="bg-nested-dropdown">
             <MenuItem eventKey="SHOW_ALL" onSelect={this.selectCategory}>Show All</MenuItem>
             <MenuItem eventKey="SHOW_SOCCER" onSelect={this.selectCategory}>Soccer</MenuItem>
             <MenuItem eventKey="SHOW_HIKING" onSelect={this.selectCategory}>Hiking</MenuItem>
@@ -34,7 +34,7 @@ class EventFilter extends Component {
           </DropdownButton>
         </div>
         <div className='col-md-4 col-sm-4 col-xs-4'>
-          <DropdownButton title="Skill Level" id="bg-nested-dropdown">
+          <DropdownButton style={{backgroundColor: 'transparent'}} title="Skill Level" id="bg-nested-dropdown">
             <MenuItem eventKey="0" onSelect={this.selectSkillLevel}>Show All</MenuItem>
             <MenuItem eventKey="1" onSelect={this.selectSkillLevel}>Beginner</MenuItem>
             <MenuItem eventKey="2" onSelect={this.selectSkillLevel}>Advanced</MenuItem>
