@@ -12,23 +12,30 @@ class GoogleMap extends Component {
     this.markers = [];
     this.makeMarkers = this.makeMarkers.bind(this);
     this.removeMarkers = this.removeMarkers.bind(this);
+    this.initMap = this.initMap.bind(this);
+  }
+
+  initMap(){
+    if(window.google){
+      this.map = new google.maps.Map(this.refs.map, {
+        zoom: this.props.zoom,
+        center: {
+          lat: parseFloat(this.props.lat),
+          lng: parseFloat(this.props.lng)
+        }
+      });
+      let marker = new google.maps.Marker({
+            position: {
+              lat: parseFloat(this.props.lat),
+              lng: parseFloat(this.props.lng)
+            },
+            map: this.map
+          });
+    }
   }
   componentDidMount() {
-    this.map = new google.maps.Map(this.refs.map, {
-      zoom: this.props.zoom,
-      center: {
-        lat: parseFloat(this.props.lat),
-        lng: parseFloat(this.props.lng)
-      }
-    });
-    let marker = new google.maps.Marker({
-          position: {
-            lat: parseFloat(this.props.lat),
-            lng: parseFloat(this.props.lng)
-          },
-          map: this.map
-        });
-}
+    setTimeout(this.initMap(), 200);
+  }
 
   makeMarkers(map){
     console.log("this.props", this.props)
@@ -61,9 +68,12 @@ class GoogleMap extends Component {
     this.markers = [];
   }
   render(){
-    this.removeMarkers();
-    this.makeMarkers(this.map);
-    console.log("ALL THE MARKERS!!! ", this.markers)
+    if(window.google){
+      this.removeMarkers();
+      this.makeMarkers(this.map);
+      console.log("ALL THE MARKERS!!! ", this.markers)
+    }
+
     //anywhere else in this component we can call this.refs.map
     // to get access to that div
     return <div id="homeMap" ref="map" />;
