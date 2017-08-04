@@ -194,8 +194,8 @@ joinE(id) {
               <div className='col-md-2 col-md-offset-0 col-xs-4 col-xs-offset-3'>
                 <img src={this.props.icon} className="img-responsive eventCardImg" />
               </div>
-              <div className='col-md-5 col-md-offset-0 col-md-pull-1 col-xs-9 col-xs-offset-2'>
-                  <h4 className="card-title text-center allEventTitle"><strong>{this.props.eventTitle}</strong></h4>
+              <div className='col-md-5 col-md-offset-0 col-md-pull-1 col-xs-9 col-xs-offset-1'>
+                  <h4 className="card-title text-center allEventTitle" style={{marginLeft: '2.0em'}}><strong>{this.props.eventTitle}</strong></h4>
                   <p className="card-text text-left allEventDesc">{this.props.eventDesc}</p>
                   <div className='row container allEventDetails'>
                     <ul className="list-inline">

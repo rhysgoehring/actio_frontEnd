@@ -6,10 +6,10 @@ const google = window.google;
 
 
 const INITIAL_LOCATION = {
-  address: 'London, United Kingdom',
+  address: 'Boulder, CO',
   position: {
-    latitude: 51.5085300,
-    longitude: -0.1257400
+    latitude: 40.014984,
+    longitude: -105.270546
   }
 };
 
@@ -120,15 +120,15 @@ class NewEvent extends Component {
       <div className='container'>
         <div className='row'>
           <div ref='map2' id="codeMap" />
-           {this.state.isGeocodingError ? <p className="bg-danger">Address not found.</p> : <p className="bg-info">{this.state.foundAddress}</p>}
-           {this.state.lat} {this.state.lng}
+           {this.state.isGeocodingError ? <p className="bg-danger">Address not found.</p> : <p className="bg-info" style={{fontFamily: 'gothamReg'}}>{this.state.foundAddress}</p>}
+           <p style={{fontFamily:'gothamReg'}}>{this.state.lat} {this.state.lng}</p>
         </div>
         <div className='row'>
             <div className='col-lg-12 col-md-12'>
               <form className='input-group form-inline' onSubmit={this.handleFormSubmit.bind(this)}>
-                <input type="text" className="form-control" ref="address" placeholder='Enter Address'/>
+                <input type="text" className="form-control actField" ref="address" placeholder='Enter Address'/>
                 <span className='input-group-btn'>
-                  <button className='btnMain' type="submit">Find Location</button>
+                  <button className='newBtn' type="submit">Find Location</button>
                 </span>
               </form>
             </div>

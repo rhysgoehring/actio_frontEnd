@@ -129,6 +129,51 @@ fieldset {
 
 /***************************************************FORMS**********************************************************/
 
+
+select.form-control.actSelect {
+  background-color: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: #8abbd7;
+  border-bottom-style: ridge;
+  border-bottom-width: 2px;
+  font-family: gothamReg;
+}
+
+select.form-control.actSelect:focus {
+  background-color: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: #8abbd7;
+  border-bottom-style: ridge;
+  border-bottom-width: 2px;
+  font-family: gothamReg;
+}
+
+select.form-control.actSelect::-webkit-input-placeholder {
+color: white !important;
+font-family: gothamReg !important;
+}
+
+select.form-control.actSelect:-moz-placeholder {
+color: white !important;
+font-family: gothamReg !important;
+}
+
+select.form-control.actSelect::-moz-placeholder {
+color: white !important;
+font-family: gothamReg !important;
+}
+
+select.form-control.actSelect:-ms-input-placeholder {
+color: white !important;
+font-family: gothamReg !important;
+}
+
+
+
 input.form-control.actField {
   background-color: transparent;
   border-top: none;
@@ -236,6 +281,27 @@ img.profPicHome {
   border: none !important;
 }
 
+/***********************************************NEWEVENT****************************************************/
+
+.newBtn{
+  background-color: rgba(255, 255, 255, 0.0);
+  font-family: gothamReg;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 16px;
+  width: 8.0em;
+}
+
+.newBtn:hover{
+  background-color: #8abbd7;
+  font-family: gothamReg;
+  border-color: #066dab;
+  text-align: center;
+  font-size: 16px;
+  width: 8.0em;
+  color: black;
+}
+
 /*************************************************HOME********************************************************/
 .allEventPic{
   /*max-width: 300px;*/
@@ -259,19 +325,25 @@ img.profPicHome {
   width: 75px;
   margin-left: 2.0em;
   margin-top: 1.0em;
+  margin-right: 2.0em;
 }
 
 .eventCardContainer {
-  margin: 1.0em;
+  margin-top: 1.0em;
+  margin-bottom: 1.0em;
   border-radius: 0.2em;
 }
 
 .allEventDesc {
   margin-top: 4.0em;
+ 
+
 }
 
 .allEventDetails {
   margin-top: 4.0em;
+  
+ 
 }
 
 .eventBtn{

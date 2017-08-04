@@ -11,7 +11,7 @@ class NewEventForm extends Component {
    let newEvent= {
      name : this.refs.name.value,
      cat_id : this.refs.cat_id.value,
-     location : this.refs.location.value,
+     location : this.props.locationValue,
      event_date : this.refs.event_date.value,
      description : this.refs.description.value,
      owner_id : this.props.id,
@@ -47,7 +47,7 @@ class NewEventForm extends Component {
                  name="name"
                  type="text"
                  component="input"
-                 className="form-control" />
+                 className="form-control actField" />
              </fieldset>
              <fieldset className="form-group col-md-3">
                <label>Event Date: </label>
@@ -56,7 +56,7 @@ class NewEventForm extends Component {
                  name="event_date"
                  type="text"
                  component="input"
-                 className="form-control" />
+                 className="form-control actField" />
              </fieldset>
              <fieldset className="form-group col-md-3">
                <label>Category: </label>
@@ -65,7 +65,7 @@ class NewEventForm extends Component {
                  name="cat_id"
                  type="select"
                  component="select"
-                 className="form-control">
+                 className="form-control actSelect">
                    <option></option>
                    <option value={1}>Basketball</option>
                    <option value={2}>Hiking</option>
@@ -84,19 +84,9 @@ class NewEventForm extends Component {
                    name="event_pic"
                    type="text"
                    component="input"
-                   className="form-control" />
+                   className="form-control actField" />
                </fieldset>
-               <fieldset className="form-group col-md-6">
-                 <label>Location: </label>
-                 <Field
-                   ref="location"
-                   name="location"
-                   type="text"
-                   component="input"
-                   className="form-control"
-                   placeholder={this.props.locationValue}
-                    />
-               </fieldset>
+  
              </div>
              <div className='row'>
                <fieldset className="form-group col-md-6">
@@ -106,7 +96,7 @@ class NewEventForm extends Component {
                    name="skill_level"
                    type="select"
                    component="select"
-                   className="form-control">
+                   className="form-control actSelect">
                      <option></option>
                      <option value="beginner">Beginner</option>
                      <option value="advanced">Advanced</option>
@@ -120,12 +110,12 @@ class NewEventForm extends Component {
                    name="description"
                    type="textarea"
                    component="input"
-                   className="form-control" />
+                   className="form-control actField" />
                </fieldset>
            </div>
            <div className='row'>
              <div className="col-md-2">
-               <button action="submit" className="btn btn-success">Create Event</button>
+               <button action="submit" className="btn newBtn">Create Event</button>
              </div>
            </div>
          </form>
