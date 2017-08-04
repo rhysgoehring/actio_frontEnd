@@ -59,9 +59,10 @@ class NewEvent extends Component {
 
   geoCodeAddress(address) {
   this.geocoder.geocode({ 'address': address }, function handleResults(results, status) {
-
+    console.log('status', status);
+    console.log('results', results);
     if (status === google.maps.GeocoderStatus.OK) {
-
+      
       this.setState({
         foundAddress: results[0].formatted_address,
         isGeocodingError: false,
@@ -74,22 +75,7 @@ class NewEvent extends Component {
       
     }
 
-    this.setState({
-      foundAddress: null,
-      isGeocodingError: true,
-      lat: results[0].geometry.location.lat(),
-      lng: results[0].geometry.location.lng()
-    });
-
-    this.map.setCenter({
-      lat: ATLANTIC_OCEAN.latitude,
-      lng: ATLANTIC_OCEAN.longitude
-    });
-
-    this.marker.setPosition({
-      lat: ATLANTIC_OCEAN.latitude,
-      lng: ATLANTIC_OCEAN.longitude
-    });
+    
 
   }.bind(this));
 }

@@ -10,8 +10,8 @@ import GoogleMap from './googleMap';
 
 const google = window.google;
 
-// const ROOT_URL = 'https://actio-backend.herokuapp.com';
-const ROOT_URL = 'http://localhost:8080';
+const ROOT_URL = 'https://actio-backend.herokuapp.com';
+
 
 class EventCard extends Component {
   constructor(props) {

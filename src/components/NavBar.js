@@ -15,7 +15,7 @@ class NavBar extends Component {
       <Navbar className="main_nav sticky" collapseOnSelect inverse staticTop >
         <Navbar.Header>
           <Navbar.Brand>
-            <Link className='navLogo' to='/home'>Actio</Link>
+            <Link className='navLogo' to='/home'>A C T I O</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>

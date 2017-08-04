@@ -72,7 +72,7 @@ class Home extends Component {
                 <img className="profPicHome img-responsive" src={this.props.picUrl} />
               </Row>
               <Row>
-                <h4 className="text-left">{this.props.firstName}'s Events</h4>
+                <h4 className="text-left" style={{fontFamily:'gothamReg'}}><strong>{this.props.firstName}'s Events</strong></h4>
                 {this.renderUserEvents()}
               </Row>
           </Col>
@@ -84,7 +84,7 @@ class Home extends Component {
                 <EventFilter />
             </Row>
             <Row className='center-block'>
-              <h4 className='text-center'>All Events</h4>
+              <h4 className='text-center' style={{fontFamily:'gothamReg'}}><strong>All Events</strong></h4>
                 {this.renderAllEvents()}
             </Row>
           </Col>
