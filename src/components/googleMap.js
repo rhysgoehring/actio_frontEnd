@@ -16,15 +16,15 @@ class GoogleMap extends Component {
   }
 
   initMap(){
-    if(window.google){
-      this.map = new google.maps.Map(this.refs.map, {
+    if(window.google != undefined){
+      this.map = new window.google.maps.Map(this.refs.map, {
         zoom: this.props.zoom,
         center: {
           lat: parseFloat(this.props.lat),
           lng: parseFloat(this.props.lng)
         }
       });
-      let marker = new google.maps.Marker({
+      let marker = new window.google.maps.Marker({
             position: {
               lat: parseFloat(this.props.lat),
               lng: parseFloat(this.props.lng)
@@ -39,20 +39,21 @@ class GoogleMap extends Component {
 
   makeMarkers(map){
     console.log("this.props", this.props)
+    console.log("this.map", this.map)
     if(this.props.markerData){
       this.props.markerData.forEach((pos) =>{
         let icon = {
           url: pos.icon,
-          scaledSize: new google.maps.Size(40, 40)
+          scaledSize: new window.google.maps.Size(40, 40)
         }
         // console.log("pos",pos);
-        let marker = new google.maps.Marker({
+        let marker = new window.google.maps.Marker({
               position: {
                 lat: parseFloat(pos.lat),
                 lng: parseFloat(pos.lng)
               },
               icon:icon,
-              animation: google.maps.Animation.DROP,
+              animation: window.google.maps.Animation.DROP,
               map: map,
             });
         this.markers.push(marker);
@@ -68,8 +69,10 @@ class GoogleMap extends Component {
     this.markers = [];
   }
   render(){
-    if(window.google){
+    if(window.google != undefined){
+      console.log("removing markers");
       this.removeMarkers();
+      console.log('making markers');
       this.makeMarkers(this.map);
       console.log("ALL THE MARKERS!!! ", this.markers)
     }

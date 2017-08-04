@@ -23,41 +23,45 @@ const ATLANTIC_OCEAN = {
 class NewEvent extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state=({
       gcError: false,
       foundAddress: INITIAL_LOCATION.address,
       lat: INITIAL_LOCATION.position.latitude,
       lng: INITIAL_LOCATION.position.longitude
-     
+
     })
+
+    this.map = {}
   }
-  
+
   componentDidMount() {
-    this.map = new google.maps.Map(this.refs.map2, {
-      zoom: INITIAL_ZOOM,
-      center: {
-        lat: INITIAL_LOCATION.position.latitude,
-        lng: INITIAL_LOCATION.position.longitude
-      }
-    })
-    
-    this.marker = new google.maps.Marker({
-      map: this.map,
-      position: {
-        lat: INITIAL_LOCATION.position.latitude,
-        lng: INITIAL_LOCATION.position.longitude
-      }
-    })
-    
-    this.geocoder = new google.maps.Geocoder()
+    if(window.google != undefined){
+      this.map = new window.google.maps.Map(this.refs.map2, {
+        zoom: INITIAL_ZOOM,
+        center: {
+          lat: INITIAL_LOCATION.position.latitude,
+          lng: INITIAL_LOCATION.position.longitude
+        }
+      })
+
+      this.marker = new window.google.maps.Marker({
+        map: this.map,
+        position: {
+          lat: INITIAL_LOCATION.position.latitude,
+          lng: INITIAL_LOCATION.position.longitude
+        }
+      })
+
+      this.geocoder = new window.google.maps.Geocoder()
+    }
   }
-  
+
   geoCodeAddress(address) {
   this.geocoder.geocode({ 'address': address }, function handleResults(results, status) {
 
     if (status === google.maps.GeocoderStatus.OK) {
-      
+
       this.setState({
         foundAddress: results[0].formatted_address,
         isGeocodingError: false,
@@ -94,9 +98,9 @@ class NewEvent extends Component {
     e.preventDefault()
     const address = this.refs.address.value
     this.geoCodeAddress(address)
-    
+
   }
-  
+
   showForm() {
     if (this.state.foundAddress !== INITIAL_LOCATION.address) {
       return (
@@ -108,10 +112,10 @@ class NewEvent extends Component {
       )
     }
   }
-  
+
   render(){
     const {handleFormSubmit} = this.props
-    
+
     return(
       <div className='container'>
         <div className='row'>
