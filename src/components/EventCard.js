@@ -158,7 +158,7 @@ joinE(id) {
   renderButtons(){
     if (this.checkUserStatus() === false) {
       return (
-        <button className='btnMain pull-right' onClick={this.joinE.bind(this)}>Join Event</button>
+        <button className='eventBtn pull-right' onClick={this.joinE.bind(this)}>Join Event</button>
       )
     }
   }
@@ -173,10 +173,10 @@ joinE(id) {
       return(
         <div className='row'>
           <div className='col-md-6'>
-             <div className='btnMain'><Link to={`/events/${this.props.eventId}`}>Edit Event</Link></div>
+             <div className='btn btn-success card-link eventBtn'><Link style={{textDecoration: 'none', color: 'black'}} to={`/events/${this.props.eventId}`}>Edit Event</Link></div>
           </div>
           <div className='col-md-6'>
-             <button className='btnMain pull-right' onClick={this.deleteE.bind(this)}>Delete</button>
+             <button className='btn btn-success card-link eventBtn pull-right' style={{color:'black'}} onClick={this.deleteE.bind(this)}>Delete</button>
           </div>
         </div>
 
@@ -192,27 +192,35 @@ joinE(id) {
         <div className='eventCardContainer'>
           <div className='card actCard'>
             <div className='row'>
-              <div className='col-md-5'>
-                 <img className="img-responsive allEventPic float-left" src={this.props.eventPic} alt={this.props.eventTitle}
+              <div className='col-md-4'>
+                 <img className="img-responsive allEventPic" src={this.props.eventPic} alt={this.props.eventTitle}
                  />
               </div>
-              <div className='col-md-7'>
-                  <h4 className=" card-title text-center">{this.props.eventTitle}</h4>
-                  <p className="card-text text-center">{this.props.eventDesc}</p>
-                  <div className='row'>
+              <div className='col-md-2'>
+                <img src={this.props.icon} className="img-responsive eventCardImg" />
+              </div>
+              <div className='col-md-5'>
+                  <h4 className="card-title text-center allEventTitle"><strong>{this.props.eventTitle}</strong></h4>
+                  <p className="card-text text-center allEventDesc">{this.props.eventDesc}</p>
+                  <div className='row allEventDetails'>
                     <ul className="list-inline">
-                      <li className="list-inline-item"><img src={this.props.icon} className="img-responsive eventCardImg" /></li>
                       <li className="list-inline-item">At: <strong>{this.props.eventLocation}</strong></li>
                       <li className="list-inline-item">On: <strong>{this.props.eventDate}</strong></li>
                     </ul>
                   </div>
               </div>
             </div>
-            <div className="card-block btnRow" style={{paddingTop: "-20px"}}>
-              <button className='card-link btnMain' onClick={this.handleModalClick.bind(this)}>See More</button>
-              {this.renderButtons()}
-              {this.renderEditDelete()}
+            <div className='row'>
+              <div className="card-block btnRow">
+                <button className='card-link eventBtn' onClick={this.handleModalClick.bind(this)}>See More</button>
+                {this.renderButtons()}
+              </div>
             </div>
+            <div className='card-block btn-row'>
+                 {this.renderEditDelete()}
+            </div>
+           
+           
           </div>
           <Modal
             show={this.state.showModal} dialogClassName="custom-modal"

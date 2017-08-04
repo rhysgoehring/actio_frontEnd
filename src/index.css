@@ -70,7 +70,6 @@ fieldset {
   text-align: center;
   font-size: 16px;
   width: 7.0em;
-  
 }
 
 .landing_btn:hover{
@@ -228,7 +227,8 @@ img.profPicHome {
   height: 251px;
   border-radius: 0.75rem;
   border: 1px solid #7DD181;
-  alignSelf: 'left'
+  /*padding: 0px !important;*/
+  
 }
 
 .filterRow {
@@ -243,6 +243,8 @@ img.profPicHome {
 .eventCardImg {
   height: 75px;
   width: 75px;
+  margin-left: 2.0em;
+  margin-top: 1.0em;
 }
 
 .eventCardContainer {
@@ -250,6 +252,40 @@ img.profPicHome {
   border-radius: 0.2em;
 }
 
+.allEventDesc {
+  margin-top: 4.0em;
+}
+
+.allEventDetails {
+  margin-top: 4.0em;
+}
+
+.eventBtn{
+  background-color: rgba(255, 255, 255, 0.0);
+  font-family: gothamReg;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 16px;
+  width: 7.0em;
+}
+
+.eventBtn:hover{
+  background-color: #8abbd7;
+  font-family: gothamReg;
+  border-color: #066dab;
+  text-align: center;
+  font-size: 16px;
+  width: 7.0em;
+  color: black;
+}
+
+.btnRow {
+ margin: 0 1.0em;
+}
+
+.allEventTitle {
+ margin-top: 2.0em;
+}
 /*************************************************BUTTON*********************************************************/
 
 .btnMain {
@@ -306,11 +342,7 @@ img.profPicHome {
 }
 
 
-.btnRow {
-  background-color:#A1A596;
-  border-radius: 1.0rem;
-  margin-top: 0px;
-}
+
 
 
 /*************************************************CARD***************************************************/
@@ -319,7 +351,7 @@ img.profPicHome {
   font-family: gothamReg;
   font-size: 16px;
   z-index: 5;
-  background-color:#BCD3BE;
+  background-color:#F4EBBE;
   color: #000;
 }
 
