@@ -195,7 +195,7 @@ joinE(id) {
                 <img src={this.props.icon} className="img-responsive eventCardImg" />
               </div>
               <div className='col-md-5 col-md-offset-0 col-md-pull-1 col-xs-9 col-xs-offset-2'>
-                  <h4 className="card-title text-right allEventTitle"><strong>{this.props.eventTitle}</strong></h4>
+                  <h4 className="card-title text-center allEventTitle"><strong>{this.props.eventTitle}</strong></h4>
                   <p className="card-text text-left allEventDesc">{this.props.eventDesc}</p>
                   <div className='row container allEventDetails'>
                     <ul className="list-inline">
@@ -289,11 +289,11 @@ joinE(id) {
         <div className="row">
           <div className='col-md-12'>
             <div className='thumbnail'>
-              <img className="img-responsive" src={this.props.eventPic} alt={this.props.eventTitle} />
+              <img className="img-responsive myEventImg" src={this.props.eventPic} alt={this.props.eventTitle} />
               <div className='caption'>
                 <h4>{this.props.eventTitle}</h4>
                 <p>{this.props.eventDesc}</p>
-                <button className='card-link btnMain' onClick={this.handleModalClick.bind(this)}>See More</button>
+                <button className='card-link eventBtn' onClick={this.handleModalClick.bind(this)}>See More</button>
                 <Modal
                   show={this.state.showModal} dialogClassName="custom-modal"
                   className='actModal'

@@ -300,6 +300,12 @@ img.profPicHome {
 .allEventTitle {
  margin-top: 2.0em;
 }
+
+.myEventImg {
+  width: 280px;
+  height: 171px;
+  border: 2px solid #8abbd7;
+ }
 /*************************************************BUTTON*********************************************************/
 
 .btnMain {
