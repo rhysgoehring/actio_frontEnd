@@ -71,8 +71,7 @@ class NewEvent extends Component {
 
       this.map.setCenter(results[0].geometry.location);
       this.marker.setPosition(results[0].geometry.location);
-      console.log('this.marker.map.center.toJSON', this.marker.position.toJSON());
-      return;
+      
     }
 
     this.setState({
