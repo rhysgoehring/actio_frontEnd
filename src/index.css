@@ -238,7 +238,7 @@ img.profPicHome {
 
 /*************************************************HOME********************************************************/
 .allEventPic{
-  max-width: 300px;
+  /*max-width: 300px;*/
   height: 251px;
   border-radius: 0.75rem;
   border: 1px solid #7DD181;
