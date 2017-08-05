@@ -42,7 +42,7 @@ class Profile extends Component {
     return (
       <div className="container">
         <header>
-          <h1 className="text-center main_title ">
+          <h1 className="text-center main_title">
             ACTIO
           </h1>
         </header>
