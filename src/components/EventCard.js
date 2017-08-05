@@ -295,8 +295,7 @@ joinE(id) {
                 <button className='card-link eventBtn' onClick={this.handleModalClick.bind(this)}>See More</button>
                 <Modal
                   show={this.state.showModal} dialogClassName="custom-modal"
-                  className='actModal'
-                    >
+                  className='actModal'>
                   <Modal.Header>
                     <div className="modal_cover">
                       <div className="cover_container">
