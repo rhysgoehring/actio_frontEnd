@@ -324,7 +324,7 @@ img.profPicHome {
 }
 
 .main_nav {
-  background: transparent;
+  background: rgba(0, 0, 0, 0.3);
   border: none !important;
 }
 
@@ -497,8 +497,8 @@ img.profPicHome {
   font-family: gothamReg;
   font-size: 16px;
   z-index: 5;
-  background-color:#F4EBBE;
-  color: #000;
+  background-color:rgba(0, 0, 0, 0.3);
+  color: white;
 }
 
 
