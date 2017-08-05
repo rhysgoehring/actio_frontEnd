@@ -5,9 +5,6 @@ import {AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_ALL_EVENTS, GET_USER_EVENTS, GET
 
 const ROOT_URL = 'https://actio-backend.herokuapp.com';
 
-
-
-
 export function signinUser({ email, password }) {
   return function(dispatch) {
 
