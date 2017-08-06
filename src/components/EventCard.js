@@ -197,9 +197,9 @@ joinE(id) {
                   <h4 className="card-title text-center allEventTitle" style={{marginLeft: '2.0em'}}><strong>{this.props.eventTitle}</strong></h4>
                   <p className="card-text text-left allEventDesc">{this.props.eventDesc}</p>
                   <div className='row container allEventDetails'>
-                    <ul className="list-inline">
-                      <li className="list-inline-item">At: <strong>{this.props.eventLocation}</strong></li>
-                      <li className="list-inline-item">On: <strong>{this.props.eventDate}</strong></li>
+                    <ul className="actList">
+                      <li>At: <strong>{this.props.eventLocation}</strong></li>
+                      <li>On: <strong>{this.props.eventDate}</strong></li>
                     </ul>
                   </div>
               </div>
