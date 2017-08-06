@@ -14,6 +14,7 @@ import './actioPublic/Comfortaa-Bold.ttf'
 import './actioPublic/Comfortaa-Light.ttf'
 import './actioPublic/Comfortaa-Regular.ttf'
 
+import {AUTH_USER} from './actions/types';
 import reducers from './reducers/index';
 
 import RequireAuth from './auth/HOCRequireAuth';
@@ -33,6 +34,17 @@ import EditEvent from './components/EditEvent';
 const middleware = [reduxThunk, logger]
 const store = createStore(reducers, applyMiddleware(...middleware))
 
+
+const token = localStorage.getItem('token');
+let currentUser = localStorage.getItem('currentUser')
+currentUser = JSON.parse(currentUser);
+
+if (token && currentUser) {
+  // we need to update application state
+  store.dispatch({ type: AUTH_USER, payload: currentUser });
+
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -42,7 +54,7 @@ ReactDOM.render(
         <Route path="signup" component={SignUp} />
         <Route path="signout" component={SignOut} />
         <Route path="home" component={RequireAuth(Home)} />
-        <Route path="profile" component={RequireAuth(Profile)} />
+        <Route path="profile" component={Profile} />
         <Route path="myevents" component={RequireAuth(MyEvents)} />
         <Route path="newevent" component={RequireAuth(NewEvent)} />
         <Route path="events/:id" component={RequireAuth(EditEvent)} />

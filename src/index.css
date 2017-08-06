@@ -31,6 +31,14 @@ html{
   height: 100%;
 
 }
+/****************************************Profile********************************/
+.prof_title {
+  font-family: 'Medula One', cursive;
+  font-size: 10.0rem;
+  text-align: center;
+  color: white;
+  letter-spacing: 2.0rem;
+}
 /****************************************Landing********************************/
 fieldset {
   padding: 0!important;

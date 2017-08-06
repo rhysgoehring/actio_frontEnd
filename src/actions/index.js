@@ -3,7 +3,8 @@ import {browserHistory} from 'react-router';
 import {AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_ALL_EVENTS, GET_USER_EVENTS, GET_OWNED_EVENTS, CREATE_EVENT, GET_EVENT, DELETE_EVENT,CHANGE_CAT_FILTER,CHANGE_SKILL_FILTER } from './types';
 
 
-const ROOT_URL = 'https://actio-backend.herokuapp.com';
+// const ROOT_URL = 'https://actio-backend.herokuapp.com';
+const ROOT_URL= 'http://localhost:8080'
 
 export function signinUser({ email, password }) {
   return function(dispatch) {
@@ -21,6 +22,7 @@ export function signinUser({ email, password }) {
           }
         )
         localStorage.setItem('token', token);
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
         browserHistory.push('/home')
     })
     .catch(() => {

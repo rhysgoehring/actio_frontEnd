@@ -25,6 +25,7 @@ class NewEventForm extends Component {
    console.log('newEvent', newEvent)
    
    this.props.createEvent(newEvent)
+   this.props.getUserEvents(this.props.id)
    browserHistory.push('/home')
    
    }
