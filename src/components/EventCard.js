@@ -10,7 +10,8 @@ import GoogleMap from './googleMap';
 
 const google = window.google;
 
-const ROOT_URL = 'https://actio-backend.herokuapp.com';
+// const ROOT_URL = 'https://actio-backend.herokuapp.com';
+const ROOT_URL= 'http://localhost:8080'
 
 
 class EventCard extends Component {
@@ -41,7 +42,7 @@ class EventCard extends Component {
  }
 
   getMessages(eventInfo){
-   return axios.get(`${ROOT_URL}/api/events/${eventInfo.id}/messages`).then(response =>{
+   return axios.get(`${ROOT_URL}/api/events/${this.props.eventId}/messages`).then(response =>{
      eventInfo['messages'] = response.data
      return eventInfo
    })

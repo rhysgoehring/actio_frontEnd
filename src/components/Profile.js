@@ -6,6 +6,15 @@ import {Link} from 'react-router';
 
 class Profile extends Component {
   
+  constructor(props){
+    super(props);
+    console.log('this.props.profilePic', this.props.profilePic)
+    this.state = {
+      imgUrl: this.props.profilePic
+    }
+  }
+  
+  
   handleFormSubmit(values){
     console.log(values)
 
@@ -22,10 +31,10 @@ class Profile extends Component {
   }
   
   showPreview() {
-    if (!this.refs.picUrl){
+    if (!this.state.imgUrl){
       console.log('no pic url')
     } else {
-    let picUrl = this.refs.picUrl.value
+    let picUrl = this.state.imgUrl
     return (
           <img src={picUrl}
             style={{
@@ -42,14 +51,10 @@ class Profile extends Component {
     return (
       <div className="container">
         <header>
-          <h1 className="text-center main_title">
+          <h1 className="text-center prof_title">
             ACTIO
           </h1>
         </header>
-        <section />
-        <br />
-        <br />
-        <article>
           <div className="container">
             <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
               <div className="row">
@@ -108,7 +113,8 @@ class Profile extends Component {
                         type="url"
                         component="input"
                         className="form-control actField"
-                        onBlur={()=> this.showPreview()}/>
+                        // onChange={}
+                        />
                     </fieldset>
                     {this.showPreview()}
                   </div>
@@ -125,7 +131,7 @@ class Profile extends Component {
               </div>
             </form>
           </div>
-        </article>
+       
       </div>
       
     )
@@ -138,7 +144,7 @@ function mapStateToProps(state) {
     userId: state.auth.id,
     firstName: state.auth.firstName,
     lastName: state.auth.lastName,
-    profilePic: state.auth.profilePic,
+    profilePic: state.auth.profPic,
     email: state.auth.email,
     zip: state.auth.zip,
     errorMessage: state.auth.error
