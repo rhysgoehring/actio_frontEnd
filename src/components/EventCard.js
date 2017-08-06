@@ -165,14 +165,14 @@ joinE(id) {
   renderEditDelete(){
     if (this.props.eventOwner === this.props.id){
       return(
-        <div className='row'>
-          <div className='col-md-6'>
-             <div className='btn card-link eventBtn'><Link style={{textDecoration: 'none', color: 'black'}} to={`/events/${this.props.eventId}`}>Edit Event</Link></div>
+        <div>
+          <div className='col-md-6 col-xs-6'>
+             <div className='btn eventBtn pull-left'><Link style={{textDecoration: 'none', color: 'black'}} to={`/events/${this.props.eventId}`}>Edit Event</Link></div>
           </div>
-          <div className='col-md-6'>
-             <button className='btn card-link eventBtn pull-right' style={{color:'black'}} onClick={this.deleteE.bind(this)}>Delete</button>
+          <div className='col-md-6 col-xs-6'>
+             <button className='btn eventBtn pull-right' style={{color:'black'}} onClick={this.deleteE.bind(this)}>Delete</button>
           </div>
-        </div>
+       </div>
 
       )
     }
@@ -206,7 +206,7 @@ joinE(id) {
             </div>
             <div className='row'>
               <div className="card-block btnRow">
-                <button className='card-link eventBtn' onClick={this.handleModalClick.bind(this)}>See More</button>
+                <button className='btn eventBtn' onClick={this.handleModalClick.bind(this)}>See More</button>
                 {this.renderButtons()}
               </div>
             </div>
