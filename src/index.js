@@ -54,7 +54,7 @@ ReactDOM.render(
         <Route path="signup" component={SignUp} />
         <Route path="signout" component={SignOut} />
         <Route path="home" component={RequireAuth(Home)} />
-        <Route path="profile" component={Profile} />
+        <Route path="profile" component={RequireAuth(Profile)} />
         <Route path="myevents" component={RequireAuth(MyEvents)} />
         <Route path="newevent" component={RequireAuth(NewEvent)} />
         <Route path="events/:id" component={RequireAuth(EditEvent)} />
