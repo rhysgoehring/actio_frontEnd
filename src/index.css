@@ -949,7 +949,9 @@ img.profPicHome {
       margin:0;
     }
     .modal-header{
-      overflow:auto;
+      height: auto;
+      font-size:8px;
     }
+
 
 }
