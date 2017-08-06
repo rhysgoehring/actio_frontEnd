@@ -166,11 +166,11 @@ joinE(id) {
     if (this.props.eventOwner === this.props.id){
       return(
         <div>
-          <div className='col-md-6 col-xs-6'>
-             <div className='btn eventBtn pull-left'><Link style={{textDecoration: 'none', color: 'black'}} to={`/events/${this.props.eventId}`}>Edit Event</Link></div>
+          <div>
+             <div className='btn eventBtn pull-left edit-btn'><Link style={{textDecoration: 'none', color: 'black'}} to={`/events/${this.props.eventId}`}>Edit Event</Link></div>
           </div>
-          <div className='col-md-6 col-xs-6'>
-             <button className='btn eventBtn pull-right' style={{color:'black'}} onClick={this.deleteE.bind(this)}>Delete</button>
+          <div>
+             <button className='btn eventBtn pull-right delete-btn' style={{color:'black'}} onClick={this.deleteE.bind(this)}>Delete</button>
           </div>
        </div>
 
