@@ -952,6 +952,13 @@ img.profPicHome {
       height: auto;
       font-size:8px;
     }
-
+    .main_title{
+      font-size: 64px;
+      margin-top:140px;
+    }
+    .authBox{
+      margin-right: 0px;
+      margin-left: 0px;
+    }
 
 }
