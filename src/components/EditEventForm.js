@@ -3,9 +3,13 @@ import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import * as actions from '../actions';
+import axios from 'axios';
 
 
-class NewEventForm extends Component {
+const ROOT_URL = 'https://actio-backend.herokuapp.com';
+// const ROOT_URL= 'http://localhost:8080'
+
+class EditEventForm extends Component {
  
  handleFormSubmit(values) {
    let newEvent= {
@@ -23,26 +27,30 @@ class NewEventForm extends Component {
    console.log('handleFormSubmit this.refs', this.refs)
    
    console.log('newEvent', newEvent)
-   
-   this.props.createEvent(newEvent).then(() =>{
-     this.props.getAllEvents().then(() => {
-       this.props.getUserEvents(this.props.id).then(() =>{
-         browserHistory.push('/home')
-       })  
-     })
+   console.log('this.props', this.props);
+   axios.patch(`${ROOT_URL}/api/events/${this.props.editId}`, newEvent)
+   .then(response => {
+     if (response.statusText === 'OK') {
+       this.props.getAllEvents().then(() => {
+         this.props.getUserEvents(this.props.id).then(() =>{
+           browserHistory.push('/home')
+         })
+           
+       })
+       
+     
+     }
    })
-   
+
    
    }
-   
- 
   
   render() {
      const {handleSubmit, fields: {name, event_date, cat_id, event_pic, skill_level, description}} = this.props
     return(
       <div className='container newEventForm'>
         <header>
-          <h2 className='text-center'>{this.props.firstName}'s New Event</h2>
+          <h2 className='text-center'>Edit Event</h2>
         </header>
          <form className='center-block' onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
            <div className="row">
@@ -128,7 +136,7 @@ class NewEventForm extends Component {
            </div>
            <div className='row'>
              <div className="col-md-2">
-               <button action="submit" className="btn newBtn">Create Event</button>
+               <button action="submit" className="btn newBtn">Edit Event</button>
              </div>
            </div>
          </form>
@@ -145,14 +153,14 @@ function mapStateToProps(state) {
     id: state.auth.id,
     lastName: state.auth.lastName,
     picUrl: state.auth.profPic,
-    zip: state.auth.zip
+    zip: state.auth.zip,
   })
 }
 
-NewEventForm = connect(mapStateToProps,actions)(NewEventForm)
-NewEventForm = reduxForm({
-  form: 'newEvent',
+EditEventForm = connect(mapStateToProps,actions)(EditEventForm)
+EditEventForm = reduxForm({
+  form: 'editEvent',
   fields: ['name', 'event_date', 'cat_id', 'location', 'event_pic', 'skill_level', 'description']
-})(NewEventForm);
+})(EditEventForm);
 
-export default NewEventForm;
+export default EditEventForm;

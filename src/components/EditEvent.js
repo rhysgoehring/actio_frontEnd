@@ -1,156 +1,127 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import {browserHistory} from 'react-router';
+import EditEventForm from './EditEventForm';
 import * as actions from '../actions';
-
-const ROOT_URL = 'https://actio-backend.herokuapp.com';
-// const ROOT_URL= 'http://localhost:8080'
+const google = window.google;
 
 
+const INITIAL_LOCATION = {
+  address: 'Boulder, CO',
+  position: {
+    latitude: 40.014984,
+    longitude: -105.270546
+  }
+};
+
+const INITIAL_ZOOM = 8
+
+const ATLANTIC_OCEAN = {
+  latitude: 29.532804,
+  longitude: -55.491477
+};
 
 class EditEvent extends Component {
- 
- componentDidMount() {
-  const id = Number.parseInt(this.props.params.id)
-  this.props.getEvent(id)
-  
- }
- 
- 
- handleFormSubmit(values) {
-   let newEvent= {
-     name : this.refs.name.value,
-     cat_id : this.refs.cat_id.value,
-     location : this.refs.location.value,
-     event_date : this.refs.event_date.value,
-     description : this.refs.description.value,
-     owner_id : this.props.id,
-     skill_level : this.refs.skill_level.value,
-     event_pic : this.refs.event_pic.value
-   }
-   console.log('handleFormSubmit this.refs', this.refs)
-   
-   console.log('newEvent', newEvent)
-   const id = Number.parseInt(this.props.params.id)
-   axios.patch(`${ROOT_URL}/api/events/${id}`, newEvent).then(response => {
-     console.log('response.statusText', response.statusText);
-     if(response.statusText === "OK"){
-       this.props.getAllEvents()
-         
-           browserHistory.push('/home')
-         }
-     
-     })
-    }
-   
- 
+  constructor(props) {
+    super(props);
 
-   
- 
-  
-  render() {
-     const {handleSubmit, fields: {name, event_date, cat_id, event_pic, skill_level, description}} = this.props
-     const id = Number.parseInt(this.props.params.id)
+    this.state=({
+      gcError: false,
+      foundAddress: INITIAL_LOCATION.address,
+      lat: INITIAL_LOCATION.position.latitude,
+      lng: INITIAL_LOCATION.position.longitude
+
+    })
+
+    this.map = {}
+  }
+
+  componentDidMount() {
+    console.log('this.props.params', this.props.params.id);
+    if(window.google != undefined){
+      this.map = new window.google.maps.Map(this.refs.map2, {
+        zoom: INITIAL_ZOOM,
+        center: {
+          lat: INITIAL_LOCATION.position.latitude,
+          lng: INITIAL_LOCATION.position.longitude
+        }
+      })
+
+      this.marker = new window.google.maps.Marker({
+        map: this.map,
+        position: {
+          lat: INITIAL_LOCATION.position.latitude,
+          lng: INITIAL_LOCATION.position.longitude
+        }
+      })
+
+      this.geocoder = new window.google.maps.Geocoder()
+    }
+  }
+
+  geoCodeAddress(address) {
+  this.geocoder.geocode({ 'address': address }, function handleResults(results, status) {
+    console.log('status', status);
+    console.log('results', results);
+    if (status === google.maps.GeocoderStatus.OK) {
+      
+      this.setState({
+        foundAddress: results[0].formatted_address,
+        isGeocodingError: false,
+        lat: results[0].geometry.location.lat(),
+        lng: results[0].geometry.location.lng()
+      });
+
+      this.map.setCenter(results[0].geometry.location);
+      this.marker.setPosition(results[0].geometry.location);
+      
+    }
+
+    
+
+  }.bind(this));
+}
+  handleFormSubmit(e){
+    e.preventDefault()
+    const address = this.refs.address.value
+    this.geoCodeAddress(address)
+
+  }
+
+  showForm() {
+    if (this.state.foundAddress !== INITIAL_LOCATION.address) {
+      return (
+        <EditEventForm
+        lat={this.state.lat}
+        lng={this.state.lng}
+        locationValue={this.state.foundAddress}
+        editId={this.props.params.id}
+        />
+      )
+    }
+  }
+
+  render(){
+    const {handleFormSubmit} = this.props
+
     return(
       <div className='container'>
-        <header>
-          <h2 className='text-center'></h2>
-        </header>
-         <form className='center-block' onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-           <div className="row">
-             <fieldset className="form-group col-md-6">
-               <label>Event Title: </label>
-               <Field
-                 ref="name"
-                 name="name"
-                 type="text"
-                 component="input"
-                 className="form-control actField" />
-             </fieldset>
-             <fieldset className="form-group col-md-3">
-               <label>Event Date: </label>
-               <Field
- 
-                 ref="event_date"
-                 name="event_date"
-                 type="text"
-                 component="input"
-                 className="form-control actField" />
-             </fieldset>
-             <fieldset className="form-group col-md-3">
-               <label>Category: </label>
-               <Field
-                 ref="cat_id"
-                 name="cat_id"
-                 type="select"
-                 component="select"
-                 className="form-control actSelect">
-                   <option></option>
-                   <option value={1}>Basketball</option>
-                   <option value={2}>Hiking</option>
-                   <option value={3}>Swimming</option>
-                   <option value={4}>Climbing</option>
-                   <option value={5}>Soccer</option>
-                   <option value={6}>Golfing</option>
-                 </Field>
-             </fieldset>
-           </div>
-           <div className='row'>
-               <fieldset className="form-group col-md-6">
-                 <label>Event Picture URL: </label>
-                 <Field
-                   ref="event_pic"
-                   name="event_pic"
-                   type="text"
-                   component="input"
-                   className="form-control actField" />
-               </fieldset>
-               <fieldset className="form-group col-md-6">
-                 <label>Location: </label>
-                 <Field
-                   ref="location"
-                   name="location"
-                   type="text"
-                   component="input"
-                   className="form-control actField" />
-               </fieldset>
-             </div>
-             <div className='row'>
-               <fieldset className="form-group col-md-6">
-                 <label>Skill Level: </label>
-                 <Field
-        
-                   ref="skill_level"
-                   name="skill_level"
-                   type="select"
-                   component="select"
-                   className="form-control actSelect">
-                     <option></option>
-                     <option value="beginner">Beginner</option>
-                     <option value="advanced">Advanced</option>
-                     <option value="master">Master</option>
-                   </Field>
-               </fieldset>
-               <fieldset className="form-group col-md-6">
-                 <label>Description: </label>
-                 <Field
-         
-                   ref="description"
-                   name="description"
-                   type="textarea"
-                   component="input"
-                   className="form-control actField" />
-               </fieldset>
-           </div>
-           <div className='row'>
-             <div className="col-md-2">
-               <button action="submit" className="btn newBtn">Edit Event</button>
-             </div>
-           </div>
-         </form>
+        <div className='row'>
+          <div ref='map2' id="codeMap" />
+           {this.state.isGeocodingError ? <p className="bg-danger">Address not found.</p> : <p className="bg-info" style={{fontFamily: 'gothamReg'}}>{this.state.foundAddress}</p>}
+           <p style={{fontFamily:'gothamReg'}}>{this.state.lat} {this.state.lng}</p>
         </div>
+        <div className='row'>
+            <div className='col-lg-12 col-md-12'>
+              <form className='input-group form-inline' onSubmit={this.handleFormSubmit.bind(this)}>
+                <input type="text" className="form-control actField" ref="address" placeholder='Enter Address' style={{color:'black'}} />
+                <span className='input-group-btn'>
+                  <button className='newBtn' type="submit">Find Location</button>
+                </span>
+              </form>
+            </div>
+        </div>
+        {this.showForm()}
+      </div>
     )
   }
 }
@@ -164,14 +135,9 @@ function mapStateToProps(state) {
     lastName: state.auth.lastName,
     picUrl: state.auth.profPic,
     zip: state.auth.zip,
-    allEvents: state.allEvents
+    event: state.allEvents
+    
   })
 }
 
-EditEvent = connect(mapStateToProps,actions)(EditEvent)
-EditEvent = reduxForm({
-  form: 'editEvent',
-  fields: ['name', 'event_date', 'cat_id', 'location', 'event_pic', 'skill_level', 'description']
-})(EditEvent);
-
-export default EditEvent;
+export default connect(mapStateToProps, actions)(EditEvent);

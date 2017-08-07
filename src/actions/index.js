@@ -69,7 +69,7 @@ export function signOutUser() {
 
 export function getAllEvents() {
   return function(dispatch){
-    axios.get(`${ROOT_URL}/api/events`)
+    return axios.get(`${ROOT_URL}/api/events`)
       .then(response => {
         console.log('allevents repsonse.data', response.data);
         dispatch({
@@ -83,7 +83,7 @@ export function getAllEvents() {
 
 export function getUserEvents(id){
   return function(dispatch) {
-    axios.get(`${ROOT_URL}/api/users/${id}/events`).then(response => {
+    return axios.get(`${ROOT_URL}/api/users/${id}/events`).then(response => {
       dispatch({
         type: GET_USER_EVENTS,
         payload: response.data
@@ -106,7 +106,7 @@ export function getOwnedEvents(id){
 
 export function createEvent(newEvent) {
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/api/events`, newEvent).then(response => {
+    return axios.post(`${ROOT_URL}/api/events`, newEvent).then(response => {
       console.log('crateEvent response:', response);
       dispatch({
         type: CREATE_EVENT,
@@ -129,8 +129,8 @@ export function getEvent(id){
 
 export function deleteEvent(id){
   return function(dispatch){
-    axios.delete(`${ROOT_URL}/api/events/${id}`)
-      .then((data) =>{
+    return axios.delete(`${ROOT_URL}/api/events/${id}`)
+      .then((data) => {
         axios.get(`${ROOT_URL}/api/events`)
         .then((response) =>{
           console.log('deleteEvent getAllEvents', response);
