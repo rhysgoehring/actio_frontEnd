@@ -10,6 +10,11 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="../src/actioPublic/favicon.ico">
+    <script>
+      window.initMap = function(){
+        console.log("map loaded")
+      }
+    </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0w4Sl-VqmXIZsr12TnK3xRmIrFQ6mA&callback=initMap"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -21,10 +26,5 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root"></div>
-  <script>
-    function initMap(){
-      console.log("map loaded")
-    }
-  </script>
   </body>
 </html>
