@@ -42,7 +42,7 @@ currentUser = JSON.parse(currentUser);
 if (token && currentUser) {
   // we need to update application state
   store.dispatch({ type: AUTH_USER, payload: currentUser });
-
+  browserHistory.push('home')
 }
 
 ReactDOM.render(
