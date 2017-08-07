@@ -31,11 +31,16 @@ class NewEvent extends Component {
       lng: INITIAL_LOCATION.position.longitude
 
     })
-
+    this.initMap = this.initMap.bind(this);
     this.map = {}
   }
 
   componentDidMount() {
+    console.log('this.props.params', this.props.params.id);
+    window.GoogleMapsLoader.load(this.initMap);
+  }
+
+  initMap(){
     if(window.google != undefined){
       this.map = new window.google.maps.Map(this.refs.map2, {
         zoom: INITIAL_ZOOM,
@@ -56,13 +61,12 @@ class NewEvent extends Component {
       this.geocoder = new window.google.maps.Geocoder()
     }
   }
-
   geoCodeAddress(address) {
   this.geocoder.geocode({ 'address': address }, function handleResults(results, status) {
     console.log('status', status);
     console.log('results', results);
-    if (status === google.maps.GeocoderStatus.OK) {
-      
+    if (status === window.google.maps.GeocoderStatus.OK) {
+
       this.setState({
         foundAddress: results[0].formatted_address,
         isGeocodingError: false,
@@ -72,10 +76,10 @@ class NewEvent extends Component {
 
       this.map.setCenter(results[0].geometry.location);
       this.marker.setPosition(results[0].geometry.location);
-      
+
     }
 
-    
+
 
   }.bind(this));
 }

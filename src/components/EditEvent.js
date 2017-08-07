@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import EditEventForm from './EditEventForm';
 import * as actions from '../actions';
+import GoogleMapsLoader from 'google-maps';
 const google = window.google;
 
 
@@ -33,10 +34,15 @@ class EditEvent extends Component {
     })
 
     this.map = {}
+    this.initMap = this.initMap.bind(this);
   }
 
   componentDidMount() {
     console.log('this.props.params', this.props.params.id);
+    window.GoogleMapsLoader.load(this.initMap);
+  }
+
+  initMap(){
     if(window.google != undefined){
       this.map = new window.google.maps.Map(this.refs.map2, {
         zoom: INITIAL_ZOOM,
@@ -62,8 +68,8 @@ class EditEvent extends Component {
   this.geocoder.geocode({ 'address': address }, function handleResults(results, status) {
     console.log('status', status);
     console.log('results', results);
-    if (status === google.maps.GeocoderStatus.OK) {
-      
+    if (status === window.google.maps.GeocoderStatus.OK) {
+
       this.setState({
         foundAddress: results[0].formatted_address,
         isGeocodingError: false,
@@ -73,10 +79,10 @@ class EditEvent extends Component {
 
       this.map.setCenter(results[0].geometry.location);
       this.marker.setPosition(results[0].geometry.location);
-      
+
     }
 
-    
+
 
   }.bind(this));
 }
@@ -136,7 +142,7 @@ function mapStateToProps(state) {
     picUrl: state.auth.profPic,
     zip: state.auth.zip,
     event: state.allEvents
-    
+
   })
 }
 
