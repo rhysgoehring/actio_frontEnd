@@ -20,15 +20,14 @@ class NewEventForm extends Component {
      lat: this.props.lat,
      lng: this.props.lng
    }
-   console.log('handleFormSubmit this.refs', this.refs)
+  
    
-   console.log('newEvent', newEvent)
    
    this.props.createEvent(newEvent).then(() =>{
      this.props.getAllEvents().then(() => {
        this.props.getUserEvents(this.props.id).then(() =>{
          browserHistory.push('/home')
-       })  
+       })
      })
    })
    
