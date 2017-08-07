@@ -34,7 +34,7 @@ import EditEvent from './components/EditEvent';
 const middleware = [reduxThunk, logger]
 const store = createStore(reducers, applyMiddleware(...middleware))
 
-
+window.GoogleMapsLoader.KEY = 'AIzaSyA3f0w4Sl-VqmXIZsr12TnK3xRmIrFQ6mA'
 const token = localStorage.getItem('token');
 let currentUser = localStorage.getItem('currentUser')
 currentUser = JSON.parse(currentUser);

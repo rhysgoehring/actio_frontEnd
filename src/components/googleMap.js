@@ -9,23 +9,23 @@ class GoogleMap extends Component {
     super(props);
 
 
-    this.map = {}
+    this.map = undefined;
     this.markers = [];
     this.makeMarkers = this.makeMarkers.bind(this);
     this.removeMarkers = this.removeMarkers.bind(this);
     this.initMap = this.initMap.bind(this);
   }
 
-  initMap(){
-    if(window.google != undefined){
-      this.map = new window.google.maps.Map(this.refs.map, {
+  initMap(google){
+    if(google != undefined){
+      this.map = new google.maps.Map(this.refs.map, {
         zoom: this.props.zoom,
         center: {
           lat: parseFloat(this.props.lat),
           lng: parseFloat(this.props.lng)
         }
       });
-      let marker = new window.google.maps.Marker({
+      let marker = new google.maps.Marker({
             position: {
               lat: parseFloat(this.props.lat),
               lng: parseFloat(this.props.lng)
@@ -36,7 +36,10 @@ class GoogleMap extends Component {
   }
   componentDidMount() {
     //loadJS('https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0w4Sl-VqmXIZsr12TnK3xRmIrFQ6mA&callback=initMap')
-    setTimeout(this.initMap(), 200);
+    window.GoogleMapsLoader.load(this.initMap);
+    console.log('googlemap',window.GoogleMapsLoader);
+
+    // setTimeout(this.initMap(), 200);
 
   }
 
@@ -73,11 +76,14 @@ class GoogleMap extends Component {
   }
   render(){
     console.log('the window map made in index.js', window.gmap)
-    if(window.google != undefined){
+    if(window.google != undefined && this.map != undefined){
       console.log("removing markers");
+
       this.removeMarkers();
-      console.log('making markers');
       this.makeMarkers(this.map);
+      //this.removeMarkers();
+      console.log('making markers');
+      //this.makeMarkers(this.map);
       console.log("ALL THE MARKERS!!! ", this.markers)
     }
 
@@ -88,11 +94,5 @@ class GoogleMap extends Component {
 }
 
 
-function loadJS(src) {
-    var ref = window.document.getElementsByTagName("script")[0];
-    var script = window.document.createElement("script");
-    script.src = src;
-    script.async = true;
-    ref.parentNode.insertBefore(script, ref);
-}
+
 export default GoogleMap;
