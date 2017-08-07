@@ -14,8 +14,7 @@ class Profile extends Component {
     }
   }
   
-  
-  handleFormSubmit(values){
+  handleSubmit(values){
     console.log(values)
 
   }
@@ -46,7 +45,7 @@ class Profile extends Component {
     }
   }
   render() {
-    const {handleSubmit, showPreview, fields: { firstName, lastName, email, password, zip, profilePicUrl, about}} = this.props;
+    const { showPreview} = this.props;
     
     return (
       <div className="container">
@@ -56,66 +55,32 @@ class Profile extends Component {
           </h1>
         </header>
           <div className="container">
-            <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+            <form onSubmit={this.handleSubmit()}>
               <div className="row">
                 <div className="col-md-6">
-                  <fieldset className="form-group">
-                    <label>First Name</label>
-                    <Field
-                      name="firstName"
-                      type="text"
-                      component="input"
-                      className="form-control actField" />
-                  </fieldset>
-                  <fieldset className="form-group">
-                    <label>Last Name</label>
-                    <Field
-                      name="lastName"
-                      type="text"
-                      component="input"
-                      className="form-control actField" />
-                  </fieldset>
+                  <div className="input-group">
+                    <input type='text' ref='firstName' className='form-control actField' />
+                  </div>
+                  <div className="input-group">
+                    <input type='text' ref='lastName' className='form-control actField' />
+                  </div>
                   <br />
-                  <fieldset className="form-group">
-                    <label>Email</label>
-                    <Field
-                      name="email"
-                      type="email"
-                      component="input"
-                      className="form-control actField" />
-                  </fieldset>
-                  <fieldset className="form-group">
-                    <label>Tell us About Yourself</label>
-                    <Field
-                      name="about"
-                      type="text"
-                      component="textarea"
-                      className="form-control actArea" />
-                  </fieldset>
-                  <fieldset className="form-group">
-                    <label>Zip Code</label>
-                    <Field
-                      name="zip"
-                      type="text"
-                      component="input"
-                      className="form-control actField" />
-                      {Field.error}
-                  </fieldset>
+                  <div className="input-group">
+                    <input type='text' ref='email' className='form-control actField' />
+                  </div>
+                  <div className="input-group">
+                    <input type='textarea' ref='info' className='form-control actArea' />
+                  </div>
+                  <div className="input-group">
+                    <input type='text' ref='zip' className='form-control actField' />
+                  </div>
                   {this.renderAlert()}
                 </div>
                 <div className="row">
                   <div className="col-md-6">
-                    <fieldset className="form-group actField">
-                      <label>New Profile Picture URL</label>
-                      <Field
-                        name="profilePicUrl"
-                        ref = "picUrl"
-                        type="url"
-                        component="input"
-                        className="form-control actField"
-                        // onChange={}
-                        />
-                    </fieldset>
+                    <div className="input-group">
+                      <input type='text' ref='url' className='form-control actField' />
+                    </div>
                     {this.showPreview()}
                   </div>
                 </div>
@@ -152,8 +117,5 @@ function mapStateToProps(state) {
 }
 
 Profile = connect(mapStateToProps, actions)(Profile)
-Profile = reduxForm({
-  form: "updateProfile",
-  fields: ['firstName','lastName','email','password','zip', 'profilePicUrl', 'about']})(Profile);
 
 export default Profile
