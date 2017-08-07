@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import GoogleMapsLoader from 'google-maps';
 const google = window.google;
 
 
@@ -34,7 +35,9 @@ class GoogleMap extends Component {
     }
   }
   componentDidMount() {
+    //loadJS('https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0w4Sl-VqmXIZsr12TnK3xRmIrFQ6mA&callback=initMap')
     setTimeout(this.initMap(), 200);
+
   }
 
   makeMarkers(map){
@@ -69,6 +72,7 @@ class GoogleMap extends Component {
     this.markers = [];
   }
   render(){
+    console.log('the window map made in index.js', window.gmap)
     if(window.google != undefined){
       console.log("removing markers");
       this.removeMarkers();
@@ -83,4 +87,12 @@ class GoogleMap extends Component {
   }
 }
 
+
+function loadJS(src) {
+    var ref = window.document.getElementsByTagName("script")[0];
+    var script = window.document.createElement("script");
+    script.src = src;
+    script.async = true;
+    ref.parentNode.insertBefore(script, ref);
+}
 export default GoogleMap;
