@@ -160,7 +160,10 @@ joinE(id) {
   }
 
   deleteE(id) {
-    this.props.deleteEvent(this.props.eventId);
+    this.props.deleteEvent(this.props.eventId).then(() => {
+      this.props.getUserEvents(this.props.id);
+    })
+    
   }
 
   renderEditDelete(){
