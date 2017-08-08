@@ -10,8 +10,8 @@ import GoogleMap from './googleMap';
 
 const google = window.google;
 
-const ROOT_URL = 'https://actio-backend.herokuapp.com';
-// const ROOT_URL= 'http://localhost:8080'
+// const ROOT_URL = 'https://actio-backend.herokuapp.com';
+const ROOT_URL= 'http://localhost:8080'
 
 
 class EventCard extends Component {
@@ -137,8 +137,10 @@ joinE(id) {
   this.setState({
     usersJoined: currentUsers
   })
-  axios.post(`${ROOT_URL}/api/events/${this.props.eventId}`, {userId})
-  }
+  return axios.post(`${ROOT_URL}/api/events/${this.props.eventId}`, {userId}).then(() => {
+    this.props.getUserEvents(this.props.id);
+  })
+}
 
   checkUserStatus() {
     for (var i = 0; i < this.state.usersJoined.length; i++) {

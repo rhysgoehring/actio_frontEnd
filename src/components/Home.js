@@ -45,9 +45,10 @@ class Home extends Component {
 
   renderUserEvents() {
     return _.map(this.props.userEvents, events => {
+      console.log('userEvents:', events)
       return (
         <EventCard key={events.eu_id}
-          eventId = {events.id}
+          eventId = {events.event_id}
           eventPic= {events.event_pic}
           eventTitle={events.name}
           eventDesc={events.description}
