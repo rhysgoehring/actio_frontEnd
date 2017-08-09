@@ -67,6 +67,12 @@ export function signOutUser() {
   }
 }
 
+export function updateUser(values) {
+  return function(dispatch) {
+    
+  }
+}
+
 export function getAllEvents() {
   return function(dispatch){
     return axios.get(`${ROOT_URL}/api/events`)
