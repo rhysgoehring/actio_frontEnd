@@ -418,6 +418,7 @@ img.profPicHome {
   text-align: center;
   font-size: 16px;
   width: 7.0em;
+  color: white;
 }
 
 .eventBtn:hover{
@@ -439,10 +440,26 @@ img.profPicHome {
 }
 
 .myEventImg {
-  width: 280px;
-  height: 171px;
-
+  max-width: 280px;
+  max-height: 200px;
+  min-height: 200px;
+  align-content: center;
  }
+ 
+ .myEventCard{
+   max-height: 400px;
+   min-height: 400px;
+   background-color:rgba(0, 0, 0, 0.3);
+   color: white;
+ }
+ .myEventCaption {
+   font-family: gothamReg;
+   
+ }
+.myEventText {
+  font-family: gothamReg;
+  color: white;
+}
 /*************************************************BUTTON*********************************************************/
 
 .btnMain {
