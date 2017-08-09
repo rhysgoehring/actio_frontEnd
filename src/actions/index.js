@@ -3,8 +3,8 @@ import {browserHistory} from 'react-router';
 import {AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_ALL_EVENTS, GET_USER_EVENTS, GET_OWNED_EVENTS, CREATE_EVENT, GET_EVENT, DELETE_EVENT,CHANGE_CAT_FILTER,CHANGE_SKILL_FILTER } from './types';
 
 
-const ROOT_URL = 'https://actio-backend.herokuapp.com';
-// const ROOT_URL= 'http://localhost:8080'
+// const ROOT_URL = 'https://actio-backend.herokuapp.com';
+const ROOT_URL= 'http://localhost:8080'
 
 export function signinUser({ email, password }) {
   return function(dispatch) {
@@ -53,6 +53,15 @@ export function signupUser({firstName, lastName, password, email, zip, profilePi
   }
 }
 
+export function updateUser(id, values) {
+  return function(dispatch) {
+    axios.put(`${ROOT_URL}/api/users/${id}`, values)
+      .then(response => {
+        console.log('updateUser response.data', response.data);
+      })
+  }
+}
+
 export function authError(error) {
   return {
     type: AUTH_ERROR,
@@ -67,11 +76,6 @@ export function signOutUser() {
   }
 }
 
-export function updateUser(values) {
-  return function(dispatch) {
-    
-  }
-}
 
 export function getAllEvents() {
   return function(dispatch){

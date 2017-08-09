@@ -8,7 +8,6 @@ class Profile extends Component {
 
   constructor(props){
     super(props);
-    console.log('this.props.profilePic', this.props.profilePic)
     this.state = {
       imgUrl: this.props.profilePic
     }
@@ -25,6 +24,7 @@ class Profile extends Component {
       profile_pic: this.refs.picUrl.value
     }
     console.log('updatedUser', updatedUser)
+    this.props.updateUser(this.props.userId, updatedUser)
     
 
   }
