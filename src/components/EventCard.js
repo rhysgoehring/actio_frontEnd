@@ -180,11 +180,11 @@ leaveE(id) {
   renderButtons(){
     if (this.checkUserStatus() === false) {
       return (
-        <button className='btn eventBtn pull-right' onClick={this.joinE.bind(this)}>Join Event</button>
+        <button className='btn eventBtn pull-right' style={{color:'black'}} onClick={this.joinE.bind(this)}>Join Event</button>
       )
     } else {
       return (
-        <button className='btn eventBtn pull-right' onClick={this.leaveE.bind(this)}>Leave Event</button>
+        <button className='btn eventBtn pull-right' style={{color:'black'}} onClick={this.leaveE.bind(this)}>Leave Event</button>
       )
     }
   }
@@ -298,7 +298,7 @@ leaveE(id) {
                               type="text"
                               component="textarea"
                               className="form-control" />
-                              <button type="submit" className="btn eventBtn">Comment</button>
+                              <button type="submit" className="btn eventBtn" style={{color:'black'}}>Comment</button>
                             </span>
                           </fieldset>
                         </form>
@@ -311,7 +311,7 @@ leaveE(id) {
             </Modal.Body>
             <Modal.Footer>
               {this.renderButtons()}
-              <button className="btn eventBtn" onClick={this.handleModalClick.bind(this)}>Close</button>
+              <button className="btn eventBtn" onClick={this.handleModalClick.bind(this)} style={{color:'black'}}>Close</button>
             </Modal.Footer>
           </Modal>
         </div>
