@@ -12,7 +12,8 @@ export default function(state = {}, action) {
         id: action.payload.id,
         lastName: action.payload.last_name,
         zip: action.payload.zip,
-        profPic: action.payload.profile_pic
+        profPic: action.payload.profile_pic,
+        about: action.payload.about || null
 
       };
     case UNAUTH_USER:
@@ -24,7 +25,8 @@ export default function(state = {}, action) {
         id: null,
         lastName: null,
         zip: null,
-        profPic: null
+        profPic: null,
+        about: null
       };
     case AUTH_ERROR:
       return {

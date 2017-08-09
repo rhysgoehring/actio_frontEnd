@@ -183,24 +183,14 @@ font-family: gothamReg !important;
 textarea.form-control.actArea {
   background-color: transparent;
   border: none;
-  /*border-top: none;
-  border-left: none;
-  border-right: none;*/
-  /*border-bottom-color: #8abbd7;
-  border-bottom-style: ridge;
-  border-bottom-width: 2px;*/
+  height: 100px;
+  overflow: auto;
   font-family: gothamReg;
 }
 
 textarea.form-control.actArea:focus {
   background-color: transparent;
   border: none;
-  /*border-top: none;
-  border-left: none;
-  border-right: none;*/
-  /*border-bottom-color: #8abbd7;
-  border-bottom-style: ridge;
-  border-bottom-width: 2px;*/
   font-family: gothamReg;
 }
 
@@ -223,10 +213,6 @@ textarea.form-control.actArea:-ms-input-placeholder {
 color: white !important;
 font-family: gothamReg !important;
 }
-
-
-
-
 
 input.form-control.actField {
   background-color: transparent;

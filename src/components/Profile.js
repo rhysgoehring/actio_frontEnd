@@ -55,7 +55,8 @@ class Profile extends Component {
       lastName: this.props.lastName,
       email: this.props.email,
       zip: this.props.zip,
-      profilePicUrl: this.props.profilePic
+      profilePicUrl: this.props.profilePic,
+      about: this.props.about
     }
 
     this.props.initialize(initData)
@@ -71,12 +72,13 @@ class Profile extends Component {
           </h1>
         </header>
           <div className="container">
-            <form initialValues={{firstName:'hello'}}onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+            <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
               <div className="row">
                 <div className="col-md-6">
                   <fieldset className="form-group">
                     <label>First Name</label>
                     <Field
+                      ref='firstName'
                       name="firstName"
                       type="text"
                       component="input"
@@ -86,6 +88,7 @@ class Profile extends Component {
                   <fieldset className="form-group">
                     <label>Last Name</label>
                     <Field
+                      ref='lastName'
                       name="lastName"
                       type="text"
                       component="input"
@@ -95,6 +98,7 @@ class Profile extends Component {
                   <fieldset className="form-group">
                     <label>Email</label>
                     <Field
+                      ref="email"
                       name="email"
                       type="email"
                       component="input"
@@ -103,14 +107,17 @@ class Profile extends Component {
                   <fieldset className="form-group">
                     <label>Tell us About Yourself</label>
                     <Field
+                      ref="about"
                       name="about"
                       type="text"
                       component="textarea"
-                      className="form-control actArea" />
+                      className="form-control actArea"
+                     />
                   </fieldset>
                   <fieldset className="form-group">
                     <label>Zip Code</label>
                     <Field
+                      ref="zip"
                       name="zip"
                       type="text"
                       component="input"
@@ -163,6 +170,7 @@ function mapStateToProps(state) {
     profilePic: state.auth.profPic,
     email: state.auth.email,
     zip: state.auth.zip,
+    about: state.auth.about,
     errorMessage: state.auth.error
   })
 }
