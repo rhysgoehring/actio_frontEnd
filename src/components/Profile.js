@@ -5,7 +5,7 @@ import * as actions from '../actions/index';
 import {Link} from 'react-router';
 
 class Profile extends Component {
-  
+
   constructor(props){
     super(props);
     console.log('this.props.profilePic', this.props.profilePic)
@@ -13,13 +13,13 @@ class Profile extends Component {
       imgUrl: this.props.profilePic
     }
   }
-  
-  
+
+
   handleFormSubmit(values){
     console.log(values)
 
   }
-  
+
   renderAlert() {
     if (this.props.errorMessage) {
       return (
@@ -29,7 +29,7 @@ class Profile extends Component {
       );
     }
   }
-  
+
   showPreview() {
     if (!this.state.imgUrl){
       console.log('no pic url')
@@ -45,9 +45,24 @@ class Profile extends Component {
     )
     }
   }
+  componentDidMount(){
+    this.handleInitialize();
+  }
+
+  handleInitialize(){
+    const initData = {
+      firstName: this.props.firstName,
+      lastName: this.props.lastName,
+      email: this.props.email,
+      zip: this.props.zip,
+      profilePicUrl: this.props.profilePic
+    }
+
+    this.props.initialize(initData)
+  }
   render() {
     const {handleSubmit, showPreview, fields: { firstName, lastName, email, password, zip, profilePicUrl, about}} = this.props;
-    
+
     return (
       <div className="container">
         <header>
@@ -56,7 +71,7 @@ class Profile extends Component {
           </h1>
         </header>
           <div className="container">
-            <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+            <form initialValues={{firstName:'hello'}}onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
               <div className="row">
                 <div className="col-md-6">
                   <fieldset className="form-group">
@@ -65,7 +80,8 @@ class Profile extends Component {
                       name="firstName"
                       type="text"
                       component="input"
-                      className="form-control actField" />
+                      className="form-control actField"
+                      value={this.props.firstName} />
                   </fieldset>
                   <fieldset className="form-group">
                     <label>Last Name</label>
@@ -131,9 +147,9 @@ class Profile extends Component {
               </div>
             </form>
           </div>
-       
+
       </div>
-      
+
     )
   }
 }
@@ -147,13 +163,15 @@ function mapStateToProps(state) {
     profilePic: state.auth.profPic,
     email: state.auth.email,
     zip: state.auth.zip,
-    errorMessage: state.auth.error
+    errorMessage: state.auth.error,
+    initialValues:{firstName:'hello'}
   })
 }
 
 Profile = connect(mapStateToProps, actions)(Profile)
 Profile = reduxForm({
   form: "updateProfile",
+  enableReinitialize : true,
   fields: ['firstName','lastName','email','password','zip', 'profilePicUrl', 'about']})(Profile);
 
 export default Profile
