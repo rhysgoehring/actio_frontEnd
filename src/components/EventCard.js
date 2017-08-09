@@ -10,8 +10,8 @@ import GoogleMap from './googleMap';
 
 const google = window.google;
 
-// const ROOT_URL = 'https://actio-backend.herokuapp.com';
-const ROOT_URL= 'http://localhost:8080'
+const ROOT_URL = 'https://actio-backend.herokuapp.com';
+// const ROOT_URL= 'http://localhost:8080'
 
 
 class EventCard extends Component {
@@ -142,6 +142,30 @@ joinE(id) {
   })
 }
 
+leaveE(id) {
+  const userId = this.props.id
+  const currentUsers = this.state.usersJoined
+  let newUser= {
+    id: this.props.id,
+    first_name: this.props.firstName,
+    last_name: this.props.lastName,
+    profile_pic: this.props.picUrl
+  }
+  for (let i=0; i < currentUsers.length; i++) {
+    if (userId == currentUsers[i].id) {
+      console.log('removing user');
+      currentUsers.splice(i, 1)
+    }
+  }
+
+  this.setState({
+    usersJoined: currentUsers
+  })
+  return axios.delete(`${ROOT_URL}/api/events/delete/${this.props.eventId}/${this.props.id}`).then(() => {
+    this.props.getAllEvents().then(()=> this.props.getUserEvents(this.props.id))
+  })
+}
+
   checkUserStatus() {
     for (var i = 0; i < this.state.usersJoined.length; i++) {
       if(this.state.usersJoined[i].id === this.props.id) {
@@ -157,6 +181,10 @@ joinE(id) {
     if (this.checkUserStatus() === false) {
       return (
         <button className='btn eventBtn pull-right' onClick={this.joinE.bind(this)}>Join Event</button>
+      )
+    } else {
+      return (
+        <button className='btn eventBtn pull-right' onClick={this.leaveE.bind(this)}>Leave Event</button>
       )
     }
   }

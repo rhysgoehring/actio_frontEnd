@@ -34,7 +34,7 @@ import GoogleMapsLoader from 'google-maps';
 const middleware = [reduxThunk, logger]
 const store = createStore(reducers, applyMiddleware(...middleware))
 window.GoogleMapsLoader = GoogleMapsLoader;
-GoogleMapsLoader.KEY = 'AIzaSyA3f0w4Sl-VqmXIZsr12TnK3xRmIrFQ6mA'
+GoogleMapsLoader.KEY = process.env.REACT_APP_MAP
 const token = localStorage.getItem('token');
 let currentUser = localStorage.getItem('currentUser')
 currentUser = JSON.parse(currentUser);
