@@ -293,11 +293,11 @@ joinE(id) {
       return (
         <div className="row">
           <div className='col-md-12'>
-            <div className='thumbnail'>
+            <div className='thumbnail myEventCard'>
               <img className="img-responsive myEventImg" src={this.props.eventPic} alt={this.props.eventTitle} />
-              <div className='caption'>
-                <h4>{this.props.eventTitle}</h4>
-                <p>{this.props.eventDesc}</p>
+              <div className='caption myEventCaption'>
+                <h4 className='myEventText'>{this.props.eventTitle}</h4>
+                <p className='myEventText'>{this.props.eventDesc}</p>
                 <button className='card-link eventBtn' onClick={this.handleModalClick.bind(this)}>See More</button>
                 <Modal
                   show={this.state.showModal} dialogClassName="custom-modal"

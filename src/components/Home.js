@@ -172,7 +172,7 @@ function mapStateToProps(state) {
     allEvents: state.allEvents,
     viewableEvents: createViewable(state.allEvents, state.filters.skillFilter, state.filters.categoryFilter),
     markerData: getMapMarkerData(createViewable(state.allEvents,state.filters.skillFilter ,  state.filters.categoryFilter)),
-    userEvents: state.userEvents,
+    userEvents: state.userEvents.myEvents,
     skillFilter: 'SHOW_ALL',
     categoryFilter: 'SHOW_ALL'
   })

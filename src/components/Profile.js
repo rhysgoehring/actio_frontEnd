@@ -163,8 +163,7 @@ function mapStateToProps(state) {
     profilePic: state.auth.profPic,
     email: state.auth.email,
     zip: state.auth.zip,
-    errorMessage: state.auth.error,
-    initialValues:{firstName:'hello'}
+    errorMessage: state.auth.error
   })
 }
 
