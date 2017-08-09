@@ -33,6 +33,7 @@ class GoogleMap extends Component {
             map: this.map
           });
     }
+    this.makeMarkers(this.map)
   }
   componentDidMount() {
     //loadJS('https://maps.googleapis.com/maps/api/js?key=AIzaSyA3f0w4Sl-VqmXIZsr12TnK3xRmIrFQ6mA&callback=initMap')
