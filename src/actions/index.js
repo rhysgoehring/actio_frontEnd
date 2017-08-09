@@ -58,6 +58,14 @@ export function updateUser(id, values) {
     axios.put(`${ROOT_URL}/api/users/${id}`, values)
       .then(response => {
         console.log('updateUser response.data', response.data);
+        const currentUser = response.data[0];
+        localStorage.removeItem('currentUser');
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        dispatch({
+          type:AUTH_USER,
+          payload:currentUser
+        })
+        browserHistory.push('/home')
       })
   }
 }
