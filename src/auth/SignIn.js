@@ -57,10 +57,10 @@ class SignIn extends Component {
                   {this.renderAlert()}
                 </div>
                   <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-6 col-xs-6">
                       <button action="submit" className="btn pull-right auth_btn">Sign In</button>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 col-xs-6">
                       <Link className="btn auth_btn" to="/signup">Sign Up</Link>
                     </div>
                   </div>

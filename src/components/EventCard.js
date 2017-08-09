@@ -311,7 +311,7 @@ leaveE(id) {
             </Modal.Body>
             <Modal.Footer>
               {this.renderButtons()}
-              <button className="btn eventBtn" onClick={this.handleModalClick.bind(this)} style={{color:'black'}}>Close</button>
+              <button style={{color:'black'}} className="btn eventBtn" onClick={this.handleModalClick.bind(this)}>Close</button>
             </Modal.Footer>
           </Modal>
         </div>
