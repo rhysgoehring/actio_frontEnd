@@ -40,6 +40,7 @@ class EditEvent extends Component {
   componentDidMount() {
     console.log('this.props.params', this.props.params.id);
     window.GoogleMapsLoader.load(this.initMap);
+    this.props.getEvent(this.props.params.id);
   }
 
   initMap(){

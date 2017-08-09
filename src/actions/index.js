@@ -118,7 +118,7 @@ export function createEvent(newEvent) {
 
 export function getEvent(id){
   return function(dispatch){
-    axios.get(`${ROOT_URL}/api/events/${id}`).then(response => {
+    return axios.get(`${ROOT_URL}/api/events/${id}`).then(response => {
      dispatch({
        type: GET_EVENT,
        payload: response.data
