@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm, initialize} from 'redux-form';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import * as actions from '../actions';
@@ -10,7 +10,7 @@ const ROOT_URL = 'https://actio-backend.herokuapp.com';
 // const ROOT_URL= 'http://localhost:8080'
 
 class EditEventForm extends Component {
- 
+
  handleFormSubmit(values) {
    let newEvent= {
      name : this.refs.name.value,
@@ -25,7 +25,7 @@ class EditEventForm extends Component {
      lng: this.props.lng
    }
    console.log('handleFormSubmit this.refs', this.refs)
-   
+
    console.log('newEvent', newEvent)
    console.log('this.props', this.props);
    axios.patch(`${ROOT_URL}/api/events/${this.props.editId}`, newEvent)
@@ -35,16 +35,36 @@ class EditEventForm extends Component {
          this.props.getUserEvents(this.props.id).then(() =>{
            browserHistory.push('/home')
          })
-           
+
        })
-       
-     
+
+
      }
    })
 
-   
+
    }
-  
+
+   componentDidMount(){
+     this.initializeForm();
+   }
+
+   initializeForm(){
+     console.log('props of edit event', this.props)
+     if(this.props.selectedEvent){
+       console.log('here')
+       const initData = {
+          'name': this.props.selectedEvent.name,
+          'event_date': this.props.selectedEvent.event_date,
+          'cat_id':this.props.selectedEvent.cat_id,
+          'location':this.props.selectedEvent.location,
+          'event_pic':this.props.selectedEvent.event_pic,
+          'skill_level':this.props.selectedEvent.skill_level,
+          'description':this.props.selectedEvent.description
+        }
+       this.props.initialize(initData)
+     }
+   }
   render() {
      const {handleSubmit, fields: {name, event_date, cat_id, event_pic, skill_level, description}} = this.props
     return(
@@ -105,7 +125,7 @@ class EditEventForm extends Component {
                    style={{color:'black'}}
                    className="form-control actField" />
                </fieldset>
-  
+
              </div>
              <div className='row'>
                <fieldset className="form-group col-md-6">
@@ -154,12 +174,14 @@ function mapStateToProps(state) {
     lastName: state.auth.lastName,
     picUrl: state.auth.profPic,
     zip: state.auth.zip,
+    selectedEvent: state.allEvents.selectedEvent
   })
 }
 
 EditEventForm = connect(mapStateToProps,actions)(EditEventForm)
 EditEventForm = reduxForm({
   form: 'editEvent',
+  enableReinitialize : true,
   fields: ['name', 'event_date', 'cat_id', 'location', 'event_pic', 'skill_level', 'description']
 })(EditEventForm);
 
