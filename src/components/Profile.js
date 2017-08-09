@@ -16,7 +16,16 @@ class Profile extends Component {
 
 
   handleFormSubmit(values){
-    console.log(values)
+    const updatedUser = {
+      first_name: this.refs.firstName.value,
+      last_name: this.refs.lastName.value,
+      email: this.refs.email.value,
+      about: this.refs.about.value,
+      zip: this.refs.zip.value,
+      profile_pic: this.refs.picUrl.value
+    }
+    console.log('updatedUser', updatedUser)
+    
 
   }
 
