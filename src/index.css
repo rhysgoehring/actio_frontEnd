@@ -444,11 +444,13 @@ img.profPicHome {
  }
  .myEventCaption {
    font-family: gothamReg;
-
+   height: 130px;
+   
  }
 .myEventText {
   font-family: gothamReg;
   color: white;
+  text-overflow: ellipsis;
 }
 /*************************************************BUTTON*********************************************************/
 
