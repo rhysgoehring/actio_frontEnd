@@ -63,12 +63,12 @@ class EventCard extends Component {
    } else {
      this.getOwnerInfo(this.props.eventOwner)
      .then((data) => this.getMessages(data))
-     .then((data) => this.getUsersJoined(data)) // <-- here
+     .then((data) => this.getUsersJoined(data))
      .then((eventInfo) => {
        this.setState({
          eventOwner: eventInfo['owner'],
          messages: eventInfo['messages'],
-  	     usersJoined: eventInfo['usersJoined'], // then add it to the state change
+  	     usersJoined: eventInfo['usersJoined'],
          showModal: true
        })
      })

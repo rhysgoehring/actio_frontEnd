@@ -370,6 +370,7 @@ img.profPicHome {
 
 .actList {
   list-style-type: none;
+  font-family: gothamReg;
 }
 
 .eventCardImg {
@@ -394,7 +395,7 @@ img.profPicHome {
 
 .allEventDetails {
   margin-top: 4.0em;
-
+  font-family: gothamReg;
 
 }
 
@@ -424,6 +425,7 @@ img.profPicHome {
 
 .allEventTitle {
  margin-top: 2.0em;
+ font-family: gothamReg;
 }
 
 .myEventImg {
@@ -438,6 +440,7 @@ img.profPicHome {
    min-height: 400px;
    background-color:rgba(0, 0, 0, 0.3);
    color: white;
+   font-family: gothamReg;
  }
  .myEventCaption {
    font-family: gothamReg;
@@ -1001,10 +1004,12 @@ img.profPicHome {
   width: 100%;
   border: 0;
   height: 100%;
-  background-color: rgba(0,0,0,0.1)
+  background-color: rgba(0,0,0,0.1);
+  font-family: gothamReg;
 }
 
 .ec_btn:hover{
   width: 100%;
   height: 100%;
+  font-family: gothamReg;
 }
