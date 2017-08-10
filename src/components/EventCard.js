@@ -145,7 +145,7 @@ joinE(id) {
 leaveE(id) {
   const userId = this.props.id
   const currentUsers = this.state.usersJoined
-  
+
   for (let i=0; i < currentUsers.length; i++) {
     if (userId === currentUsers[i].id) {
       currentUsers.splice(i, 1)
@@ -319,7 +319,7 @@ leaveE(id) {
               <img className="img-responsive myEventImg" src={this.props.eventPic} alt={this.props.eventTitle} />
               <div className='caption myEventCaption'>
                 <h4 className='myEventText'>{this.props.eventTitle}</h4>
-                <p className='myEventText'>{this.props.eventDesc}</p>
+                <p className='myEventText'>{truncateEventText(this.props.eventDesc)}</p>
               </div>
               <div className="ec_btn_container">
                 <button className='card-link eventBtn ec_btn' onClick={this.handleModalClick.bind(this)}>See More</button>
@@ -398,6 +398,18 @@ leaveE(id) {
     }
    }
   }
+
+function truncateEventText(text){
+  let limit = 136
+  if(text.length > limit){
+    while(text[limit] != ' '){
+      limit --;
+    }
+    let res = text.slice(0,limit) + '...';
+    return res
+  }
+  return text;
+}
 
 function mapStateToProps(state) {
   return ({
