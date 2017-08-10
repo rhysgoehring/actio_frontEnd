@@ -11,8 +11,6 @@ export function signinUser({ email, password }) {
 
     axios.post(`${ROOT_URL}/api/signin`, { email, password })
     .then(response => {
-        console.log('response.data', response.data)
-
         const currentUser = response.data.currentUser
         const token = response.data.token
         dispatch(
@@ -35,9 +33,7 @@ export function signupUser({firstName, lastName, password, email, zip, profilePi
   return function(dispatch) {
     axios.post(`${ROOT_URL}/api/users/`, { firstName,lastName,password, email, zip, profilePicUrl})
       .then(response => {
-        console.log('response', response)
         const currentUser = response.data.currentUser
-        console.log('$$$signedUpUser: ', currentUser)
         const token = response.data.token
         dispatch(
           {
@@ -57,7 +53,6 @@ export function updateUser(id, values) {
   return function(dispatch) {
     axios.put(`${ROOT_URL}/api/users/${id}`, values)
       .then(response => {
-        console.log('updateUser response.data', response.data);
         const currentUser = response.data[0];
         localStorage.removeItem('currentUser');
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
@@ -89,7 +84,6 @@ export function getAllEvents() {
   return function(dispatch){
     return axios.get(`${ROOT_URL}/api/events`)
       .then(response => {
-        console.log('allevents repsonse.data', response.data);
         dispatch({
           type: GET_ALL_EVENTS,
           payload: response.data
@@ -125,7 +119,6 @@ export function getOwnedEvents(id){
 export function createEvent(newEvent) {
   return function(dispatch) {
     return axios.post(`${ROOT_URL}/api/events`, newEvent).then(response => {
-      console.log('crateEvent response:', response);
       dispatch({
         type: CREATE_EVENT,
         payload: response.data
@@ -151,7 +144,6 @@ export function deleteEvent(id){
       .then((data) => {
         axios.get(`${ROOT_URL}/api/events`)
         .then((response) =>{
-          console.log('deleteEvent getAllEvents', response);
           dispatch({
             type: DELETE_EVENT,
             payload: response.data
@@ -164,7 +156,7 @@ export function deleteEvent(id){
 export function changeCatFilter(filter){
   return function(dispatch){
     dispatch({
-      type:CHANGE_CAT_FILTER,
+      type: CHANGE_CAT_FILTER,
       filterType: filter
     })
   }
@@ -173,7 +165,7 @@ export function changeCatFilter(filter){
 export function changeSkillFilter(filter){
   return function(dispatch){
     dispatch({
-      type:CHANGE_SKILL_FILTER,
+      type: CHANGE_SKILL_FILTER,
       filterType: filter
     })
   }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col, Image} from 'react-bootstrap';
+import {Grid, Row, Col} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 import GoogleMap from './googleMap';
@@ -10,9 +10,7 @@ import EventFilter from './EventFilter';
 
 
 class Home extends Component {
-  constructor(props){
-    super(props);
-  }
+  
 
   componentDidMount() {
     this.props.getAllEvents();
@@ -45,7 +43,6 @@ class Home extends Component {
 
   renderUserEvents() {
     return _.map(this.props.userEvents, events => {
-      console.log('userEvents:', events)
       return (
         <EventCard key={events.eu_id}
           eventId = {events.event_id}
@@ -145,14 +142,13 @@ function getMapMarkerData(events){
 
 function filterByCategory(unfiltered, id){
   return _.filter(unfiltered, (ev) =>{
-    return ev.cat_id == id;
+    return ev.cat_id === id;
   })
 }
 
 function filterBySkill(unfiltered, id){
   return _.filter(unfiltered, (ev) =>{
-    console.log("the skill level!", ev.skill_level)
-    return ev.skill_level == id;
+    return ev.skill_level === id;
   })
 }
 

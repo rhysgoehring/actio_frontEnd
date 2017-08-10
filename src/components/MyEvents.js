@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col, Image} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 import EventCard from './EventCard';
@@ -39,7 +38,6 @@ class MyEvents extends Component {
   
   renderUserEvents() {
     return _.map(this.props.userEvents.myEvents, events => {
-      console.log('mapped events', events);
       return (
         <div className="col-md-3" key={events.eu_id}>
           <EventCard
@@ -60,7 +58,6 @@ class MyEvents extends Component {
   }
 
   render(){
-    console.log('this.props.userEvents', this.props.userEvents)
     return (
       <div>
         <div className="container">

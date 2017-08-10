@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 import {Link} from 'react-router';
-import Landing from '../components/Landing';
 
 class SignOut extends Component {
   componentWillMount(){

@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import {GET_USER_EVENTS, GET_OWNED_EVENTS} from '../actions/types';
 
 

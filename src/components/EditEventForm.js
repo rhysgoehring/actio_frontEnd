@@ -24,10 +24,7 @@ class EditEventForm extends Component {
      lat: this.props.lat,
      lng: this.props.lng
    }
-   console.log('handleFormSubmit this.refs', this.refs)
-
-   console.log('newEvent', newEvent)
-   console.log('this.props', this.props);
+   
    axios.patch(`${ROOT_URL}/api/events/${this.props.editId}`, newEvent)
    .then(response => {
      if (response.statusText === 'OK') {
@@ -35,14 +32,9 @@ class EditEventForm extends Component {
          this.props.getUserEvents(this.props.id).then(() =>{
            browserHistory.push('/home')
          })
-
        })
-
-
      }
    })
-
-
    }
 
    componentDidMount(){
@@ -50,9 +42,8 @@ class EditEventForm extends Component {
    }
 
    initializeForm(){
-     console.log('props of edit event', this.props)
      if(this.props.selectedEvent){
-       console.log('here')
+      
        const initData = {
           'name': this.props.selectedEvent.name,
           'event_date': this.props.selectedEvent.event_date,
@@ -66,7 +57,7 @@ class EditEventForm extends Component {
      }
    }
   render() {
-     const {handleSubmit, fields: {name, event_date, cat_id, event_pic, skill_level, description}} = this.props
+     const {handleSubmit} = this.props
     return(
       <div className='container newEventForm'>
         <header>
