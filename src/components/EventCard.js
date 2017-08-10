@@ -193,7 +193,7 @@ leaveE(id) {
     this.props.deleteEvent(this.props.eventId).then(() => {
       this.props.getUserEvents(this.props.id);
     })
-    
+
   }
 
   renderEditDelete(){
@@ -230,7 +230,7 @@ leaveE(id) {
               <div className='col-md-5 col-md-offset-0 col-md-pull-1 col-xs-9 col-xs-offset-1'>
                   <h4 className="card-title text-center allEventTitle" style={{marginLeft: '2.0em'}}><strong>{this.props.eventTitle}</strong></h4>
                   <p className="card-text text-left allEventDesc">{this.props.eventDesc}</p>
-                  <div className='row container allEventDetails'>
+                  <div className='row allEventDetails'>
                     <ul className="actList">
                       <li>At: <strong>{this.props.eventLocation}</strong></li>
                       <li>On: <strong>{this.props.eventDate}</strong></li>
@@ -326,7 +326,11 @@ leaveE(id) {
               <div className='caption myEventCaption'>
                 <h4 className='myEventText'>{this.props.eventTitle}</h4>
                 <p className='myEventText'>{this.props.eventDesc}</p>
-                <button className='card-link eventBtn' onClick={this.handleModalClick.bind(this)}>See More</button>
+              </div>
+              <div className="ec_btn_container">
+                <button className='card-link eventBtn ec_btn' onClick={this.handleModalClick.bind(this)}>See More</button>
+              </div>
+
                 <Modal
                   show={this.state.showModal} dialogClassName="custom-modal"
                   className='actModal'>
@@ -392,7 +396,7 @@ leaveE(id) {
                     <button className="btn eventBtn" onClick={this.handleModalClick.bind(this)}>Close</button>
                   </Modal.Footer>
                 </Modal>
-              </div>
+
             </div>
           </div>
         </div>
