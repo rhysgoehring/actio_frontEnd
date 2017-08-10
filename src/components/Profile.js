@@ -71,7 +71,7 @@ class Profile extends Component {
     this.props.initialize(initData)
   }
   render() {
-    const {handleSubmit, showPreview, fields: { firstName, lastName, email, password, zip, profilePicUrl, about}} = this.props;
+    const {handleSubmit} = this.props;
 
     return (
       <div className="container">

@@ -15,10 +15,6 @@ const INITIAL_LOCATION = {
 
 const INITIAL_ZOOM = 8
 
-const ATLANTIC_OCEAN = {
-  latitude: 29.532804,
-  longitude: -55.491477
-};
 
 class NewEvent extends Component {
   constructor(props) {
@@ -41,7 +37,7 @@ class NewEvent extends Component {
   }
 
   initMap(){
-    if(window.google != undefined){
+    if(window.google !== undefined){
       this.map = new window.google.maps.Map(this.refs.map2, {
         zoom: INITIAL_ZOOM,
         center: {
@@ -63,8 +59,6 @@ class NewEvent extends Component {
   }
   geoCodeAddress(address) {
   this.geocoder.geocode({ 'address': address }, function handleResults(results, status) {
-    console.log('status', status);
-    console.log('results', results);
     if (status === window.google.maps.GeocoderStatus.OK) {
 
       this.setState({
@@ -102,9 +96,7 @@ class NewEvent extends Component {
     }
   }
 
-  render(){
-    const {handleFormSubmit} = this.props
-
+  render() {
     return(
       <div className='container'>
         <div className='row'>

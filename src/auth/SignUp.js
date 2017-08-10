@@ -7,7 +7,6 @@ import {Link} from 'react-router';
 class SignUp extends Component {
 
   handleFormSubmit(values){
-    console.log(values)
     this.props.signupUser(values);
   }
 
@@ -37,7 +36,7 @@ class SignUp extends Component {
     }
   }
   render() {
-    const {handleSubmit, showPreview, fields: { firstName, lastName, email, password, zip, profilePicUrl}} = this.props;
+    const {handleSubmit} = this.props;
 
     return (
       <div>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col, Modal} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 import _ from 'lodash';
@@ -145,15 +145,9 @@ joinE(id) {
 leaveE(id) {
   const userId = this.props.id
   const currentUsers = this.state.usersJoined
-  let newUser= {
-    id: this.props.id,
-    first_name: this.props.firstName,
-    last_name: this.props.lastName,
-    profile_pic: this.props.picUrl
-  }
+  
   for (let i=0; i < currentUsers.length; i++) {
-    if (userId == currentUsers[i].id) {
-      console.log('removing user');
+    if (userId === currentUsers[i].id) {
       currentUsers.splice(i, 1)
     }
   }
@@ -180,11 +174,11 @@ leaveE(id) {
   renderButtons(){
     if (this.checkUserStatus() === false) {
       return (
-        <button className='btn eventBtn pull-right' style={{color:'black'}} onClick={this.joinE.bind(this)}>Join Event</button>
+        <button style={{color:'black'}} className='btn eventBtn pull-right' onClick={this.joinE.bind(this)}>Join Event</button>
       )
     } else {
       return (
-        <button className='btn eventBtn pull-right' style={{color:'black'}} onClick={this.leaveE.bind(this)}>Leave Event</button>
+        <button style={{color:'black'}} className='btn eventBtn pull-right' onClick={this.leaveE.bind(this)}>Leave Event</button>
       )
     }
   }
@@ -298,7 +292,7 @@ leaveE(id) {
                               type="text"
                               component="textarea"
                               className="form-control" />
-                              <button type="submit" className="btn eventBtn" style={{color:'black'}}>Comment</button>
+                              <button style={{color:'black'}} type="submit" className="btn eventBtn">Comment</button>
                             </span>
                           </fieldset>
                         </form>
@@ -376,7 +370,7 @@ leaveE(id) {
                                     type="text"
                                     component="textarea"
                                     className="form-control" />
-                                    <button type="submit" className="btn eventBtn">Comment</button>
+                                    <button style={{color:'black'}} type="submit" className="btn eventBtn">Comment</button>
                                   </span>
                                 </fieldset>
                               </form>
@@ -389,7 +383,7 @@ leaveE(id) {
                   </Modal.Body>
                   <Modal.Footer>
                     {this.renderButtons()}
-                    <button className="btn eventBtn" onClick={this.handleModalClick.bind(this)}>Close</button>
+                    <button style={{color:'black'}} className="btn eventBtn" onClick={this.handleModalClick.bind(this)}>Close</button>
                   </Modal.Footer>
                 </Modal>
               </div>

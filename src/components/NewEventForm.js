@@ -37,7 +37,7 @@ class NewEventForm extends Component {
  
   
   render() {
-     const {handleSubmit, fields: {name, event_date, cat_id, event_pic, skill_level, description}} = this.props
+     const {handleSubmit} = this.props
     return(
       <div className='container newEventForm'>
         <header>

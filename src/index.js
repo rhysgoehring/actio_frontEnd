@@ -4,7 +4,6 @@ import {Provider} from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {createStore, applyMiddleware} from 'redux';
-import logger from 'redux-logger';
 import reduxThunk from 'redux-thunk';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -28,8 +27,8 @@ import EditEvent from './components/EditEvent';
 import GoogleMapsLoader from 'google-maps';
 
 
-const middleware = [reduxThunk, logger]
-const store = createStore(reducers, applyMiddleware(...middleware))
+
+const store = createStore(reducers, applyMiddleware(reduxThunk))
 window.GoogleMapsLoader = GoogleMapsLoader;
 GoogleMapsLoader.KEY = process.env.REACT_APP_MAP
 const token = localStorage.getItem('token');

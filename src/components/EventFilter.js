@@ -15,9 +15,9 @@ class EventFilter extends Component {
   }
 
   selectSkillLevel(eventKey){
-    console.log('here');
     this.props.changeSkillFilter(eventKey);
   }
+  
   render(){
     return (
       <div className='row filterRow'>
