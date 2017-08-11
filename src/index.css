@@ -288,14 +288,15 @@ img.profPicHome {
 .custom-modal{
   width: 70%;
 }
-.in{
+.in {
   min-height: 228px !important;
   border-top: 0px;
 }
 
-.collapsing{
+.collapsing {
   border-top: 0px;
 }
+
 .body {
   font-family: gothamReg;
   padding-top: 65px;

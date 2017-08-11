@@ -402,7 +402,7 @@ leaveE(id) {
 function truncateEventText(text){
   let limit = 136
   if(text.length > limit){
-    while(text[limit] != ' '){
+    while(text[limit] !== ' '){
       limit --;
     }
     let res = text.slice(0,limit) + '...';
