@@ -400,7 +400,7 @@ leaveE(id) {
   }
 
 function truncateEventText(text){
-  let limit = 136
+  let limit = 116
   if(text.length > limit){
     while(text[limit] !== ' '){
       limit --;
