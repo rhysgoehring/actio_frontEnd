@@ -40,17 +40,18 @@ class MyEvents extends Component {
     return _.map(this.props.userEvents.myEvents, events => {
       return (
         <div className="col-md-3" key={events.eu_id}>
-          <EventCard
-            eventId= {events.id}
+          <EventCard key={events.eu_id}
+            eventId = {events.event_id}
             eventPic= {events.event_pic}
             eventTitle={events.name}
             eventDesc={events.description}
             icon={events.icon}
+            catName={events.title}
             eventLocation={events.location}
             eventDate={events.event_date}
             eventOwner={events.owner_id}
-            eventLat={parseInt(events.lat)}
-            eventLng={parseInt(events.lng)}
+            eventLat={events.lat}
+            eventLng={events.lng}
           />
       </div>
       )
