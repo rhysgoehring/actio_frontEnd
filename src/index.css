@@ -437,8 +437,8 @@ img.profPicHome {
  }
 
  .myEventCard{
-   max-height: 400px;
-   min-height: 400px;
+   max-height: 420px;
+   min-height: 420px;
    background-color:rgba(0, 0, 0, 0.3);
    color: white;
    font-family: gothamReg;
@@ -446,7 +446,7 @@ img.profPicHome {
  .myEventCaption {
    font-family: gothamReg;
    height: 130px;
-   
+
  }
 .myEventText {
   font-family: gothamReg;
@@ -997,7 +997,7 @@ img.profPicHome {
 
 .ec_btn_container{
   position: absolute;
-  bottom: 20px;
+  bottom: 21px;
   left:16px;
   right:16px;
   height: 60px;
