@@ -264,9 +264,9 @@ leaveE(id) {
                     <div className='col-md-5'>
                       <h4 className='text-center'><strong>Event Info</strong></h4>
                       <div className='row container'>
-                        <ul className='list-inline'>
-                          <li className="list-inline-item">At: <strong>{this.props.eventLocation}</strong></li>
-                          <li className="list-inline-item">On: <strong>{this.props.eventDate}</strong></li>
+                        <ul style={{listStyle:'none'}} className='list-group'>
+                          <li>At: <strong>{this.props.eventLocation}</strong></li>
+                          <li>On: <strong>{this.props.eventDate}</strong></li>
                         </ul>
                       </div>
                       <GoogleMap
@@ -346,9 +346,9 @@ leaveE(id) {
                           <div className='col-md-5'>
                             <h4 className='text-center'><strong>Event Info</strong></h4>
                             <div className='row container'>
-                              <ul className='list-inline'>
-                                <li className="list-inline-item">At: <strong>{this.props.eventLocation}</strong></li>
-                                <li className="list-inline-item">On: <strong>{this.props.eventDate}</strong></li>
+                              <ul style={{listStyle:'none'}} className='list-group'>
+                                <li>At: <strong>{this.props.eventLocation}</strong></li>
+                                <li>On: <strong>{this.props.eventDate}</strong></li>
                               </ul>
                             </div>
                             <GoogleMap
