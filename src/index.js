@@ -31,16 +31,6 @@ const store = createStore(reducers, applyMiddleware(reduxThunk))
 window.GoogleMapsLoader = GoogleMapsLoader;
 GoogleMapsLoader.KEY = process.env.REACT_APP_MAP
 
-function log() {
-  console.log('blocking warning')
-}
-
-window.addEventListener("touchstart", log, {passive: true} );
-window.addEventListener("touchmove", log, {passive: true} );
-window.addEventListener("mousewheel", log, {passive: true} );
-window.addEventListener("wheel", log, {passive: true} );
-
-
 const token = localStorage.getItem('token');
 let currentUser = localStorage.getItem('currentUser')
 currentUser = JSON.parse(currentUser);
