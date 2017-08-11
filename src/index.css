@@ -23,6 +23,7 @@ html{
   height: 100%;
 }
 
+
 #root{
   height: 100%;
 }
@@ -354,7 +355,9 @@ img.profPicHome {
 /*************************************************HOME********************************************************/
 .allEventPic{
 
-  height: 251px;
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
   border-radius: 0.75rem;
 
 
@@ -371,6 +374,8 @@ img.profPicHome {
 
 .actList {
   list-style-type: none;
+  padding-left: 2.0em;
+  padding-right: 2.0em;
   font-family: gothamReg;
 }
 
@@ -383,19 +388,22 @@ img.profPicHome {
 }
 
 .eventCardContainer {
+
   margin-top: 1.0em;
   margin-bottom: 1.0em;
   border-radius: 0.2em;
 }
 
 .allEventDesc {
-  margin-top: 4.0em;
+  margin-top: 2.0em;
+  padding-left: 2.0em;
+  padding-right: 2.0em;
 
 
 }
 
 .allEventDetails {
-  margin-top: 4.0em;
+  margin-top: 2.0em;
   font-family: gothamReg;
 
 }
@@ -425,7 +433,7 @@ img.profPicHome {
 }
 
 .allEventTitle {
- margin-top: 2.0em;
+  font-size: 24px;
  font-family: gothamReg;
 }
 
