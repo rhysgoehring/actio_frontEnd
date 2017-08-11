@@ -13,7 +13,6 @@ class Profile extends Component {
     }
   }
 
-
   handleFormSubmit(values){
     const updatedUser = {
       first_name: this.refs.firstName.value,
