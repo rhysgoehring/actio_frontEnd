@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import registerServiceWorker from './registerServiceWorker';
+
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {createStore, applyMiddleware} from 'redux';
 import reduxThunk from 'redux-thunk';
@@ -36,7 +36,6 @@ let currentUser = localStorage.getItem('currentUser')
 currentUser = JSON.parse(currentUser);
 
 if (token && currentUser) {
-  // we need to update application state
   store.dispatch({ type: AUTH_USER, payload: currentUser });
   browserHistory.push('/home')
 }
@@ -58,4 +57,4 @@ ReactDOM.render(
     </Router>
   </Provider>, document.getElementById('root')
 );
-registerServiceWorker();
+
