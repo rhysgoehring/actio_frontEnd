@@ -12,7 +12,7 @@ class MyEvents extends Component {
   componentDidMount() {
     // this.props.getUserEvents(this.props.id);
     this.props.getOwnedEvents(this.props.id);
-    
+
   }
 
   renderOwnedEvents(){
@@ -35,7 +35,7 @@ class MyEvents extends Component {
       )
     })
   }
-  
+
   renderUserEvents() {
     return _.map(this.props.userEvents.myEvents, events => {
       return (
