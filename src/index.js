@@ -9,7 +9,6 @@ import reduxThunk from 'redux-thunk';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
-
 import {AUTH_USER} from './actions/types';
 import reducers from './reducers/index';
 
