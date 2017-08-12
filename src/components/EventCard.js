@@ -313,7 +313,7 @@ leaveE(id) {
             <div className='thumbnail myEventCard'>
               <img className="img-responsive myEventImg" src={this.props.eventPic} alt={this.props.eventTitle} />
               <div className='caption myEventCaption'>
-                <h4 className='myEventText'>{this.props.eventTitle}</h4>
+                <h4 className='myEventText'><strong>{this.props.eventTitle}</strong></h4>
                 <p className='myEventText'>{truncateEventText(this.props.eventDesc)}</p>
               </div>
               <div className="ec_btn_container">
