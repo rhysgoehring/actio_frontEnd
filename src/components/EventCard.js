@@ -24,8 +24,7 @@ class EventCard extends Component {
       messages: [],
       usersJoined: []
     })
-
- }
+  }
 
   componentDidMount(){
    this.getOwnerInfo(this.props.eventOwner)
@@ -33,6 +32,7 @@ class EventCard extends Component {
    .then((data) => this.getUsersJoined(data))
    .then((eventInfo) => {
      this.setState({
+       eventInfo: eventInfo,
        eventOwner: eventInfo['owner'],
        messages: eventInfo['messages'],
        usersJoined: eventInfo['usersJoined']
@@ -55,11 +55,11 @@ class EventCard extends Component {
   }
 
   getMessages(eventInfo){
-   return axios.get(`${ROOT_URL}/api/events/${this.props.eventId}/messages`).then(response =>{
-     eventInfo['messages'] = response.data
-     return eventInfo
-   })
- }
+    return axios.get(`${ROOT_URL}/api/events/${this.props.eventId}/messages`).then(response =>{
+      eventInfo['messages'] = response.data
+      return eventInfo
+    })
+  }
 
   getUsersJoined(eventInfo){
    return axios.get(`${ROOT_URL}/api/events/${this.props.eventId}/users`).then(response => {
@@ -79,6 +79,7 @@ class EventCard extends Component {
 
    }
   }
+
   renderOwnerInfo() {
     return (
     <div>
@@ -114,55 +115,55 @@ class EventCard extends Component {
     )
   }
 
-onSubmit(values) {
-  let currentMessages = this.state.messages
-  let body = values.body
-  let title = this.props.firstName
-  let message = {title:title, body:body, event_id:this.props.eventId}
-  currentMessages.push(message);
-  this.setState({
-    messages: currentMessages
-  })
-  axios.post(`${ROOT_URL}/api/messages`, message);
-  this.props.dispatch(reset('comments'));
-}
-
-joinE(id) {
-  const userId = this.props.id
-  const currentUsers = this.state.usersJoined
-  let newUser= {
-    id: this.props.id,
-    first_name: this.props.firstName,
-    last_name: this.props.lastName,
-    profile_pic: this.props.picUrl
+  onSubmit(values) {
+    let currentMessages = this.state.messages
+    let body = values.body
+    let title = this.props.firstName
+    let message = {title:title, body:body, event_id:this.props.eventId}
+    currentMessages.push(message);
+    this.setState({
+      messages: currentMessages
+    })
+    axios.post(`${ROOT_URL}/api/messages`, message);
+    this.props.dispatch(reset('comments'));
   }
 
-  currentUsers.push(newUser)
-  this.setState({
-    usersJoined: currentUsers
-  })
-  return axios.post(`${ROOT_URL}/api/events/${this.props.eventId}`, {userId}).then(() => {
-    this.props.getUserEvents(this.props.id);
-  })
-}
-
-leaveE(id) {
-  const userId = this.props.id
-  const currentUsers = this.state.usersJoined
-
-  for (let i=0; i < currentUsers.length; i++) {
-    if (userId === currentUsers[i].id) {
-      currentUsers.splice(i, 1)
+  joinE(id) {
+    const userId = this.props.id
+    const currentUsers = this.state.usersJoined
+    let newUser= {
+      id: this.props.id,
+      first_name: this.props.firstName,
+      last_name: this.props.lastName,
+      profile_pic: this.props.picUrl
     }
+
+    currentUsers.push(newUser)
+    this.setState({
+      usersJoined: currentUsers
+    })
+    return axios.post(`${ROOT_URL}/api/events/${this.props.eventId}`, {userId}).then(() => {
+      this.props.getUserEvents(this.props.id);
+    })
   }
 
-  this.setState({
-    usersJoined: currentUsers
-  })
-  return axios.delete(`${ROOT_URL}/api/events/delete/${this.props.eventId}/${this.props.id}`).then(() => {
-    this.props.getAllEvents().then(()=> this.props.getUserEvents(this.props.id))
-  })
-}
+  leaveE(id) {
+    const userId = this.props.id
+    const currentUsers = this.state.usersJoined
+
+    for (let i=0; i < currentUsers.length; i++) {
+      if (userId === currentUsers[i].id) {
+        currentUsers.splice(i, 1)
+      }
+    }
+
+    this.setState({
+      usersJoined: currentUsers
+    })
+    return axios.delete(`${ROOT_URL}/api/events/delete/${this.props.eventId}/${this.props.id}`).then(() => {
+      this.props.getAllEvents().then(()=> this.props.getUserEvents(this.props.id))
+    })
+  }
 
   checkUserStatus() {
     for (var i = 0; i < this.state.usersJoined.length; i++) {
@@ -172,8 +173,6 @@ leaveE(id) {
     }
       return false;
   }
-
-
 
   renderButtons(){
     if (this.checkUserStatus() === false) {
