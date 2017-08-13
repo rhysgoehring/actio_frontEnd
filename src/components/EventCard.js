@@ -27,7 +27,7 @@ class EventCard extends Component {
 
  }
 
- componentDidMount(){
+  componentDidMount(){
    this.getOwnerInfo(this.props.eventOwner)
    .then((data) => this.getMessages(data))
    .then((data) => this.getUsersJoined(data))
@@ -38,21 +38,21 @@ class EventCard extends Component {
        usersJoined: eventInfo['usersJoined']
      })
    })
- }
+  }
 
   getOwnerInfo(id) {
-   return axios.get(`${ROOT_URL}/api/users/${id}`).then(response => {
-    let eventInfo = {}
-    eventInfo['id'] = this.props.eventId;
-    eventInfo['owner'] = {
-       name: `${response.data.first_name} ${response.data.last_name}`,
-       pic: response.data.profile_pic,
-       info: response.data.about
-     }
-     return eventInfo;
-   })
+    return axios.get(`${ROOT_URL}/api/users/${id}`).then(response => {
+      let eventInfo = {}
+      eventInfo['id'] = this.props.eventId;
+      eventInfo['owner'] = {
+         name: `${response.data.first_name} ${response.data.last_name}`,
+         pic: response.data.profile_pic,
+         info: response.data.about
+      }
+      return eventInfo;
+    })
 
- }
+  }
 
   getMessages(eventInfo){
    return axios.get(`${ROOT_URL}/api/events/${this.props.eventId}/messages`).then(response =>{
@@ -61,12 +61,12 @@ class EventCard extends Component {
    })
  }
 
- getUsersJoined(eventInfo){
+  getUsersJoined(eventInfo){
    return axios.get(`${ROOT_URL}/api/events/${this.props.eventId}/users`).then(response => {
      eventInfo['usersJoined'] = response.data
      return eventInfo
    })
- }
+  }
 
   handleModalClick() {
    if (this.state.showModal === true) {
@@ -79,7 +79,6 @@ class EventCard extends Component {
 
    }
   }
-
   renderOwnerInfo() {
     return (
     <div>
@@ -87,7 +86,7 @@ class EventCard extends Component {
       <h5 className='text-center'>{this.state.eventOwner.info}</h5>
     </div>
     )
-}
+  }
 
   renderMessages(){
     return (
