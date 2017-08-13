@@ -61,7 +61,7 @@ class EditEventForm extends Component {
     return(
       <div className='container newEventForm'>
         <header>
-          <h2 className='text-center'>Edit Event</h2>
+          <h2 className='text-center'><strong>{this.props.selectedEvent.name}</strong></h2>
         </header>
          <form className='center-block' onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
            <div className="row">
