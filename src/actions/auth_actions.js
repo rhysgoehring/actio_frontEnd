@@ -6,26 +6,39 @@ import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types';
 const ROOT_URL = 'https://actio-backend.herokuapp.com';
 // const ROOT_URL= 'http://localhost:8080'
 
-export function signinUser({ email, password }) {
-  return function(dispatch) {
-    axios.post(`${ROOT_URL}/api/signin`, { email, password })
-    .then(response => {
-        const currentUser = response.data.currentUser
-        const token = response.data.token
-        dispatch(
-          {
-            type: AUTH_USER,
-            payload: currentUser
-          }
-        )
-        localStorage.setItem('token', token);
-        localStorage.setItem('currentUser', JSON.stringify(currentUser))
-        browserHistory.push('/home')
-    })
-    .catch(() => {
-      dispatch(authError('Bag Login Info'))
-    })
+export const signinUser = ({ email, password }) => async(dispatch) => {
+  const res = await axios.post(`${ROOT_URL}/api/signin`, { email, password })
+  console.log('res', res.data)
+  if(res.data !== false) {
+    const currentUser = res.data.currentUser
+    const token = res.data.token
+    dispatch({type: AUTH_USER, payload: currentUser})
+    browserHistory.push('/home')
+    localStorage.setItem('token', token);
+    localStorage.setItem('currentUser', JSON.stringify(currentUser))
+  } else {
+    dispatch(authError('Bag Login Info'))
   }
+  
+  // return function(dispatch) {
+  //   axios.post(`${ROOT_URL}/api/signin`, { email, password })
+  //   .then(response => {
+  //       const currentUser = response.data.currentUser
+  //       const token = response.data.token
+  //       dispatch(
+  //         {
+  //           type: AUTH_USER,
+  //           payload: currentUser
+  //         }
+  //       )
+  //       localStorage.setItem('token', token);
+  //       localStorage.setItem('currentUser', JSON.stringify(currentUser))
+  //       browserHistory.push('/home')
+  //   })
+  //   .catch(() => {
+  //     dispatch(authError('Bag Login Info'))
+  //   })
+  // }
 }
 
 export function signupUser({firstName, lastName, password, email, zip, profilePicUrl}) {
