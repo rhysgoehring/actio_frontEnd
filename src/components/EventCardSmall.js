@@ -1,32 +1,33 @@
 import React, {Component} from 'react';
 import {Modal} from 'react-bootstrap';
 import truncateText from '../helpers/eventHelpers.js'
-
+import GoogleMap from './googleMap';
+import {reduxForm, Field, reset} from 'redux-form';
 
 class EventCardSmall extends Component {
   render(){
+    console.log('this.props', this.props)
     return(
-      <div className="row">
         <div className='col-md-12'>
           <div className='thumbnail myEventCard'>
-            <img className="img-responsive myEventImg" src={this.props.eventPic} alt={this.props.eventTitle} />
+            <img className="img-responsive myEventImg" src={this.props.event.event_pic} alt={this.props.eventTitle} />
             <div className='caption myEventCaption'>
-              <h4 className='myEventText'>{this.props.eventTitle}</h4>
-              <p className='myEventText'>{truncateText(this.props.eventDesc)}</p>
+              <h4 className='myEventText'>{this.props.event.name}</h4>
+              <p className='myEventText'>{truncateText(this.props.event.description)}</p>
             </div>
             <div className="ec_btn_container">
-              <button className='card-link eventBtn ec_btn' onClick={this.handleModalClick.bind(this)}>See More</button>
+              <button className='card-link eventBtn ec_btn' onClick={this.props.handleModal}>See More</button>
             </div>
             <Modal
-              show={this.state.showModal} dialogClassName="custom-modal"
+              show={this.props.showModal} dialogClassName="custom-modal"
               className='actModal'>
               <Modal.Header>
                 <div className="modal_cover">
                   <div className="cover_container">
                     <div className="cover_transparency"></div>
-                    <div className="modal_cover_img img-responsive" style={{backgroundImage:'url('+this.props.eventPic+')'}}></div>
+                    <div className="modal_cover_img img-responsive" style={{backgroundImage:'url('+this.props.event.event_pic+')'}}></div>
                     <div className="event_title">
-                      <h3><img src={this.props.icon} style={{height:'85px', width:'85px'}}/><strong>{this.props.eventTitle}</strong></h3>
+                      <h3><img src={this.props.icon} style={{height:'85px', width:'85px'}}/><strong>{this.props.event.name}</strong></h3>
                     </div>
                   </div>
                 </div>
@@ -39,25 +40,25 @@ class EventCardSmall extends Component {
                         <h4 className='text-center'><strong>Event Info</strong></h4>
                         <div className='row container'>
                           <ul style={{listStyle:'none'}} className='list-group'>
-                            <li>At: <strong>{this.props.eventLocation}</strong></li>
-                            <li>On: <strong>{this.props.eventDate}</strong></li>
+                            <li>At: <strong>{this.props.event.location}</strong></li>
+                            <li>On: <strong>{this.props.event.event_date}</strong></li>
                           </ul>
                         </div>
                         <GoogleMap
-                          latLngs={[{lat:this.props.eventLat, lng:this.props.eventLng,icon:this.props.icon}]} center zoom={16} lat={this.props.eventLat} lng={this.props.eventLng} style={{paddingLeft: '2.0em'}} />
-                        <h4 className='text-center'><strong>About {this.props.eventTitle}:</strong></h4>
+                          latLngs={[{lat:this.props.event.lat, lng:this.props.event.lng,icon:this.props.icon}]} center zoom={16} lat={this.props.event.lat} lng={this.props.event.lng} style={{paddingLeft: '2.0em'}} />
+                        <h4 className='text-center'><strong>About {this.props.event.name}:</strong></h4>
                         <p className='text-left'>{this.props.eventDesc}</p>
-                        <h4 className='text-center'><strong>Event Creator: {this.state.eventOwner.name}</strong></h4>
-                        <p className='text-left'>{this.state.eventOwner.info}</p>
+                        <h4 className='text-center'><strong>Event Creator: {this.props.eventInfo.owner.name}</strong></h4>
+                        <p className='text-left'>{this.props.eventInfo.owner.info}</p>
                         <h4 className='text-center'><strong>Who Else is Going?</strong></h4>
                         <ul className='list-inline'>
-                         {this.renderJoinedUsers()}
+                         {this.props.renderJoinedUsers()}
                         </ul>
                       </div>
                       <div className='col-md-5'>
                         <h4 className='text-center'><strong>Comments:</strong></h4>
                         <div className="row">
-                          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                          <form onSubmit={this.props.handleSubmit}>
                             <fieldset className="form-group">
                               <span className="col-md-12">
                                 <label>Post a Comment</label>
@@ -71,24 +72,26 @@ class EventCardSmall extends Component {
                             </fieldset>
                           </form>
                         </div>
-                        {this.renderMessages()}
+                        {this.props.renderMessages()}
                       </div>
                     </div>
                   </div>
                 </div>
               </Modal.Body>
               <Modal.Footer>
-                {this.renderButtons()}
-                <button style={{color:'black'}} className="btn eventBtn" onClick={this.handleModalClick.bind(this)}>Close</button>
+                {this.props.renderButtons()}
+                <button style={{color:'black'}} className="btn eventBtn" onClick={this.props.handleModal}>Close</button>
               </Modal.Footer>
             </Modal>
           </div>
         </div>
-      </div>
     )
   }
 }
 
-
+EventCardSmall = reduxForm({
+  form: "comments",
+  fields: "body",
+})(EventCardSmall);
 
 export default EventCardSmall;

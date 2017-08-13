@@ -1,7 +1,7 @@
 const TEXT_LIMIT = 116;
 
 
-export function truncateText(text){
+export default function truncateText(text){
   let limit = TEXT_LIMIT;
   if(text.length > limit){
     while(text[limit] !== ' '){

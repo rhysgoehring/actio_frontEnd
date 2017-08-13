@@ -20,6 +20,7 @@ class MyEvents extends Component {
       return(
           <div className="col-md-3" key={events.name}>
             <EventCard
+              event = {events}
               eventId= {events.id}
               eventPic= {events.event_pic}
               eventTitle={events.name}
@@ -41,6 +42,7 @@ class MyEvents extends Component {
       return (
         <div className="col-md-3" key={events.eu_id}>
           <EventCard key={events.eu_id}
+            event = {events}
             eventId = {events.event_id}
             eventPic= {events.event_pic}
             eventTitle={events.name}
