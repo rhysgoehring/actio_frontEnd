@@ -7,6 +7,7 @@ import {Link} from 'react-router';
 import axios from 'axios';
 import {reduxForm, Field, reset} from 'redux-form';
 import GoogleMap from './googleMap';
+import EventCardSmall from './EventCardSmall';
 
 const google = window.google;
 
@@ -21,11 +22,19 @@ class EventCard extends Component {
     this.state = ({
       showModal: false,
       eventOwner: {name: '', pic:'',info:''},
+      eventInfo:{
+        owner: {name: '', pic:'',info:''},
+        usersJoined: []
+      },
       messages: [],
       usersJoined: []
     })
-
- }
+    this.onSubmit = this.onSubmit.bind(this);
+    this.handleModalClick = this.handleModalClick.bind(this);
+    this.renderJoinedUsers = this.renderJoinedUsers.bind(this);
+    this.renderMessages = this.renderMessages.bind(this);
+    this.renderButtons = this.renderButtons.bind(this);
+  }
 
   componentDidMount(){
    this.getOwnerInfo(this.props.eventOwner)
@@ -33,11 +42,13 @@ class EventCard extends Component {
    .then((data) => this.getUsersJoined(data))
    .then((eventInfo) => {
      this.setState({
+       eventInfo: eventInfo,
        eventOwner: eventInfo['owner'],
        messages: eventInfo['messages'],
        usersJoined: eventInfo['usersJoined']
      })
    })
+
   }
 
   getOwnerInfo(id) {
@@ -55,11 +66,11 @@ class EventCard extends Component {
   }
 
   getMessages(eventInfo){
-   return axios.get(`${ROOT_URL}/api/events/${this.props.eventId}/messages`).then(response =>{
-     eventInfo['messages'] = response.data
-     return eventInfo
-   })
- }
+    return axios.get(`${ROOT_URL}/api/events/${this.props.eventId}/messages`).then(response =>{
+      eventInfo['messages'] = response.data
+      return eventInfo
+    })
+  }
 
   getUsersJoined(eventInfo){
    return axios.get(`${ROOT_URL}/api/events/${this.props.eventId}/users`).then(response => {
@@ -79,6 +90,7 @@ class EventCard extends Component {
 
    }
   }
+
   renderOwnerInfo() {
     return (
     <div>
@@ -114,55 +126,55 @@ class EventCard extends Component {
     )
   }
 
-onSubmit(values) {
-  let currentMessages = this.state.messages
-  let body = values.body
-  let title = this.props.firstName
-  let message = {title:title, body:body, event_id:this.props.eventId}
-  currentMessages.push(message);
-  this.setState({
-    messages: currentMessages
-  })
-  axios.post(`${ROOT_URL}/api/messages`, message);
-  this.props.dispatch(reset('comments'));
-}
-
-joinE(id) {
-  const userId = this.props.id
-  const currentUsers = this.state.usersJoined
-  let newUser= {
-    id: this.props.id,
-    first_name: this.props.firstName,
-    last_name: this.props.lastName,
-    profile_pic: this.props.picUrl
+  onSubmit(values) {
+    let currentMessages = this.state.messages
+    let body = values.body
+    let title = this.props.firstName
+    let message = {title:title, body:body, event_id:this.props.eventId}
+    currentMessages.push(message);
+    this.setState({
+      messages: currentMessages
+    })
+    axios.post(`${ROOT_URL}/api/messages`, message);
+    this.props.dispatch(reset('comments'));
   }
 
-  currentUsers.push(newUser)
-  this.setState({
-    usersJoined: currentUsers
-  })
-  return axios.post(`${ROOT_URL}/api/events/${this.props.eventId}`, {userId}).then(() => {
-    this.props.getUserEvents(this.props.id);
-  })
-}
-
-leaveE(id) {
-  const userId = this.props.id
-  const currentUsers = this.state.usersJoined
-
-  for (let i=0; i < currentUsers.length; i++) {
-    if (userId === currentUsers[i].id) {
-      currentUsers.splice(i, 1)
+  joinE(id) {
+    const userId = this.props.id
+    const currentUsers = this.state.usersJoined
+    let newUser= {
+      id: this.props.id,
+      first_name: this.props.firstName,
+      last_name: this.props.lastName,
+      profile_pic: this.props.picUrl
     }
+
+    currentUsers.push(newUser)
+    this.setState({
+      usersJoined: currentUsers
+    })
+    return axios.post(`${ROOT_URL}/api/events/${this.props.eventId}`, {userId}).then(() => {
+      this.props.getUserEvents(this.props.id);
+    })
   }
 
-  this.setState({
-    usersJoined: currentUsers
-  })
-  return axios.delete(`${ROOT_URL}/api/events/delete/${this.props.eventId}/${this.props.id}`).then(() => {
-    this.props.getAllEvents().then(()=> this.props.getUserEvents(this.props.id))
-  })
-}
+  leaveE(id) {
+    const userId = this.props.id
+    const currentUsers = this.state.usersJoined
+
+    for (let i=0; i < currentUsers.length; i++) {
+      if (userId === currentUsers[i].id) {
+        currentUsers.splice(i, 1)
+      }
+    }
+
+    this.setState({
+      usersJoined: currentUsers
+    })
+    return axios.delete(`${ROOT_URL}/api/events/delete/${this.props.eventId}/${this.props.id}`).then(() => {
+      this.props.getAllEvents().then(()=> this.props.getUserEvents(this.props.id))
+    })
+  }
 
   checkUserStatus() {
     for (var i = 0; i < this.state.usersJoined.length; i++) {
@@ -172,8 +184,6 @@ leaveE(id) {
     }
       return false;
   }
-
-
 
   renderButtons(){
     if (this.checkUserStatus() === false) {
@@ -213,6 +223,7 @@ leaveE(id) {
   render() {
    const { handleSubmit} = this.props
    if (this.props.eventType === 'all') {
+
     return (
       <div className='eventCardContainer' style={{marginLeft: '1.0em'}}>
         <div className='card actCard'>
@@ -310,88 +321,23 @@ leaveE(id) {
       </div>
 
       )
-    } else {
+    }
+    else {
       return (
+
         <div className="row">
-          <div className='col-md-12'>
-            <div className='thumbnail myEventCard'>
-              <img className="img-responsive myEventImg" src={this.props.eventPic} alt={this.props.eventTitle} />
-              <div className='caption myEventCaption'>
-                <h4 className='myEventText'>{this.props.eventTitle}</h4>
-                <p className='myEventText'>{truncateEventText(this.props.eventDesc)}</p>
-              </div>
-              <div className="ec_btn_container">
-                <button className='card-link eventBtn ec_btn' onClick={this.handleModalClick.bind(this)}>See More</button>
-              </div>
-
-                <Modal
-                  show={this.state.showModal} dialogClassName="custom-modal"
-                  className='actModal'>
-                  <Modal.Header>
-                    <div className="modal_cover">
-                      <div className="cover_container">
-                        <div className="cover_transparency"></div>
-                        <div className="modal_cover_img img-responsive" style={{backgroundImage:'url('+this.props.eventPic+')'}}></div>
-                        <div className="event_title">
-                          <h3><img src={this.props.icon} style={{height:'85px', width:'85px'}}/><strong>{this.props.eventTitle}</strong></h3>
-                        </div>
-                      </div>
-                    </div>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <div className='row container'>
-                      <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
-                        <div className='row'>
-                          <div className='col-md-5'>
-                            <h4 className='text-center'><strong>Event Info</strong></h4>
-                            <div className='row container'>
-                              <ul style={{listStyle:'none'}} className='list-group'>
-                                <li>At: <strong>{this.props.eventLocation}</strong></li>
-                                <li>On: <strong>{this.props.eventDate}</strong></li>
-                              </ul>
-                            </div>
-                            <GoogleMap
-                              latLngs={[{lat:this.props.eventLat, lng:this.props.eventLng,icon:this.props.icon}]} center zoom={16} lat={this.props.eventLat} lng={this.props.eventLng} style={{paddingLeft: '2.0em'}} />
-                            <h4 className='text-center'><strong>About {this.props.eventTitle}:</strong></h4>
-                            <p className='text-left'>{this.props.eventDesc}</p>
-                            <h4 className='text-center'><strong>Event Creator: {this.state.eventOwner.name}</strong></h4>
-                            <p className='text-left'>{this.state.eventOwner.info}</p>
-                            <h4 className='text-center'><strong>Who Else is Going?</strong></h4>
-                            <ul className='list-inline'>
-                             {this.renderJoinedUsers()}
-                            </ul>
-                          </div>
-                          <div className='col-md-5'>
-                            <h4 className='text-center'><strong>Comments:</strong></h4>
-                            <div className="row">
-                              <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                                <fieldset className="form-group">
-                                  <span className="col-md-12">
-                                    <label>Post a Comment</label>
-                                    <Field
-                                    name="body"
-                                    type="text"
-                                    component="textarea"
-                                    className="form-control" />
-                                    <button style={{color:'black'}} type="submit" className="btn eventBtn">Comment</button>
-                                  </span>
-                                </fieldset>
-                              </form>
-                            </div>
-                            {this.renderMessages()}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    {this.renderButtons()}
-                    <button style={{color:'black'}} className="btn eventBtn" onClick={this.handleModalClick.bind(this)}>Close</button>
-                  </Modal.Footer>
-                </Modal>
-
-            </div>
-          </div>
+          <EventCardSmall
+            joinEvent = {this.joinE}
+            leaveEvent = {this.leaveE}
+            event = {this.props.event}
+            handleModal = {this.handleModalClick}
+            eventInfo = {this.state.eventInfo}
+            handleSubmit = {this.handleSubmit}
+            showModal = {this.state.showModal}
+            renderJoinedUsers = {this.renderJoinedUsers}
+            renderMessages = {this.renderMessages}
+            renderButtons = {this.renderButtons}
+          />
         </div>
       )
     }

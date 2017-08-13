@@ -6,7 +6,6 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {createStore, applyMiddleware} from 'redux';
 import reduxThunk from 'redux-thunk';
 
-
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
@@ -28,10 +27,10 @@ import GoogleMapsLoader from 'google-maps';
 
 
 
-
 const store = createStore(reducers, applyMiddleware(reduxThunk))
 window.GoogleMapsLoader = GoogleMapsLoader;
 GoogleMapsLoader.KEY = process.env.REACT_APP_MAP
+
 
 const token = localStorage.getItem('token');
 let currentUser = localStorage.getItem('currentUser')

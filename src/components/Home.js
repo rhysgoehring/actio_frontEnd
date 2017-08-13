@@ -10,7 +10,7 @@ import EventFilter from './EventFilter';
 
 
 class Home extends Component {
-  
+
 
   componentDidMount() {
     const id = this.props.id
@@ -23,6 +23,7 @@ class Home extends Component {
       return (
         <EventCard key={events.id}
           eventType="all"
+          event= {events}
           eventId= {events.id}
           eventPic= {events.event_pic}
           eventTitle={events.name}
@@ -43,6 +44,7 @@ class Home extends Component {
     return _.map(this.props.userEvents, events => {
       return (
         <EventCard key={events.eu_id}
+          event= {events}
           eventId = {events.event_id}
           eventPic= {events.event_pic}
           eventTitle={events.name}
