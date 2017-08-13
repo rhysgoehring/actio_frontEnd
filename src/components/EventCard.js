@@ -27,6 +27,19 @@ class EventCard extends Component {
 
  }
 
+ componentDidMount(){
+   this.getOwnerInfo(this.props.eventOwner)
+   .then((data) => this.getMessages(data))
+   .then((data) => this.getUsersJoined(data))
+   .then((eventInfo) => {
+     this.setState({
+       eventOwner: eventInfo['owner'],
+       messages: eventInfo['messages'],
+       usersJoined: eventInfo['usersJoined']
+     })
+   })
+ }
+
   getOwnerInfo(id) {
    return axios.get(`${ROOT_URL}/api/users/${id}`).then(response => {
     let eventInfo = {}
@@ -61,19 +74,11 @@ class EventCard extends Component {
        showModal: false
      })
    } else {
-     this.getOwnerInfo(this.props.eventOwner)
-     .then((data) => this.getMessages(data))
-     .then((data) => this.getUsersJoined(data))
-     .then((eventInfo) => {
-       this.setState({
-         eventOwner: eventInfo['owner'],
-         messages: eventInfo['messages'],
-  	     usersJoined: eventInfo['usersJoined'],
-         showModal: true
-       })
-     })
+
+     this.setState({showModal:true})
+
    }
-    }
+  }
 
   renderOwnerInfo() {
     return (
@@ -313,7 +318,7 @@ leaveE(id) {
             <div className='thumbnail myEventCard'>
               <img className="img-responsive myEventImg" src={this.props.eventPic} alt={this.props.eventTitle} />
               <div className='caption myEventCaption'>
-                <h4 className='myEventText'><strong>{this.props.eventTitle}</strong></h4>
+                <h4 className='myEventText'>{this.props.eventTitle}</h4>
                 <p className='myEventText'>{truncateEventText(this.props.eventDesc)}</p>
               </div>
               <div className="ec_btn_container">
