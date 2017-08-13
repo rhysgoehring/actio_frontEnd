@@ -4,6 +4,11 @@
     src: url(./actioPublic/GothLight.otf);
 }
 
+@font-face {
+    font-family: 'Medula One';
+    src: url(./actioPublic/MedulaOne-Regular.ttf);
+}
+
 
 
 
@@ -34,7 +39,7 @@ html{
 }
 /****************************************Profile********************************/
 .prof_title {
-  font-family: 'Medula One', cursive;
+  font-family: 'Medula One';
   font-size: 10.0rem;
   text-align: center;
   color: white;
@@ -63,7 +68,7 @@ fieldset {
 }
 
 .main_title {
-  font-family: 'Medula One', cursive;
+  font-family: 'Medula One';
   font-size: 10.0rem;
   text-align: center;
   color: white;
@@ -314,7 +319,7 @@ img.profPicHome {
 }
 
 .navLogo {
-  font-family: 'Medula One', cursive;
+  font-family: 'Medula One';
   color: white!important;
   font-size: 5.0em;
 }
