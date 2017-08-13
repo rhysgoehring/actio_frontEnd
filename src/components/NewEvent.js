@@ -67,14 +67,10 @@ class NewEvent extends Component {
         lat: results[0].geometry.location.lat(),
         lng: results[0].geometry.location.lng()
       });
-
       this.map.setCenter(results[0].geometry.location);
+      this.map.setZoom(14);
       this.marker.setPosition(results[0].geometry.location);
-
     }
-
-
-
   }.bind(this));
 }
   handleFormSubmit(e){

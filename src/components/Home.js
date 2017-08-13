@@ -13,11 +13,9 @@ class Home extends Component {
   
 
   componentDidMount() {
-    this.props.getAllEvents();
     const id = this.props.id
-    this.props.getUserEvents(id);
-
-
+    this.props.getAllEvents()
+      .then(() => this.props.getUserEvents(id))
   }
 
   renderAllEvents() {

@@ -19,13 +19,14 @@ const INITIAL_ZOOM = 8
 class EditEvent extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state=({
       gcError: false,
       foundAddress: INITIAL_LOCATION.address,
       lat: INITIAL_LOCATION.position.latitude,
-      lng: INITIAL_LOCATION.position.longitude
-
+      lng: INITIAL_LOCATION.position.longitude,
+      
+      
     })
 
     this.map = {}
@@ -34,7 +35,9 @@ class EditEvent extends Component {
 
   componentDidMount() {
     window.GoogleMapsLoader.load(this.initMap);
-    this.props.getEvent(this.props.params.id);
+    this.props.getEvent(this.props.params.id)
+      .then(() => this.setState({input: this.props.event.location}))
+      
   }
 
   initMap(){
@@ -69,8 +72,8 @@ class EditEvent extends Component {
         lat: results[0].geometry.location.lat(),
         lng: results[0].geometry.location.lng()
       });
-
       this.map.setCenter(results[0].geometry.location);
+      this.map.setZoom(14)
       this.marker.setPosition(results[0].geometry.location);
     }
   }.bind(this));
@@ -96,6 +99,7 @@ class EditEvent extends Component {
   }
 
   render(){
+    
     return(
       <div className='container'>
         <div className='row'>
@@ -106,7 +110,7 @@ class EditEvent extends Component {
         <div className='row'>
             <div className='col-lg-12 col-md-12'>
               <form className='input-group form-inline' onSubmit={this.handleFormSubmit.bind(this)}>
-                <input type="text" className="form-control actField" ref="address" placeholder='Enter Address' style={{color:'black'}} />
+                <input type="text" className="form-control actField" ref="address" placeholder='Enter Address' value={this.state.input} style={{color:'black'}} />
                 <span className='input-group-btn'>
                   <button className='newBtn' type="submit">Find Location</button>
                 </span>
@@ -128,8 +132,7 @@ function mapStateToProps(state) {
     lastName: state.auth.lastName,
     picUrl: state.auth.profPic,
     zip: state.auth.zip,
-    event: state.allEvents
-
+    event: state.allEvents.selectedEvent
   })
 }
 

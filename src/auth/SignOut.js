@@ -13,7 +13,7 @@ class SignOut extends Component {
       <div className="landing_main">
         <div className="container" style={{alignContent: 'center'}}>
           <h1 className="text-center main_title">ACTIO</h1>
-          <p className="text-center" style={{fontFamily: 'gothamReg'}}>Sorry to see you go</p>
+          <p className="text-center" style={{fontFamily: 'gothamReg', fontSize:'16px'}}>Sorry to see you go</p>
           <div className="row">
             <div className="col-md-6">
               <Link className="btn auth_btn pull-right" to="/signin">Sign In</Link>
