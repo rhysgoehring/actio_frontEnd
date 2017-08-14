@@ -34,6 +34,7 @@ export function signupUser({firstName, lastName, password, email, zip, profilePi
         )
 
         localStorage.setItem('token', token);
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
         browserHistory.push('/home')
       })
       .catch(response => dispatch(authError()))
