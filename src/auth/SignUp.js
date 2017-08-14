@@ -5,7 +5,20 @@ import * as actions from '../actions/index';
 import {Link} from 'react-router';
 
 class SignUp extends Component {
-
+  constructor(props){
+    super(props);
+    this.state = {
+      imgUrl: this.props.profilePic
+    }
+  }
+  
+  handleChange = () => {
+    console.log('this.refs.picUrl', this.refs.picUrl);
+    this.setState({
+      imgUrl: this.refs.picUrl.value
+    })
+  }
+  
   handleFormSubmit(values){
     this.props.signupUser(values);
   }
@@ -21,10 +34,10 @@ class SignUp extends Component {
   }
 
   showPreview() {
-    if (!this.refs.picUrl){
+    if (!this.state.imgUrl){
       console.log('no pic url')
     } else {
-    let picUrl = this.refs.picUrl.value
+    let picUrl = this.state.imgUrl
     return (
           <img src={picUrl}
             style={{
@@ -49,7 +62,7 @@ class SignUp extends Component {
           <section />
           <br />
           <br />
-          <article>
+        
             <div className="container">
               <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                 <div className="row">
@@ -102,23 +115,23 @@ class SignUp extends Component {
                   <div className="row">
                     <div className="col-md-6">
                       <fieldset className="form-group">
-                        <label>Profile Picture URL</label>
+                        <label>Profile Picture URL (click below input to see preview)</label>
                         <Field
                           name="profilePicUrl"
                           ref = "picUrl"
                           type="url"
                           component="input"
                           className="form-control actField"
-                          onBlur={()=> this.showPreview()}/>
+                          onBlur={()=> this.handleChange()}/>
                       </fieldset>
                       {this.showPreview()}
                     </div>
                   </div>
                 </div>
                 <br />
-                <div className="row">
+                <div className="row authBtnRow">
                   <div className="col-md-6">
-                    <button action="submit" className="btn auth_btn">Sign Up</button>
+                    <button action="submit" style={{color:'black'}} className="btn auth_btn">Sign Up</button>
                   </div>
                   <div className="col-md-6">
                     <Link style={{textDecoration: 'none', color: 'black'}} className="btn auth_btn" to="/signin">Sign In</Link>
@@ -126,7 +139,6 @@ class SignUp extends Component {
                 </div>
               </form>
             </div>
-          </article>
         </div>
       </div>
     )
