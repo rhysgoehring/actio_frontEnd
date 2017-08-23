@@ -10,8 +10,6 @@ import EventFilter from './EventFilter';
 
 
 class Home extends Component {
-
-
   componentDidMount() {
     const id = this.props.id
     this.props.getAllEvents()
